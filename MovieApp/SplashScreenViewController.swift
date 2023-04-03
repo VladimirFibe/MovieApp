@@ -46,7 +46,7 @@ class SplashScreenViewController: UIViewController {
         
         startTimer()
         
-        let delay: TimeInterval = 5
+        let delay: TimeInterval = 2
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             self.moveToNextVC()
         }
@@ -101,7 +101,15 @@ class SplashScreenViewController: UIViewController {
     
     // MARK: - Set constraints
     func setConstraints() {
-        let center = NSLayoutConstraint(item: logoImageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 0)
+        let center = NSLayoutConstraint(
+            item: logoImageView,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .centerY,
+            multiplier: 0.8,
+            constant: 0)
+        
         NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalToConstant: 88),
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),

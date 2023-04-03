@@ -18,18 +18,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moviePlayLogo" translatesAutoresizingMaskIntoConstraints="NO" id="616-i5-8jA">
-                                <rect key="frame" x="152.66666666666666" y="259" width="88" height="88"/>
+                                <rect key="frame" x="152.66666666666666" y="296.66666666666669" width="88" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="1to-GF-3If"/>
                                     <constraint firstAttribute="height" constant="88" id="79P-PO-Q1N"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MovieApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAs-VZ-tJI">
+                                <rect key="frame" x="0.0" y="396.66666666666669" width="393" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="72Q-CL-CWB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="mainBlue"/>
                         <constraints>
+                            <constraint firstItem="616-i5-8jA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.8" id="1yS-gJ-DxU"/>
                             <constraint firstItem="616-i5-8jA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GtL-23-qMU"/>
-                            <constraint firstItem="616-i5-8jA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="oCa-iY-U9i"/>
+                            <constraint firstItem="QAs-VZ-tJI" firstAttribute="top" secondItem="616-i5-8jA" secondAttribute="bottom" constant="12" id="KuD-V7-4ef"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QAs-VZ-tJI" secondAttribute="trailing" id="NZJ-0R-ehI"/>
+                            <constraint firstItem="QAs-VZ-tJI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lTP-O5-jwk"/>
                         </constraints>
                     </view>
                 </viewController>
