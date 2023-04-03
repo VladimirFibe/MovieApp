@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
     
+    let labelInfoArray = ["First Name", "Last Name","E-mail","Password","Confirm Password"]
     let registerTableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -30,7 +31,6 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
-    let labelInfoArray = ["First Name", "Last Name","E-mail","Password","Confirm Password"]
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
@@ -45,7 +45,14 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = registerTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RegisterTableViewCell
-        cell = RegisterTableViewCell( "Enter you \(labelInfoArray[indexPath.row])",labelInfoArray[indexPath.row])
+        let labelInfo = labelInfoArray[indexPath.row]
+        cell = RegisterTableViewCell( "Enter you \(labelInfo)",labelInfo)
+        switch labelInfo{
+        case "Password","Confirm Password":
+            cell.hidePasswordButton.isHidden = false
+        default:
+            cell.hidePasswordButton.isHidden = true
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
