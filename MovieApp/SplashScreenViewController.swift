@@ -101,17 +101,18 @@ class SplashScreenViewController: UIViewController {
     
     // MARK: - Set constraints
     func setConstraints() {
+        let center = NSLayoutConstraint(item: logoImageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 0)
         NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalToConstant: 88),
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
+            center,
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             logoLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 12),
             logoLabel.heightAnchor.constraint(equalToConstant: 48),
             logoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             logoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
+
             customActivity.widthAnchor.constraint(equalToConstant: 55),
             customActivity.heightAnchor.constraint(equalTo: customActivity.widthAnchor),
             customActivity.centerXAnchor.constraint(equalTo: view.centerXAnchor),
