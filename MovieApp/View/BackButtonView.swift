@@ -13,6 +13,7 @@ class BackButtonView: UIView {
         $0.isUserInteractionEnabled = true
         $0.contentMode = .scaleAspectFit
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.tintColor = UIColor(hexString: Constants.colorHexString)
         return $0
     }(UIImageView())
     let backButton: UIButton = {
