@@ -39,7 +39,6 @@ class RegisterTableViewCell: UITableViewCell {
     }(UIButton())
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.addCustomView()
     }
     convenience init(_ nameField: String,_ labelInfo: String){
         self.init()

@@ -8,6 +8,10 @@
 import UIKit
 
 class BackButtonView: UIView {
+    var goBackTapCallBack: () -> () = {}
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 50, height: 50)
+    }
     let backImage: UIImageView = {
         $0.image = UIImage(systemName: "arrow.backward.circle")
         $0.isUserInteractionEnabled = true
@@ -21,13 +25,8 @@ class BackButtonView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIButton())
-    var goBackTapCallBack: () -> () = {}
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 50, height: 50)
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.setupUI()
     }
     required init?(coder: NSCoder) {
@@ -38,6 +37,7 @@ class BackButtonView: UIView {
         goBackTapCallBack()
     }
     func setupUI(){
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(backImage)
         NSLayoutConstraint.activate([
             backImage.topAnchor.constraint(equalTo: self.topAnchor),

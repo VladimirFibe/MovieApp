@@ -7,9 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegate {
-    
-    let labelInfoArray = ["First Name", "Last Name","E-mail","Password","Confirm Password"]
+class ViewController: UIViewController{
+    let labelInfoArray = Constants.labelInfoArray
     let registerTableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -36,15 +35,18 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         setupConstraints()
         registerTableView.delegate = self
         registerTableView.dataSource = self
-        registerTableView.register(RegisterTableViewCell.self, forCellReuseIdentifier: "cell")
+        registerTableView.register(RegisterTableViewCell.self, forCellReuseIdentifier: Constants.cellRegisterId)
         registerTableView.separatorStyle = .none
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+}
+//MARK: UITableViewController data source, delegate methods
+extension ViewController: UITableViewDataSource,UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = registerTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RegisterTableViewCell
+        var cell = registerTableView.dequeueReusableCell(withIdentifier: Constants.cellRegisterId, for: indexPath) as! RegisterTableViewCell
         let labelInfo = labelInfoArray[indexPath.row]
         cell = RegisterTableViewCell( "Enter you \(labelInfo)",labelInfo)
         switch labelInfo{
@@ -59,6 +61,7 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         return nil
     }
 }
+//MARK: setting constraints
 extension ViewController{
     func setupConstraints(){
         view.addSubview(backButton)
