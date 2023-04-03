@@ -25,12 +25,15 @@ class SplashScreenViewController: UIViewController {
         return label
     }()
     
-    let activity: UIActivityIndicatorView = {
-        let activity = UIActivityIndicatorView(style: .large)
-        activity.color = .white
-        return activity
+    let customActivity: UIImageView = {
+        let image = UIImage(named: "LoadingPNG")
+        let imageView = UIImageView(image: image)
+        return imageView
     }()
+    
+    var timer: Timer?
 
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,32 +44,63 @@ class SplashScreenViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        activity.startAnimating()
+        startTimer()
         
-        let delay: TimeInterval = 2
+        let delay: TimeInterval = 5
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             self.moveToNextVC()
         }
     }
     
+    // MARK: - Start setup
     func configureUI() {
         view.backgroundColor = UIColor(named: "mainBlue")
         
-        [logoImageView, logoLabel, activity].forEach { view in
+        [logoImageView, logoLabel, customActivity].forEach { view in
             self.view.addSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
+    // MARK: - Navigation
     func moveToNextVC() {
-        activity.stopAnimating()
+        stopTimer()
         let vc = ViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
     
+    // MARK: - Animation
+    @objc func animateCustomActivityIndicator() {
+        UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveLinear) {
+            self.customActivity.transform = self.customActivity.transform.rotated(by: CGFloat(Double.pi))
+        } completion: { _ in
+            if self.timer != nil {
+                self.timer = Timer.scheduledTimer(
+                    timeInterval: 0.0, target: self,
+                    selector: #selector(self.animateCustomActivityIndicator),
+                    userInfo: nil, repeats: false)
+            }
+        }
+    }
+    
+    // MARK: - Timer methods
+    func startTimer() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(
+                timeInterval: 0.0, target: self,
+                selector: #selector(animateCustomActivityIndicator),
+                userInfo: nil, repeats: false)
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    // MARK: - Set constraints
     func setConstraints() {
-
         NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalToConstant: 88),
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor),
@@ -78,10 +112,10 @@ class SplashScreenViewController: UIViewController {
             logoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             logoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            activity.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activity.widthAnchor.constraint(equalToConstant: 60),
-            activity.heightAnchor.constraint(equalToConstant: 60),
-            activity.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
+            customActivity.widthAnchor.constraint(equalToConstant: 55),
+            customActivity.heightAnchor.constraint(equalTo: customActivity.widthAnchor),
+            customActivity.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            customActivity.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
         ])
     }
     
