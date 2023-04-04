@@ -108,6 +108,7 @@ class CreateAccountViewController: UIViewController {
                                         .font : UIFont.boldSystemFont(ofSize: 16)],
                                        range: NSRange(location: 25, length: 5))
         loginButton.setAttributedTitle(attributedString, for: .normal)
+
     }
     
 // MARK: - Set Constraints
