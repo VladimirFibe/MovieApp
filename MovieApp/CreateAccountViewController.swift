@@ -88,6 +88,7 @@ class CreateAccountViewController: UIViewController {
         googleButton.setButton(style: .withoutFill, andTitle: "Continue with google")
         googleButton.delegate = self
         textView.configure(placeholder: "example@gmail,com")
+        textView.textField.delegate = self
         setAttributeForButton()
         
         loginButton.addTarget(self, action: #selector(logitButtonPressed), for: .touchUpInside)
@@ -151,5 +152,21 @@ extension CreateAccountViewController: MainButtonDelegate {
     
     @objc func logitButtonPressed() {
         print("Login button pressed")
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension CreateAccountViewController: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let test = textField.text {
+            print(test)
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
