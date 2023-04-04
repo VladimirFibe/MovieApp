@@ -11,4 +11,5 @@ struct Constants{
     static let labelInfoArray = ["First Name", "Last Name","E-mail","Password","Confirm Password"]
     static let cellRegisterId = "cellRegId"
     static let cellMovieIdentifier = "MovieCellId"
+    static let cellHorizontalCollection = "cellHorizontalID"
 }

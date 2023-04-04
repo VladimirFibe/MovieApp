@@ -15,6 +15,8 @@
 		18A4255829DC088A004AF652 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4255729DC088A004AF652 /* FavouritesViewController.swift */; };
 		18A4255A29DC09D3004AF652 /* MovieTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4255929DC09D3004AF652 /* MovieTableView.swift */; };
 		18A4255C29DC58DB004AF652 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4255B29DC58DB004AF652 /* MovieTableViewCell.swift */; };
+		18A4255E29DC8056004AF652 /* HorizontalTagCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4255D29DC8056004AF652 /* HorizontalTagCollectionView.swift */; };
+		18A4256029DC82D2004AF652 /* HorizontalTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4255F29DC82D2004AF652 /* HorizontalTagCollectionViewCell.swift */; };
 		275F4F3129DA404900FCBF0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F4F3029DA404900FCBF0E /* AppDelegate.swift */; };
 		275F4F3329DA404900FCBF0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F4F3229DA404900FCBF0E /* SceneDelegate.swift */; };
 		275F4F3529DA404900FCBF0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F4F3429DA404900FCBF0E /* ViewController.swift */; };
@@ -32,6 +34,8 @@
 		18A4255729DC088A004AF652 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		18A4255929DC09D3004AF652 /* MovieTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableView.swift; sourceTree = "<group>"; };
 		18A4255B29DC58DB004AF652 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		18A4255D29DC8056004AF652 /* HorizontalTagCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalTagCollectionView.swift; sourceTree = "<group>"; };
+		18A4255F29DC82D2004AF652 /* HorizontalTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		275F4F2D29DA404900FCBF0E /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		275F4F3029DA404900FCBF0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		275F4F3229DA404900FCBF0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 		18A4255529DB0AD2004AF652 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18A4255F29DC82D2004AF652 /* HorizontalTagCollectionViewCell.swift */,
 				18A4254D29DB00D8004AF652 /* RegisterTableViewCell.swift */,
 				18A4254929DADC5C004AF652 /* BackButtonView.swift */,
 				18A4254B29DAF049004AF652 /* ButtonView.swift */,
@@ -83,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				18A4255729DC088A004AF652 /* FavouritesViewController.swift */,
+				18A4255D29DC8056004AF652 /* HorizontalTagCollectionView.swift */,
 				275F4F3429DA404900FCBF0E /* ViewController.swift */,
 				18A4255929DC09D3004AF652 /* MovieTableView.swift */,
 				18A4255B29DC58DB004AF652 /* MovieTableViewCell.swift */,
@@ -197,10 +203,12 @@
 				18A4255829DC088A004AF652 /* FavouritesViewController.swift in Sources */,
 				18A4255229DB0AAD004AF652 /* UIcolor + hexString.swift in Sources */,
 				275F4F3529DA404900FCBF0E /* ViewController.swift in Sources */,
+				18A4255E29DC8056004AF652 /* HorizontalTagCollectionView.swift in Sources */,
 				275F4F3129DA404900FCBF0E /* AppDelegate.swift in Sources */,
 				18A4254C29DAF049004AF652 /* ButtonView.swift in Sources */,
 				275F4F3329DA404900FCBF0E /* SceneDelegate.swift in Sources */,
 				18A4255029DB0A70004AF652 /* Constants.swift in Sources */,
+				18A4256029DC82D2004AF652 /* HorizontalTagCollectionViewCell.swift in Sources */,
 				18A4254E29DB00D8004AF652 /* RegisterTableViewCell.swift in Sources */,
 				18A4255A29DC09D3004AF652 /* MovieTableView.swift in Sources */,
 				18A4255C29DC58DB004AF652 /* MovieTableViewCell.swift in Sources */,

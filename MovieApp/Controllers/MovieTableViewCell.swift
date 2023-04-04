@@ -21,6 +21,13 @@ class MovieTableViewCell: UITableViewCell {
         $0.font = .systemFont(ofSize: 15)
         return $0
     }(UILabel())
+    let favouriteImageView: UIImageView = {
+        $0.image = UIImage(systemName: "heart")
+        $0.tintColor = .lightGray
+        $0.contentMode = .scaleAspectFill
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIImageView())
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +49,13 @@ class MovieTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             movieTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor,constant: 30),
             movieTitle.leadingAnchor.constraint(equalTo: moviePoster.trailingAnchor, constant: 30)
+        ])
+        self.contentView.addSubview(favouriteImageView)
+        NSLayoutConstraint.activate([
+            favouriteImageView.centerYAnchor.constraint(equalTo: movieTitle.centerYAnchor,constant: -10),
+            favouriteImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            favouriteImageView.heightAnchor.constraint(equalToConstant: 35),
+            favouriteImageView.widthAnchor.constraint(equalToConstant: 35)
         ])
         //creating small images
         for index in infoImagesArray.indices{

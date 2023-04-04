@@ -9,13 +9,14 @@ import UIKit
 
 class MovieTableView: UITableView {
     
-    
+    var items = 8
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.dataSource = self
         self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.rowHeight = 200
+        self.register(MovieTableViewCell.self, forCellReuseIdentifier: "MovieCellId")
     }
     
     required init?(coder: NSCoder) {
@@ -24,7 +25,7 @@ class MovieTableView: UITableView {
 }
 extension MovieTableView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return items
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
