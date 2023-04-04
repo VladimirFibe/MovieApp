@@ -14,13 +14,21 @@ class CreateAccountViewController: UIViewController {
     let emailButton = MainButton()
     let googleButton = MainButton()
     let textView = TextFieldView()
+    
     let separateLabel: UILabel = {
         let label = UILabel()
-         label.text = "⎯⎯⎯  Or continue with  ⎯⎯⎯"
+         label.text = "⎯⎯⎯⎯  Or continue with  ⎯⎯⎯⎯"
          label.font = UIFont.boldSystemFont(ofSize: 16)
          label.textColor = .gray
          label.textAlignment = .center
          return label
+    }()
+    
+    let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+//        button.setTitle("Already have an account? Login", for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+        return button
     }()
     
     let screenNameLabel: UILabel = {
@@ -67,23 +75,20 @@ class CreateAccountViewController: UIViewController {
         configureUI()
         setConstraints()
     }
-    
-    
+        
 // MARK: - Start setup
     func configureUI() {
         view.backgroundColor = UIColor(named: "mainBlue")
         view.addSubview(backView)
         
-//        view.addSubview(emailButton)
-//        emailButton.setButton(style: .withoutFill, andTitle: "Continue with email")
-        
-        [screenNameLabel, screenDescriptionLabel, stackView].forEach {
+        [screenNameLabel, screenDescriptionLabel, stackView, loginButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
         emailButton.setButton(style: .fill, andTitle: "Continue with email")
         googleButton.setButton(style: .withoutFill, andTitle: "Continue with google")
         textView.configure(placeholder: "example@gmail,com")
+        setAttributeForButton()
         
         configureStackView()
     }
@@ -94,6 +99,16 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
+    func setAttributeForButton() {
+        let attributedString = NSMutableAttributedString(string: "Already have an account? Login")
+        attributedString.addAttributes([.foregroundColor : UIColor.gray,
+                                        .font : UIFont.boldSystemFont(ofSize: 16)],
+                                       range: NSRange(location: 0, length: 24))
+        attributedString.addAttributes([.foregroundColor : UIColor.blue,
+                                        .font : UIFont.boldSystemFont(ofSize: 16)],
+                                       range: NSRange(location: 25, length: 5))
+        loginButton.setAttributedTitle(attributedString, for: .normal)
+    }
     
 // MARK: - Set Constraints
     func setConstraints() {
@@ -113,7 +128,12 @@ class CreateAccountViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -20),
             
-            separateLabel.heightAnchor.constraint(equalToConstant: 22)
+            separateLabel.heightAnchor.constraint(equalToConstant: 22),
+            
+            loginButton.heightAnchor.constraint(equalToConstant: 24),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }
