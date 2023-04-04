@@ -17,8 +17,10 @@ class MainButton: UIButton {
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
     
+    
+    // TODO: Нужен ли тут инициализатор
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
+        super.init(frame: frame)
         
         self.layer.cornerRadius = height / 2
         translatesAutoresizingMaskIntoConstraints = false

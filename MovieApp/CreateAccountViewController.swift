@@ -9,7 +9,19 @@ import UIKit
 
 class CreateAccountViewController: UIViewController {
     
-    let buttons: [MainButton] = [.init(), .init(), .init()]
+    let offset: CGFloat = 10
+    
+    let emailButton = MainButton()
+    let googleButton = MainButton()
+    let textView = TextFieldView()
+    let separateLabel: UILabel = {
+        let label = UILabel()
+         label.text = "⎯⎯⎯  Or continue with  ⎯⎯⎯"
+         label.font = UIFont.boldSystemFont(ofSize: 16)
+         label.textColor = .gray
+         label.textAlignment = .center
+         return label
+    }()
     
     let screenNameLabel: UILabel = {
        let label = UILabel()
@@ -31,9 +43,10 @@ class CreateAccountViewController: UIViewController {
     
     let stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 10
+        stackView.axis = .vertical
+        stackView.spacing = 41
         stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         return stackView
     }()
     
@@ -68,10 +81,15 @@ class CreateAccountViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
+        emailButton.setButton(style: .fill, andTitle: "Continue with email")
+        googleButton.setButton(style: .withoutFill, andTitle: "Continue with google")
+        textView.configure(placeholder: "example@gmail,com")
+        
+        configureStackView()
     }
     
     func configureStackView() {
-        [UIView()].forEach {
+        [textView, emailButton, separateLabel, googleButton].forEach {
             stackView.addArrangedSubview($0)
         }
     }
@@ -91,9 +109,11 @@ class CreateAccountViewController: UIViewController {
             screenDescriptionLabel.trailingAnchor.constraint(equalTo: screenNameLabel.trailingAnchor),
             screenDescriptionLabel.heightAnchor.constraint(equalToConstant: 16),
             
-//            emailButton.topAnchor.constraint(equalTo: backView.topAnchor),
-//            emailButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            emailButton.widthAnchor.constraint(equalToConstant: 300),
+            stackView.topAnchor.constraint(equalTo: backView.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -20),
+            
+            separateLabel.heightAnchor.constraint(equalToConstant: 22)
         ])
     }
 }
