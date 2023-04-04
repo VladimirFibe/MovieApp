@@ -84,9 +84,13 @@ class CreateAccountViewController: UIViewController {
             view.addSubview($0)
         }
         emailButton.setButton(style: .fill, andTitle: "Continue with email")
+        emailButton.delegate = self
         googleButton.setButton(style: .withoutFill, andTitle: "Continue with google")
+        googleButton.delegate = self
         textView.configure(placeholder: "example@gmail,com")
         setAttributeForButton()
+        
+        loginButton.addTarget(self, action: #selector(logitButtonPressed), for: .touchUpInside)
         
         configureStackView()
     }
@@ -134,5 +138,18 @@ class CreateAccountViewController: UIViewController {
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
+    }
+}
+
+// MARK: - Navigation
+extension CreateAccountViewController: MainButtonDelegate {
+    func buttonPressed(button: UIButton) {
+        if let title = button.currentTitle {
+            print(title)
+        }
+    }
+    
+    @objc func logitButtonPressed() {
+        print("Login button pressed")
     }
 }

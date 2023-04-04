@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol MainButtonDelegate {
+    func buttonPressed(button: UIButton)
+}
+
 class MainButton: UIButton {
     
     enum ConfigureStyle {
         case fill
         case withoutFill
     }
+
+    var delegate: MainButtonDelegate?
     
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
@@ -35,9 +41,16 @@ class MainButton: UIButton {
         self.layer.cornerRadius = height / 2
         translatesAutoresizingMaskIntoConstraints = false
         
+        addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        
         setConstraints()
     }
     
+    @objc func buttonPressed(_ sender: UIButton) {
+        delegate?.buttonPressed(button: sender)
+    }
+    
+    // MARK: - Set Constraints
     private func setConstraints() {
         
         let widthConst = NSLayoutConstraint(
