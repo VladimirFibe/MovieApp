@@ -16,16 +16,7 @@ class MainButton: UIButton {
     
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
-    
-    
-    // TODO: Нужен ли тут инициализатор
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.layer.cornerRadius = height / 2
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-    
+
     func setButton(style: ConfigureStyle,andTitle title: String) {
         
         setTitle(title, for: .normal)
@@ -40,6 +31,9 @@ class MainButton: UIButton {
             self.layer.borderColor = UIColor.black.cgColor
             self.layer.borderWidth = 2
         }
+        
+        self.layer.cornerRadius = height / 2
+        translatesAutoresizingMaskIntoConstraints = false
         
         setConstraints()
     }
@@ -60,9 +54,5 @@ class MainButton: UIButton {
             self.heightAnchor.constraint(equalToConstant: height),
             widthConst
         ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -11,8 +11,8 @@ class CreateAccountViewController: UIViewController {
     
     let offset: CGFloat = 10
     
-    let emailButton = MainButton()
-    let googleButton = MainButton()
+    let emailButton = MainButton(type: .system)
+    let googleButton = MainButton(type: .system)
     let textView = TextFieldView()
     
     let separateLabel: UILabel = {
@@ -26,8 +26,6 @@ class CreateAccountViewController: UIViewController {
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
-//        button.setTitle("Already have an account? Login", for: .normal)
-//        button.setTitleColor(.black, for: .normal)
         return button
     }()
     
