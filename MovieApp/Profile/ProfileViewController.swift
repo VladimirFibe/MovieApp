@@ -35,6 +35,7 @@ class ProfileViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         tableView.showsVerticalScrollIndicator = false
+        
     }
     
     // MARK: - Set constraints
@@ -66,7 +67,10 @@ extension ProfileViewController: UITableViewDataSource {
         case 1: return createCellWith(title: "First Name", placeholder: "enter your name")
         case 2: return createCellWith(title: "Last Name", placeholder: "enter your name")
         case 3: return createCellWith(title: "E-mail", placeholder: "enter your e-mail")
-        case 4: return createCellWith(title: "Date of Birth", placeholder: "enter your date of dirth")
+        case 4:
+            let cell = createCellWith(title: "Date of Birth", placeholder: "enter your date of dirth")
+            cell.activateDatePickerForTextField()
+            return cell
         case 5:
             let cell = GenderViewCell()
             cell.configure(title: "Gender", textFildPlaceholder: "")

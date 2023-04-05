@@ -18,6 +18,8 @@ class FormViewCell: UITableViewCell {
         return label
     }()
     
+    private var datePicker: UIDatePicker?
+    
     let textFieldView = TextFieldView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -52,5 +54,27 @@ class FormViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Content type
+extension FormViewCell {
+    
+    func activateDatePickerForTextField() {
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker?.preferredDatePickerStyle = .wheels
+        }
+        datePicker?.addTarget(self, action: #selector(getDate), for: .valueChanged)
+        textFieldView.textField.inputView = datePicker
+    }
+    
+    @objc func getDate(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyy"
+        let dateString = formatter.string(from: sender.date)
+        
+        print(dateString)
     }
 }
