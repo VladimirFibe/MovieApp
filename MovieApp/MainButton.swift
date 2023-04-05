@@ -7,34 +7,83 @@
 
 import UIKit
 
+protocol MainButtonDelegate {
+    func buttonPressed(button: UIButton)
+}
+
 class MainButton: UIButton {
+    
+    var delegate: MainButtonDelegate?
     
     enum ConfigureStyle {
         case fill
-        case withoutFill
+        case border
+        case borderAndImage
+        case borderAndStaticImage
     }
+
+    private var imageForButtonCondition: UIImage? {
+        if isOn {
+            return UIImage(systemName: "checkmark.circle.fill")
+        } else {
+            return UIImage(systemName: "checkmark.circle")
+        }
+    }
+    
+    private var isOn = false
+    private var isStaticImage = false
     
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
     
-    func setButton(style: ConfigureStyle,andTitle title: String) {
+    func setButton(style: ConfigureStyle,title text: String, andImage image: UIImage? = nil) {
         
-        setTitle(title, for: .normal)
+        setTitle(text, for: .normal)
+        
+        let image = image ?? imageForButtonCondition
         
         switch style {
         case .fill:
             backgroundColor = .orange
             setTitleColor(.white, for: .normal)
-        case .withoutFill:
+        case .border:
             backgroundColor = .none
             setTitleColor(.black, for: .normal)
-            self.layer.borderColor = UIColor.gray.cgColor
-            self.layer.borderWidth = 2
+            layer.borderColor = UIColor.gray.cgColor
+            layer.borderWidth = 2
+        case .borderAndImage:
+            setTitle("  \(text)", for: .normal)
+            backgroundColor = .none
+            setTitleColor(.black, for: .normal)
+            layer.borderColor = UIColor.gray.cgColor
+            layer.borderWidth = 2
+            setImage(image, for: .normal)
+            contentHorizontalAlignment = .left
+            contentEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
+        case .borderAndStaticImage:
+            setTitle("  \(text)", for: .normal)
+            backgroundColor = .none
+            setTitleColor(.black, for: .normal)
+            layer.borderColor = UIColor.gray.cgColor
+            layer.borderWidth = 2
+            setImage(image, for: .normal)
+            contentHorizontalAlignment = .left
+            contentEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
+            isStaticImage = true
         }
         
         self.layer.cornerRadius = height / 2
         
         setConstraints()
+        addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    }
+    
+    @objc func buttonPressed(_ sender: UIButton) {
+        delegate?.buttonPressed(button: sender)
+        if !isStaticImage {
+            isOn = !isOn
+            setImage(imageForButtonCondition, for: .normal)
+        }
     }
     
     private func setConstraints() {

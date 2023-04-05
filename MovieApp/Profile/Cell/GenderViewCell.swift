@@ -50,8 +50,11 @@ class GenderViewCell: UITableViewCell {
         stackView.addArrangedSubview(maleButtonView)
         stackView.addArrangedSubview(femaleButtonView)
         
-        maleButtonView.setButton(style: .withoutFill, andTitle: "Male")
-        femaleButtonView.setButton(style: .withoutFill, andTitle: "Female")
+        maleButtonView.setButton(style: .borderAndImage, title: "Male")
+        femaleButtonView.setButton(style: .borderAndImage, title: "Female")
+        
+        maleButtonView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        femaleButtonView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
     func setConstraints() {
@@ -72,5 +75,11 @@ class GenderViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func buttonPressed(_ sender: UIButton) {
+        if let title = sender.currentTitle {
+            print(title)
+        }
     }
 }
