@@ -8,8 +8,7 @@
 import UIKit
 
 class MovieTableView: UITableView {
-    
-    var items = 8
+    var movieInfos: [MovieModel] = []
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -23,14 +22,15 @@ class MovieTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+//MARK: delegets data Source methods
 extension MovieTableView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items
+        return movieInfos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = dequeueReusableCell(withIdentifier: Constants.cellMovieIdentifier, for: indexPath) as? MovieTableViewCell{
-            
+            cell.movieTitle.text = movieInfos[indexPath.row].name
             return cell
         }
         return UITableViewCell()

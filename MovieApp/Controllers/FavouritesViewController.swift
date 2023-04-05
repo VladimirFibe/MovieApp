@@ -10,10 +10,24 @@ import UIKit
 final class FavouritesViewController: UIViewController{
     let movieTable = MovieTableView()
     let horizontalMenuCollectionView = HorizontalTagCollectionView()
+    var movieDict: [Int: [MovieModel]] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         horizontalMenuCollectionView.cellDelegate = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let movie = MovieModel()
+        movie.name = "Adventure"
+        movieDict[2] = [movie]
+        let movie1 = MovieModel()
+        movie1.name = "All"
+        let movie2 = MovieModel()
+        movie2.name = "All"
+        movieDict.updateValue([movie1, movie2], forKey: 0)
+        movieTable.movieInfos = movieDict[0]!
+        movieTable.reloadData()
     }
     func setupUI(){
         view.addSubview(movieTable)
@@ -34,12 +48,7 @@ final class FavouritesViewController: UIViewController{
 }
 extension FavouritesViewController: SelectCollectionViewItemProtocol{
     func selectItem(_ index: IndexPath) {
-        if index.item == 2{
-            movieTable.items = 2
-        }
-        else {
-            movieTable.items = 8
-        }
-        movieTable.reloadData()
+            movieTable.movieInfos = movieDict[index.item]!
+            movieTable.reloadData()
     }
 }

@@ -4,9 +4,7 @@
 //
 //  Created by Artur Imanbaev on 03.04.2023.
 //
-
 import UIKit
-
 class ButtonView: UIButton {
     let labelText: UILabel = {
         $0.font = .systemFont(ofSize: 14)
