@@ -99,6 +99,7 @@ extension FormViewCell {
 
 extension FormViewCell :UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print(#function)
         textField.text = ""
         return true
     }
@@ -125,7 +126,7 @@ extension UIToolbar {
         
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: select)
         toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
+//        toolBar.isUserInteractionEnabled = true
         
         return toolBar
     }

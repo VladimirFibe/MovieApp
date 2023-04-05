@@ -69,6 +69,7 @@ extension ProfileViewController: UITableViewDataSource {
         case 3: return createCellWith(title: "E-mail", placeholder: "enter your e-mail")
         case 4:
             let cell = createCellWith(title: "Date of Birth", placeholder: "enter your date of dirth")
+            cell.delegate = self
             cell.activateDatePickerForTextField()
             return cell
         case 5:
@@ -85,6 +86,7 @@ extension ProfileViewController: UITableViewDataSource {
     private func createCellWith(title: String, placeholder: String) -> FormViewCell {
         let cell = FormViewCell()
         cell.configure(title: title, textFildPlaceholder: placeholder)
+        cell.delegate = self
         return cell
     }
 }
@@ -96,6 +98,13 @@ extension ProfileViewController: UITableViewDelegate {
         case 0: return 150
         default: return 97
         }
+    }
+}
+
+// MARK: - FormViewCellDelegate
+extension ProfileViewController: FormViewCellDelegate {
+    func cellTextFieldDidEndEditing(cell: FormViewCell, textField: UITextField, text: String) {
+        print(#function, text)
     }
 }
 
