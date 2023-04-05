@@ -14,7 +14,7 @@ class FormViewCell: UITableViewCell {
     let title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .black
+        label.textColor = .gray
         return label
     }()
     
@@ -22,9 +22,9 @@ class FormViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         selectionStyle = .none
-        
+
         contentView.addSubview(title)
         contentView.addSubview(textFieldView)
     }

@@ -31,7 +31,7 @@ class MainButton: UIButton {
     }
     
     private var isOn = false
-    private var isStaticImage = false
+    private var isStaticImage = true
     
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
@@ -52,6 +52,7 @@ class MainButton: UIButton {
             layer.borderColor = UIColor.gray.cgColor
             layer.borderWidth = 2
         case .borderAndImage:
+            isStaticImage = false
             setTitle("  \(text)", for: .normal)
             backgroundColor = .none
             setTitleColor(.black, for: .normal)
@@ -69,7 +70,6 @@ class MainButton: UIButton {
             setImage(image, for: .normal)
             contentHorizontalAlignment = .left
             contentEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
-            isStaticImage = true
         }
         
         self.layer.cornerRadius = height / 2
