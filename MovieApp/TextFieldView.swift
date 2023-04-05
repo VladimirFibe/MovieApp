@@ -9,6 +9,11 @@ import UIKit
 
 class TextFieldView: UIView {
     
+    enum ConfigureStyle {
+        case fill
+        case border
+    }
+    
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
     
@@ -19,23 +24,33 @@ class TextFieldView: UIView {
     
     private func configureUI() {
         layer.cornerRadius = height / 2
-//        layer.borderColor = UIColor.black.cgColor
-//        layer.borderWidth = 2
-        backgroundColor = .lightGray
-        translatesAutoresizingMaskIntoConstraints = false
-        
         addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        
         setConstraints()
     }
     
-    func configure(placeholder text: String) {
+    /// Элемент для интерфейса textField вложеный в контайнер UIView.
+    ///  Есть параметры размера по умолчанию с низким приоритетом высота: 56.0 ширина: 300.0
+    /// - Parameters:
+    ///   - style: стиль элемента fill - залитый цветов border - прозрачный и с рамкой
+    ///   - placeholder: ваш placeholder для textField
+    func configure(style: ConfigureStyle, textFildPlaceholder: String) {
         configureUI()
-        textField.placeholder = text
+        textField.placeholder = textFildPlaceholder
+        
+        // Тут можно задать параметры своего стиля
+        switch style {
+        case .fill:
+            backgroundColor = .lightGray
+        case .border:
+            layer.borderColor = UIColor.gray.cgColor
+            layer.borderWidth = 2
+        }
     }
     
     private func setConstraints() {
+        translatesAutoresizingMaskIntoConstraints = false
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
         let widthConstraint = NSLayoutConstraint(
             item: self,
             attribute: .width,
@@ -45,9 +60,19 @@ class TextFieldView: UIView {
             multiplier: 1.0,
             constant: width)
         widthConstraint.priority = .defaultLow
+        
+        let heightConstraint = NSLayoutConstraint(
+            item: self,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .width,
+            multiplier: 1.0,
+            constant: height)
+        heightConstraint.priority = .defaultLow
 
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: height),
+            heightConstraint,
             widthConstraint,
             
             textField.centerYAnchor.constraint(equalTo: centerYAnchor),

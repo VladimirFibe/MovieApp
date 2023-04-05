@@ -16,12 +16,12 @@ enum Theme {
     static let whiteColor: UIColor = .white
     
     //MARK: - Views' style
-#warning("здесь поправьте как нужно для вас:")
+
     static let buttonCornerRadius: CGFloat = 15
     static let imageCornerRadius: CGFloat = 20
     
     //MARK: - Layout
-#warning("здесь поправьте как нужно для вас:")
+
     static let spacing: CGFloat = 20
     static let leftOffset: CGFloat = 20
     static let topOffset: CGFloat = 10
