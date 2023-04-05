@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol FormViewCellDelegate: AnyObject {
+    func cellTextFieldDidEndEditing(cell: FormViewCell, textField: UITextField, text: String)
+}
+
 class FormViewCell: UITableViewCell {
     
     private let offset: CGFloat = 20
+    
+    weak var delegate: FormViewCellDelegate?
 
     let title: UILabel = {
         let label = UILabel()
@@ -29,6 +35,8 @@ class FormViewCell: UITableViewCell {
 
         contentView.addSubview(title)
         contentView.addSubview(textFieldView)
+        
+        textFieldView.textField.delegate = self
     }
     
     func configure(title text: String, textFildPlaceholder placeholder: String) {
@@ -66,8 +74,18 @@ extension FormViewCell {
         if #available(iOS 13.4, *) {
             datePicker?.preferredDatePickerStyle = .wheels
         }
+        
         datePicker?.addTarget(self, action: #selector(getDate), for: .valueChanged)
+        
         textFieldView.textField.inputView = datePicker
+        // добавляет метод для закрытия туллбара
+        let toolBar = UIToolbar().toolBarPicker(#selector(doneButtonPressed))
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        textFieldView.textField.inputAccessoryView = toolBar
+    }
+    
+    @objc func doneButtonPressed() {
+        textFieldView.textField.resignFirstResponder()
     }
     
     @objc func getDate(_ sender: UIDatePicker) {
@@ -75,6 +93,40 @@ extension FormViewCell {
         formatter.dateFormat = "dd.MM.yyy"
         let dateString = formatter.string(from: sender.date)
         
-        print(dateString)
+        textFieldView.textField.text = dateString
+    }
+}
+
+extension FormViewCell :UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.text = ""
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let text = textField.text!
+        delegate?.cellTextFieldDidEndEditing(cell: self, textField: textField, text: text)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+// MARK: - extension UIToolbar
+extension UIToolbar {
+    func toolBarPicker(_ select: Selector) -> UIToolbar {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.barTintColor = .orange
+        toolBar.tintColor = .white
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: select)
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        return toolBar
     }
 }
