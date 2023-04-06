@@ -10,24 +10,25 @@ import UIKit
 final class FavouritesViewController: UIViewController{
     let movieTable = MovieTableView()
     let horizontalMenuCollectionView = HorizontalTagCollectionView()
-    var movieDict: [Int: [MovieModel]] = [:]
+    var movieArray: [Result] = []
+    let apiCall = "https://api.themoviedb.org/3/discover/movie?api_key=6b8a95b1b6c4eeede348d430f4a88303"
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         horizontalMenuCollectionView.cellDelegate = self
-    }
+        }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let movie = MovieModel()
-        movie.name = "Adventure"
-        movieDict[2] = [movie]
-        let movie1 = MovieModel()
-        movie1.name = "All"
-        let movie2 = MovieModel()
-        movie2.name = "All"
-        movieDict.updateValue([movie1, movie2], forKey: 0)
-        movieTable.movieInfos = movieDict[0]!
-        movieTable.reloadData()
+        fetchRequest()
+    }
+    func fetchRequest(){
+        APICaller.shared.fetchRequest(urlString: apiCall, expecting: Welcome.self) { (movieDetails) in
+            movieDetails.results.forEach({print($0.originalTitle)})
+                self.movieTable.movieInfos = movieDetails.results
+                DispatchQueue.main.async {
+                    self.movieTable.reloadData()
+                }
+            }
     }
     func setupUI(){
         view.addSubview(movieTable)
@@ -48,7 +49,6 @@ final class FavouritesViewController: UIViewController{
 }
 extension FavouritesViewController: SelectCollectionViewItemProtocol{
     func selectItem(_ index: IndexPath) {
-            movieTable.movieInfos = movieDict[index.item]!
-            movieTable.reloadData()
+            fetchRequest()
     }
 }
