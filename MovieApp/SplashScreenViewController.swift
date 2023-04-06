@@ -65,7 +65,7 @@ class SplashScreenViewController: UIViewController {
     // MARK: - Navigation
     func moveToNextVC() {
         stopTimer()
-        let vc = ViewController()
+        let vc = OnboardingViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
