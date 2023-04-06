@@ -8,6 +8,10 @@
 import UIKit
 
 class UserImageCell: UITableViewCell {
+    
+    private let imageSize: CGFloat = 100.0
+    
+    private let contViewForImage = UIView()
 
     let userImageView: UIImageView = {
         let imageView = UIImageView()
@@ -22,7 +26,10 @@ class UserImageCell: UITableViewCell {
         
         selectionStyle = .none
         
-        contentView.addSubview(userImageView)
+        contentView.addSubview(contViewForImage)
+        contViewForImage.addSubview(userImageView)
+        contViewForImage.layer.cornerRadius = imageSize / 2
+        contViewForImage.clipsToBounds = true
     }
     
     func configureCell(image imageName: String) {
@@ -32,13 +39,20 @@ class UserImageCell: UITableViewCell {
     }
     
     func setConstraints() {
+        contViewForImage.translatesAutoresizingMaskIntoConstraints = false
         userImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            userImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            userImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            userImageView.heightAnchor.constraint(equalToConstant: 100),
-            userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor)
+            contViewForImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            contViewForImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            contViewForImage.heightAnchor.constraint(equalToConstant: 100),
+            contViewForImage.widthAnchor.constraint(equalTo: contViewForImage.heightAnchor),
+            
+            userImageView.centerXAnchor.constraint(equalTo: contViewForImage.centerXAnchor),
+            userImageView.centerYAnchor.constraint(equalTo: contViewForImage.centerYAnchor),
+            userImageView.widthAnchor.constraint(equalTo: contViewForImage.widthAnchor),
+            userImageView.heightAnchor.constraint(equalTo: contViewForImage.heightAnchor),
+            
         ])
     }
     
