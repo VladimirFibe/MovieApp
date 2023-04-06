@@ -121,8 +121,10 @@ final class OnboardingViewController: UIViewController {
 
     @objc private func continueButtonTapped() {
         if currentPage == slides.index(before: slides.count) {
-            //TODO: navigation
-            print("Go to the next VC")
+            let vc = CreateAccountViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true)
+            
         } else {
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
