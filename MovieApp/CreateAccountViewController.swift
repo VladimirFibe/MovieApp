@@ -11,8 +11,8 @@ class CreateAccountViewController: UIViewController {
     
     let offset: CGFloat = 10
     
-    let emailButton = MainButton(type: .system)
-    let googleButton = MainButton(type: .system)
+    let emailButton = MainButton()
+    let googleButton = MainButton()
     let textView = TextFieldView()
     
     let separateLabel: UILabel = {
@@ -52,7 +52,7 @@ class CreateAccountViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 41
         stackView.alignment = .fill
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         return stackView
     }()
     
@@ -83,9 +83,10 @@ class CreateAccountViewController: UIViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
         }
-        emailButton.setButton(style: .fill, andTitle: "Continue with email")
+        emailButton.setButton(style: .fill, title: "Continue with email")
         emailButton.delegate = self
-        googleButton.setButton(style: .withoutFill, andTitle: "Continue with google")
+        let googleIconImage = UIImage(named: "google-symbol")
+        googleButton.setButton(style: .borderAndStaticImage, title: "Continue with google", andImage: googleIconImage)
         googleButton.delegate = self
         textView.configure(placeholder: "example@gmail,com")
         textView.textField.delegate = self
