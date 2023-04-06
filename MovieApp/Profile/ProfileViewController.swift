@@ -68,6 +68,7 @@ class ProfileViewController: UIViewController {
     deinit {
         notification.removeObserver(self)
         print(#function)
+        print("deinit")
     }
 }
 
@@ -142,7 +143,9 @@ extension ProfileViewController {
     func changeInterfaceWhenShowKeyboard() {
         notification.addObserver(
             forName: UIResponder.keyboardWillShowNotification,
-            object: nil, queue: nil) { notification in
+            object: nil, queue: nil) { [weak self] notification in
+                
+                guard let self = self else { return }
                 
                 guard let userInfo = notification.userInfo else { return }
                 
@@ -162,7 +165,10 @@ extension ProfileViewController {
         
         notification.addObserver(
             forName: UIResponder.keyboardWillHideNotification,
-            object: nil, queue: nil) { noti in
+            object: nil, queue: nil) { [weak self] _ in
+                
+                guard let self = self else { return }
+                
                 self.tableViewBottomConstraint.constant = 0
             }
     }
