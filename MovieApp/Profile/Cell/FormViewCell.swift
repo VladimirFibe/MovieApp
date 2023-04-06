@@ -74,13 +74,11 @@ extension FormViewCell {
         if #available(iOS 13.4, *) {
             datePicker?.preferredDatePickerStyle = .wheels
         }
-        
+
         datePicker?.addTarget(self, action: #selector(getDate), for: .valueChanged)
-        
         textFieldView.textField.inputView = datePicker
         // добавляет метод для закрытия туллбара
         let toolBar = UIToolbar().toolBarPicker(#selector(doneButtonPressed))
-        toolBar.translatesAutoresizingMaskIntoConstraints = false
         textFieldView.textField.inputAccessoryView = toolBar
     }
     
@@ -97,9 +95,10 @@ extension FormViewCell {
     }
 }
 
+// MARK: - TextField Delegate
 extension FormViewCell :UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print(#function)
+//        print(#function)
         textField.text = ""
         return true
     }
@@ -126,7 +125,6 @@ extension UIToolbar {
         
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: select)
         toolBar.setItems([doneButton], animated: false)
-//        toolBar.isUserInteractionEnabled = true
         
         return toolBar
     }

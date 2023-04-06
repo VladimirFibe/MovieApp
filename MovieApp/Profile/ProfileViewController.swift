@@ -10,13 +10,20 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     let tableView = UITableView(frame: .zero, style: .plain)
+    let notification = NotificationCenter.default
+    
+    var tableViewBottomConstraint: NSLayoutConstraint!
+    
+    private lazy var contentSize: CGSize = {
+        return tableView.contentSize
+    }()
     
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         setConstraints()
-
+        changeInterfaceWhenShowKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,7 +40,7 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         
         tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
+//        tableView.isScrollEnabled = false
         tableView.showsVerticalScrollIndicator = false
         
     }
@@ -42,12 +49,25 @@ class ProfileViewController: UIViewController {
     func setConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
+       tableViewBottomConstraint = NSLayoutConstraint(
+            item: tableView,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: view.safeAreaLayoutGuide,
+            attribute: .bottom,
+            multiplier: 1.0, constant: 0)
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableViewBottomConstraint,
         ])
+    }
+    
+    deinit {
+        notification.removeObserver(self)
+        print(#function)
     }
 }
 
@@ -104,7 +124,39 @@ extension ProfileViewController: UITableViewDelegate {
 // MARK: - FormViewCellDelegate
 extension ProfileViewController: FormViewCellDelegate {
     func cellTextFieldDidEndEditing(cell: FormViewCell, textField: UITextField, text: String) {
-        print(#function, text)
+//        print(#function, text)
+    }
+}
+
+// MARK: - NotificationCenter show or hide keyboard
+extension ProfileViewController {
+    
+    func changeInterfaceWhenShowKeyboard() {
+        notification.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil, queue: nil) { notification in
+                
+                guard let userInfo = notification.userInfo else { return }
+                
+                guard let screen = notification.object as? UIScreen,
+                    let keyboardFrameEnd =
+                        userInfo[UIResponder.keyboardFrameEndUserInfoKey]
+                        as? CGRect else { return }
+                
+                let bottomOffset = self.view.safeAreaInsets.bottom
+
+                let fromCoordinateSpace = screen.coordinateSpace
+                let toCoordinateSpace: UICoordinateSpace = self.view
+                let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
+                
+                self.tableViewBottomConstraint.constant = -convertedKeyboardFrameEnd.height + bottomOffset
+            }
+        
+        notification.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil, queue: nil) { noti in
+                self.tableViewBottomConstraint.constant = 0
+            }
     }
 }
 
