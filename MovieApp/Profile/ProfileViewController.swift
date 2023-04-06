@@ -98,6 +98,7 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
         case 6:
             let cell = SaveChangesCell()
+            cell.delegate = self
             return cell
         default: return UITableViewCell()
         }
@@ -125,6 +126,13 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: FormViewCellDelegate {
     func cellTextFieldDidEndEditing(cell: FormViewCell, textField: UITextField, text: String) {
 //        print(#function, text)
+    }
+}
+
+// MARK: - SaveChangesCellDelegate
+extension ProfileViewController: SaveChangesCellDelegate {
+    func cellButtonPressed(cell: SaveChangesCell, button: UIButton) {
+        print("save button pressed")
     }
 }
 

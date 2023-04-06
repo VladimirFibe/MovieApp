@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol SaveChangesCellDelegate: AnyObject {
+    func cellButtonPressed(cell: SaveChangesCell, button: UIButton)
+}
+
 class SaveChangesCell: UITableViewCell {
 
     private let offset: CGFloat = 20
+    
+    weak var delegate: SaveChangesCellDelegate?
     
     let saveChangesButton = MainButton()
     
@@ -25,6 +31,11 @@ class SaveChangesCell: UITableViewCell {
     
     private func configureUI() {
         saveChangesButton.setButton(style: .fill, title: "Save Changes")
+        saveChangesButton.addTarget(self, action: #selector(saveBottonPressed), for: .touchUpInside)
+    }
+    
+    @objc func saveBottonPressed(_ sender: UIButton) {
+        delegate?.cellButtonPressed(cell: self, button: sender)
     }
     
     func setConstraints() {
@@ -42,3 +53,4 @@ class SaveChangesCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
