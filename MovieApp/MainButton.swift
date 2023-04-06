@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol MainButtonDelegate {
+protocol MainButtonDelegate: AnyObject {
     func buttonPressed(button: UIButton)
 }
 
 class MainButton: UIButton {
     
-    var delegate: MainButtonDelegate?
+    weak var delegate: MainButtonDelegate?
     
     enum ConfigureStyle {
         case fill
