@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		106FFB9629DF1A74002D7A94 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106FFB9529DF1A74002D7A94 /* SplashScreenViewController.swift */; };
 		10F9E3BE29DAE57400C7BC6A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 10F9E3BD29DAE57400C7BC6A /* .gitignore */; };
+		10F9E3C429DB7EA000C7BC6A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */; };
+		10F9E3C629DB833300C7BC6A /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C529DB833300C7BC6A /* MainButton.swift */; };
+		10F9E3CA29DC186500C7BC6A /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C929DC186500C7BC6A /* TextFieldView.swift */; };
 		18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD55E429DC8E430000DB83 /* OnboardingCollectionViewCell.swift */; };
 		18BD55E729DCB84E0000DB83 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */; };
 		18EEBF5A29DB5A62002B5C20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		106FFB9529DF1A74002D7A94 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		10F9E3BD29DAE57400C7BC6A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		10F9E3C529DB833300C7BC6A /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
+		10F9E3C929DC186500C7BC6A /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		18BD55E429DC8E430000DB83 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +75,9 @@
 			children = (
 				275F4F3029DA404900FCBF0E /* AppDelegate.swift */,
 				275F4F3229DA404900FCBF0E /* SceneDelegate.swift */,
+				10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */,
+				10F9E3C929DC186500C7BC6A /* TextFieldView.swift */,
+				10F9E3C529DB833300C7BC6A /* MainButton.swift */,
 				275F4F3429DA404900FCBF0E /* ViewController.swift */,
 				18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */,
 				18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */,
@@ -153,12 +162,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10F9E3C429DB7EA000C7BC6A /* CreateAccountViewController.swift in Sources */,
 				275F4F3529DA404900FCBF0E /* ViewController.swift in Sources */,
+				10F9E3CA29DC186500C7BC6A /* TextFieldView.swift in Sources */,
 				A2EBFF7A29DC162400715794 /* Theme.swift in Sources */,
 				106FFB9629DF1A74002D7A94 /* SplashScreenViewController.swift in Sources */,
 				275F4F3129DA404900FCBF0E /* AppDelegate.swift in Sources */,
 				18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */,
 				275F4F3329DA404900FCBF0E /* SceneDelegate.swift in Sources */,
+				10F9E3C629DB833300C7BC6A /* MainButton.swift in Sources */,
 				18BD55E729DCB84E0000DB83 /* OnboardingSlide.swift in Sources */,
 				18EEBF5A29DB5A62002B5C20 /* OnboardingViewController.swift in Sources */,
 			);
