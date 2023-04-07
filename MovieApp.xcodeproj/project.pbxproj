@@ -137,6 +137,7 @@
 		275A1FCE29DF9D1700426D94 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */,
 				275A1FCA29DF9CE900426D94 /* AuthCoordinator.swift */,
 			);
 			path = Auth;
@@ -148,6 +149,20 @@
 				275A1FCC29DF9D0200426D94 /* MainCoordinator.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		275A1FD029DF9F4B00426D94 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				10F9E3C929DC186500C7BC6A /* TextFieldView.swift */,
+				10F9E3C529DB833300C7BC6A /* MainButton.swift */,
+				275F4F3429DA404900FCBF0E /* ViewController2.swift */,
+				A2EBFF7929DC162400715794 /* Theme.swift */,
+				275F4F3929DA404A00FCBF0E /* Assets.xcassets */,
+				275F4F3B29DA404A00FCBF0E /* LaunchScreen.storyboard */,
+				275F4F3E29DA404A00FCBF0E /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		275F4F2429DA404900FCBF0E = {
@@ -172,14 +187,7 @@
 				275A1FB729DF9AD300426D94 /* App */,
 				275A1FBC29DF9B5400426D94 /* Core */,
 				275A1FC229DF9C1A00426D94 /* Feature */,
-				10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */,
-				10F9E3C929DC186500C7BC6A /* TextFieldView.swift */,
-				10F9E3C529DB833300C7BC6A /* MainButton.swift */,
-				275F4F3429DA404900FCBF0E /* ViewController2.swift */,
-				A2EBFF7929DC162400715794 /* Theme.swift */,
-				275F4F3929DA404A00FCBF0E /* Assets.xcassets */,
-				275F4F3B29DA404A00FCBF0E /* LaunchScreen.storyboard */,
-				275F4F3E29DA404A00FCBF0E /* Info.plist */,
+				275A1FD029DF9F4B00426D94 /* Supporting Files */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
