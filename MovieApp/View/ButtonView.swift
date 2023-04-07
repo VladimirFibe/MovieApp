@@ -7,7 +7,7 @@
 import UIKit
 class ButtonView: UIButton {
     let labelText: UILabel = {
-        $0.font = .systemFont(ofSize: 14)
+        $0.font = .systemFont(ofSize: 5)
         $0.textAlignment = .center
         $0.textColor = .white
         $0.translatesAutoresizingMaskIntoConstraints = false

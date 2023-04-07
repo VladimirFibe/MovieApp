@@ -9,6 +9,7 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     let infoImagesArray: [String] = ["stopwatch","calendar","popcorn"]
+    var movieLenght = ""
     let moviePoster: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFill
@@ -18,6 +19,7 @@ class MovieTableViewCell: UITableViewCell {
     let movieTitle: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "hello"
+        $0.numberOfLines = 2
         $0.font = .systemFont(ofSize: 15)
         return $0
     }(UILabel())
@@ -48,7 +50,8 @@ class MovieTableViewCell: UITableViewCell {
         self.contentView.addSubview(movieTitle)
         NSLayoutConstraint.activate([
             movieTitle.topAnchor.constraint(equalTo: self.contentView.topAnchor,constant: 30),
-            movieTitle.leadingAnchor.constraint(equalTo: moviePoster.trailingAnchor, constant: 30)
+            movieTitle.leadingAnchor.constraint(equalTo: moviePoster.trailingAnchor, constant: 30),
+            movieTitle.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -30)
         ])
         self.contentView.addSubview(favouriteImageView)
         NSLayoutConstraint.activate([
@@ -86,11 +89,12 @@ class MovieTableViewCell: UITableViewCell {
                 movieActionButton.tapCallBack = {
                     print("went to another screen")
                 }
+                movieActionButton.setTitle("Action", for: .normal)
             }
             else{
                 let infoLabel: UILabel = {
                     $0.translatesAutoresizingMaskIntoConstraints = false
-                    $0.text = "info"
+                    $0.text = self.movieLenght
                     $0.font = .systemFont(ofSize: 15)
                     return $0
                 }(UILabel())

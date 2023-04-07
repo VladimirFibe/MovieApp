@@ -11,7 +11,7 @@ final class FavouritesViewController: UIViewController{
     let movieTable = MovieTableView()
     let horizontalMenuCollectionView = HorizontalTagCollectionView()
     var movieArray: [Result] = []
-    let apiCall = "https://api.themoviedb.org/3/discover/movie?api_key=6b8a95b1b6c4eeede348d430f4a88303"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -21,7 +21,8 @@ final class FavouritesViewController: UIViewController{
         super.viewWillAppear(animated)
         fetchRequest()
     }
-    func fetchRequest(){
+    func fetchRequest(page: Int = 1){
+        var apiCall = "https://api.themoviedb.org/3/discover/movie?api_key=6b8a95b1b6c4eeede348d430f4a88303&page=\(page)"
         APICaller.shared.fetchRequest(urlString: apiCall, expecting: Welcome.self) { (movieDetails) in
             movieDetails.results.forEach({print($0.originalTitle)})
                 self.movieTable.movieInfos = movieDetails.results
@@ -49,6 +50,6 @@ final class FavouritesViewController: UIViewController{
 }
 extension FavouritesViewController: SelectCollectionViewItemProtocol{
     func selectItem(_ index: IndexPath) {
-            fetchRequest()
+        fetchRequest(page: index.item + 1)
     }
 }

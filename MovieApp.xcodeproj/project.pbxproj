@@ -80,6 +80,7 @@
 		18A4255529DB0AD2004AF652 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18A4255B29DC58DB004AF652 /* MovieTableViewCell.swift */,
 				18A4255F29DC82D2004AF652 /* HorizontalTagCollectionViewCell.swift */,
 				18A4254D29DB00D8004AF652 /* RegisterTableViewCell.swift */,
 				18A4254929DADC5C004AF652 /* BackButtonView.swift */,
@@ -97,7 +98,6 @@
 				18A4256129DDAFEA004AF652 /* MovieModel.swift */,
 				18A4256329DEF5EE004AF652 /* APICaller.swift */,
 				18A4255929DC09D3004AF652 /* MovieTableView.swift */,
-				18A4255B29DC58DB004AF652 /* MovieTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

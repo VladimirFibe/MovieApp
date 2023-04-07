@@ -18,41 +18,44 @@ struct Welcome: Codable {
         case totalResults = "total_results"
     }
 }
+//extension Welcome {
+//      init(from decoder: Decoder) throws {
+//          let values = try decoder.container(keyedBy: CodingKeys.self)
+//          page = try values.decode(Int.self, forKey: .page)
+//          results = try values.decode([Result].self, forKey: .results)
+//          totalPages = try values.decode(Int.self, forKey: .totalPages)
+//          totalResults = try values.decode(Int.self, forKey: .totalResults)
+//      }
+//}
 
 // MARK: - Result
 struct Result: Codable {
     let adult: Bool
-    let backdropPath: String
     let genreIDS: [Int]
     let id: Int
-    let originalLanguage: OriginalLanguage
-    let originalTitle, overview: String
-    let popularity: Double
-    let posterPath, releaseDate, title: String
-    let video: Bool
-    let voteAverage: Double
-    let voteCount: Int
+    let originalTitle: String
+    let posterPath: String
+    let release_date: String = ""
 
     enum CodingKeys: String, CodingKey {
         case adult
-        case backdropPath = "backdrop_path"
         case genreIDS = "genre_ids"
         case id
-        case originalLanguage = "original_language"
         case originalTitle = "original_title"
-        case overview, popularity
         case posterPath = "poster_path"
-        case releaseDate = "release_date"
-        case title, video
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
+        case release_date
     }
 }
+//extension Result {
+//      init(from decoder: Decoder) throws {
+//          let values = try decoder.container(keyedBy: CodingKeys.self)
+//          adult = try values.decode(Bool.self, forKey: .adult)
+//          genreIDS = try values.decode([Int].self, forKey: .genreIDS)
+//          id = try values.decode(Int.self, forKey: .id)
+//          originalTitle = try values.decode(String.self, forKey: .originalTitle)
+//          posterPath = try values.decode(String.self, forKey: .posterPath)
+//          releaseDate = try values.decode(String.self, forKey: .releaseDate)
+//      }
+//}
 
-enum OriginalLanguage: String, Codable {
-    case cn = "cn"
-    case en = "en"
-    case es = "es"
-    case no = "no"
-}
 
