@@ -61,7 +61,7 @@ class SplashScreenViewController: ViewController {
         
         let delay: TimeInterval = 2
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            self.moveToNextVC()
+            self.navigation.action()
         }
     }
     

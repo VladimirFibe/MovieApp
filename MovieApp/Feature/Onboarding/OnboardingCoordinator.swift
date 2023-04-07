@@ -15,6 +15,6 @@ final class OnboardingCoordinator: BaseCoordinator {
 
 extension OnboardingCoordinator {
     private func makeOnboarding() -> BaseViewController {
-        return ViewController()
+        return OnboardingViewController()
     }
 }

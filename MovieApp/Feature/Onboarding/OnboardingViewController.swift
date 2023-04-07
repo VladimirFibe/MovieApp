@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OnboardingViewController: UIViewController {
+final class OnboardingViewController: ViewController {
 
     private var currentPage = 0 {
         didSet {
