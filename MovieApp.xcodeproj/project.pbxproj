@@ -14,6 +14,7 @@
 		18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD55E429DC8E430000DB83 /* OnboardingCollectionViewCell.swift */; };
 		18BD55E729DCB84E0000DB83 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */; };
 		18EEBF5A29DB5A62002B5C20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */; };
+		270A656529E08AC100C36C27 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A656429E08AC100C36C27 /* SettingsViewController.swift */; };
 		275A1FB929DF9B1600426D94 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A1FB829DF9B1600426D94 /* BaseCoordinator.swift */; };
 		275A1FBE29DF9B6F00426D94 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A1FBD29DF9B6F00426D94 /* Router.swift */; };
 		275A1FC029DF9BD200426D94 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A1FBF29DF9BD200426D94 /* BaseViewController.swift */; };
@@ -48,6 +49,7 @@
 		18BD55E429DC8E430000DB83 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		270A656429E08AC100C36C27 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = SettingsView/SettingsViewController.swift; sourceTree = "<group>"; };
 		275A1FB829DF9B1600426D94 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		275A1FBD29DF9B6F00426D94 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		275A1FBF29DF9BD200426D94 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		275A1FD029DF9F4B00426D94 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				270A656429E08AC100C36C27 /* SettingsViewController.swift */,
 				10F9E3C929DC186500C7BC6A /* TextFieldView.swift */,
 				10F9E3C529DB833300C7BC6A /* MainButton.swift */,
 				275F4F3429DA404900FCBF0E /* ViewController2.swift */,
@@ -380,6 +383,7 @@
 				275A1FC429DF9C4100426D94 /* AppCoordinator.swift in Sources */,
 				275A1FE729DFC3CC00426D94 /* HomeCoordinator.swift in Sources */,
 				275A1FD829DFADB600426D94 /* Title.swift in Sources */,
+				270A656529E08AC100C36C27 /* SettingsViewController.swift in Sources */,
 				18EEBF5A29DB5A62002B5C20 /* OnboardingViewController.swift in Sources */,
 				275A1FE329DFC39600426D94 /* SearchCoordinator.swift in Sources */,
 				275A1FBE29DF9B6F00426D94 /* Router.swift in Sources */,

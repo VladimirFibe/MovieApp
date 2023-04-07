@@ -2,6 +2,17 @@ import Foundation
 
 final class SearchCoordinator: BaseCoordinator {
     override func start() {
-        print("search")
+        runSearch()
+    }
+    
+    private func runSearch() {
+        let controller = makeSearch()
+        router.setRootModule(controller)
+    }
+}
+
+extension SearchCoordinator {
+    private func makeSearch() -> BaseViewController {
+        return SettingsViewController()
     }
 }
