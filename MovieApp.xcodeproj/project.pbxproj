@@ -20,7 +20,6 @@
 		275F4F3529DA404900FCBF0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F4F3429DA404900FCBF0E /* ViewController.swift */; };
 		275F4F3A29DA404A00FCBF0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 275F4F3929DA404A00FCBF0E /* Assets.xcassets */; };
 		275F4F3D29DA404A00FCBF0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275F4F3B29DA404A00FCBF0E /* LaunchScreen.storyboard */; };
-		A2EBFF7A29DC162400715794 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EBFF7929DC162400715794 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		275F4F3929DA404A00FCBF0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		275F4F3C29DA404A00FCBF0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		275F4F3E29DA404A00FCBF0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A2EBFF7929DC162400715794 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +97,6 @@
 				10D24CC829DC787F00D4006E /* MainButton.swift */,
 				10D24CCA29DC789400D4006E /* TextFieldView.swift */,
 				10352BEA29DD5731008C39A9 /* Profile */,
-				A2EBFF7929DC162400715794 /* Theme.swift */,
 				275F4F3929DA404A00FCBF0E /* Assets.xcassets */,
 				275F4F3B29DA404A00FCBF0E /* LaunchScreen.storyboard */,
 				275F4F3E29DA404A00FCBF0E /* Info.plist */,
@@ -180,7 +177,6 @@
 			files = (
 				10352BED29DD5C73008C39A9 /* UserImageCell.swift in Sources */,
 				275F4F3529DA404900FCBF0E /* ViewController.swift in Sources */,
-				A2EBFF7A29DC162400715794 /* Theme.swift in Sources */,
 				10D24CCB29DC789400D4006E /* TextFieldView.swift in Sources */,
 				275F4F3129DA404900FCBF0E /* AppDelegate.swift in Sources */,
 				10352BF529DD83A5008C39A9 /* SaveChangesCell.swift in Sources */,
