@@ -11,6 +11,7 @@
 		10F9E3C429DB7EA000C7BC6A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */; };
 		10F9E3C629DB833300C7BC6A /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C529DB833300C7BC6A /* MainButton.swift */; };
 		10F9E3CA29DC186500C7BC6A /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C929DC186500C7BC6A /* TextFieldView.swift */; };
+		17E1915929E05A020080EF45 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E1915829E05A020080EF45 /* MovieDetail.swift */; };
 		18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD55E429DC8E430000DB83 /* OnboardingCollectionViewCell.swift */; };
 		18BD55E729DCB84E0000DB83 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */; };
 		18EEBF5A29DB5A62002B5C20 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */; };
@@ -45,6 +46,7 @@
 		10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		10F9E3C529DB833300C7BC6A /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		10F9E3C929DC186500C7BC6A /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		17E1915829E05A020080EF45 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		18BD55E429DC8E430000DB83 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				275A1FBC29DF9B5400426D94 /* Core */,
 				275A1FC229DF9C1A00426D94 /* Feature */,
 				275A1FD029DF9F4B00426D94 /* Supporting Files */,
+				17E1915829E05A020080EF45 /* MovieDetail.swift */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				106FFB9629DF1A74002D7A94 /* SplashScreenViewController.swift in Sources */,
 				275A1FDB29DFAFFF00426D94 /* TabBarCoordinator.swift in Sources */,
 				275A1FC029DF9BD200426D94 /* BaseViewController.swift in Sources */,
+				17E1915929E05A020080EF45 /* MovieDetail.swift in Sources */,
 				275F4F3129DA404900FCBF0E /* AppDelegate.swift in Sources */,
 				18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */,
 				275A1FB929DF9B1600426D94 /* BaseCoordinator.swift in Sources */,
