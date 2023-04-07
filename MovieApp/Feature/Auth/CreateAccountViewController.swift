@@ -7,7 +7,20 @@
 
 import UIKit
 
+struct CreateAccountNavigation {
+    let finish: Callback
+}
 class CreateAccountViewController: ViewController {
+    let navigation: CreateAccountNavigation
+    
+    init(navigation: CreateAccountNavigation) {
+        self.navigation = navigation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let offset: CGFloat = 10
     
@@ -146,13 +159,14 @@ class CreateAccountViewController: ViewController {
 // MARK: - Navigation
 extension CreateAccountViewController: MainButtonDelegate {
     func buttonPressed(button: UIButton) {
+        self.navigation.finish()
         if let title = button.currentTitle {
             print(title)
         }
     }
     
     @objc func logitButtonPressed() {
-        print("Login button pressed")
+        self.navigation.finish()
     }
 }
 

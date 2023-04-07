@@ -12,13 +12,17 @@ final class AppCoordinator: BaseCoordinator {
         runAuth()
     }
     
-    private func runMain() {
-        let coordinator = MainCoordinator(router: router)
+    private func runTabBar() {
+        let coordinator = TabBarCoordinator(router: router)
         addDependency(coordinator)
         coordinator.start()
     }
+    
     private func runAuth() {
         let coordinator = AuthCoordinator(router: router)
+        coordinator.onFlowDidFinish = {
+            self.runTabBar()
+        }
         addDependency(coordinator)
         coordinator.start()
     }

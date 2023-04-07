@@ -1,6 +1,8 @@
 import Foundation
 
 final class AuthCoordinator: BaseCoordinator {
+    var onFlowDidFinish: Callback?
+
     override func start() {
         runAuth()
     }
@@ -13,6 +15,10 @@ final class AuthCoordinator: BaseCoordinator {
 
 extension AuthCoordinator {
     private func makeAuth() -> BaseViewController {
-        return CreateAccountViewController()
+        let navigation = CreateAccountNavigation(finish: {
+            self.onFlowDidFinish?()
+            print("auth finish")
+        })
+        return CreateAccountViewController(navigation: navigation)
     }
 }
