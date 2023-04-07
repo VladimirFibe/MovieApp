@@ -101,7 +101,7 @@ class CreateAccountViewController: ViewController {
         let googleIconImage = UIImage(named: "google-symbol")
         googleButton.setButton(style: .borderAndStaticImage, title: "Continue with google", andImage: googleIconImage)
         googleButton.delegate = self
-        textView.configure(placeholder: "example@gmail,com")
+        textView.configure(style: .border, textFildPlaceholder: "example@gmail,com")
         textView.textField.delegate = self
         setAttributeForButton()
         

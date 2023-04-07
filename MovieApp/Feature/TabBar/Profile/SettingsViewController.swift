@@ -169,7 +169,10 @@ class SettingsViewController: ViewController {
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
+        // TODO: Впихнуть в координатор
         
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
         }
     
     func setupHierarchy() {
