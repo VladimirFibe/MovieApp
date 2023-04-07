@@ -15,6 +15,9 @@ final class OnboardingCoordinator: BaseCoordinator {
 
 extension OnboardingCoordinator {
     private func makeOnboarding() -> BaseViewController {
-        return OnboardingViewController()
+        let navigation = OnboardingNavigation(finish: {
+            self.onFlowDidFinish?()
+        })
+        return OnboardingViewController(navigation: navigation)
     }
 }

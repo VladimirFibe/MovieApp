@@ -14,7 +14,7 @@ final class SplashCoordinator: BaseCoordinator {
 
 extension SplashCoordinator {
     private func makeSplash() -> BaseViewController {
-        let navigation = SplashScreenNavigation(action: {
+        let navigation = SplashScreenNavigation(finish: {
             self.onFlowDidFinish?()
         })
         return SplashScreenViewController(navigation: navigation)

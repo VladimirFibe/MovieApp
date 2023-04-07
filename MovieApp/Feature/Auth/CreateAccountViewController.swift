@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: ViewController {
     
     let offset: CGFloat = 10
     

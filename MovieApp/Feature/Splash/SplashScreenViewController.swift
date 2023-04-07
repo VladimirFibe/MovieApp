@@ -8,7 +8,7 @@ enum SplashScreen {
 }
 
 struct SplashScreenNavigation {
-    let action: Callback
+    let finish: Callback
 }
 
 class SplashScreenViewController: ViewController {
@@ -61,7 +61,7 @@ class SplashScreenViewController: ViewController {
         
         let delay: TimeInterval = 2
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            self.navigation.action()
+            self.navigation.finish()
         }
     }
     
@@ -73,14 +73,6 @@ class SplashScreenViewController: ViewController {
             self.view.addSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
         }
-    }
-    
-    // MARK: - Navigation
-    func moveToNextVC() {
-        stopTimer()
-        let vc = OnboardingViewController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
     }
     
     // MARK: - Animation

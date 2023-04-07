@@ -5,8 +5,11 @@ typealias Callback = () -> Void
 final class AppCoordinator: BaseCoordinator {
     var login = true
     override func start() {
-        print("AppCoordinator")
         runSplash()
+    }
+    
+    private func run() {
+        runAuth()
     }
     
     private func runMain() {
@@ -21,13 +24,15 @@ final class AppCoordinator: BaseCoordinator {
     }
     private func runOnboarding() {
         let coordinator = OnboardingCoordinator(router: router)
+        coordinator.onFlowDidFinish = {
+            self.run()
+        }
         addDependency(coordinator)
         coordinator.start()
     }
     private func runSplash() {
         let coordinator = SplashCoordinator(router: router)
         coordinator.onFlowDidFinish = {
-            print(#function)
             self.runOnboarding()
         }
         addDependency(coordinator)

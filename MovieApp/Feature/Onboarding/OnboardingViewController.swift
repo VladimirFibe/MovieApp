@@ -1,14 +1,21 @@
-//
-//  OnboardingViewController.swift
-//  MovieApp
-//
-//  Created by Dmitriy Babichev on 03.04.2023.
-//
-
 import UIKit
 
-final class OnboardingViewController: ViewController {
+struct OnboardingNavigation {
+    let finish: Callback
+}
 
+final class OnboardingViewController: ViewController {
+    let navigation: OnboardingNavigation
+    
+    init(navigation: OnboardingNavigation) {
+        self.navigation = navigation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var currentPage = 0 {
         didSet {
             pageControl.currentPage = currentPage
@@ -19,6 +26,7 @@ final class OnboardingViewController: ViewController {
             }
         }
     }
+    
     private let slides: [OnboardingSlide] = [
         OnboardingSlide(title: "Watch your favorite movie easily", description: "Drawings can followed improved out sociable not. Earnestly so do instantly pretended."),
         OnboardingSlide(title: "Enjoy your movies anytime", description: "Cause dried no solid no an small so still widen. Ten weather evident smiling bed against she examine its."),
@@ -121,10 +129,7 @@ final class OnboardingViewController: ViewController {
 
     @objc private func continueButtonTapped() {
         if currentPage == slides.index(before: slides.count) {
-            let vc = CreateAccountViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
-            
+            navigation.finish()
         } else {
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
