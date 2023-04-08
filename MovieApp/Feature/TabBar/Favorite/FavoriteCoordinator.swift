@@ -13,6 +13,6 @@ final class FavoriteCoordinator: BaseCoordinator {
 
 extension FavoriteCoordinator {
     private func makeRecent() -> BaseViewController {
-        return BaseViewController()
+        return FavouritesViewController()
     }
 }
