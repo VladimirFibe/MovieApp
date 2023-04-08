@@ -14,6 +14,6 @@ final class SearchCoordinator: BaseCoordinator {
 
 extension SearchCoordinator {
     private func makeSearch() -> BaseViewControllerProtocol {
-        return SettingsViewController()
+        return BaseViewController()
     }
 }

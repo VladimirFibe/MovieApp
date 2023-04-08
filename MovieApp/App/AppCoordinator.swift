@@ -15,6 +15,9 @@ final class AppCoordinator: BaseCoordinator {
     
     private func runTabBar() {
         let coordinator = TabBarCoordinator(router: router)
+        coordinator.onFlowDidFinish = {
+            self.runAuth()
+        }
         addDependency(coordinator)
         coordinator.start()
     }

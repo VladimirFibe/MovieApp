@@ -1,6 +1,7 @@
 import UIKit
 
 final class TabBarCoordinator: BaseCoordinator {
+    var onFlowDidFinish: Callback?
     override func start() {
         print("start tabbar")
         let tabBar = makeTabBar()
@@ -62,6 +63,7 @@ extension TabBarCoordinator {
     private func makeProfile() -> (BaseCoordinator, UINavigationController) {
         let navigationController = UINavigationController()
         let coordinator = ProfileCoordinator(router: RouterImpl(rootController: navigationController))
+        coordinator.onFlowDidFinish = onFlowDidFinish
         navigationController.tabBarItem = tabItem(for: .profile)
         return (coordinator, navigationController)
     }

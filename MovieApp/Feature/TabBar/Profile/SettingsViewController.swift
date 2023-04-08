@@ -1,13 +1,20 @@
-//
-//  SettingsViewController.swift
-//  MovieApp
-//
-//  Created by Alexey Davidenko on 04.04.2023.
-//
-
 import UIKit
 
+struct SettingsNavigation {
+    let profileTapped: Callback
+    let logoutTapped: Callback
+}
+
 class SettingsViewController: BaseViewController {
+    let navigation: SettingsNavigation
+    init(navigation: SettingsNavigation) {
+        self.navigation = navigation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let verStack: UIStackView = {
         let subStack = UIStackView()
@@ -149,7 +156,7 @@ class SettingsViewController: BaseViewController {
         button.backgroundColor = .clear
         button.layer.borderWidth = 1.0
         button.layer.cornerRadius = 30
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -169,11 +176,12 @@ class SettingsViewController: BaseViewController {
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
-        // TODO: Впихнуть в координатор
-        
-        let vc = ProfileViewController()
-        navigationController?.pushViewController(vc, animated: true)
-        }
+        self.navigation.profileTapped()
+    }
+    
+    @objc func logoutTapped(_ sender: UIButton) {
+        self.navigation.logoutTapped()
+    }
     
     func setupHierarchy() {
         
