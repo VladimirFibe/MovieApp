@@ -1,13 +1,6 @@
-//
-//  ProfileViewController.swift
-//  MovieApp
-//
-//  Created by Павел Грицков on 04.04.23.
-//
-
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
     
     let tableView = UITableView(frame: .zero, style: .plain)
     let notification = NotificationCenter.default
@@ -28,7 +21,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        title = "Profile"
+//        title = "Profile"
     }
     
     // MARK: - UI methods
@@ -83,7 +76,7 @@ extension ProfileViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = UserImageCell()
-            cell.configureCell(image: "userImage")
+            cell.configureCell(image: "avatarImage")
             return cell
         case 1: return createCellWith(title: "First Name", placeholder: "enter your name")
         case 2: return createCellWith(title: "Last Name", placeholder: "enter your name")

@@ -12,7 +12,7 @@ final class ProfileCoordinator: BaseCoordinator {
 }
 
 extension ProfileCoordinator {
-    private func makeRecent() -> ViewController {
-        return ViewController()
+    private func makeRecent() -> BaseViewController {
+        return ProfileViewController()
     }
 }

@@ -1,11 +1,11 @@
 import UIKit
 
-public protocol BaseViewController: UIViewController {
+public protocol BaseViewControllerProtocol: UIViewController {
     var onRemoveFromNavigationStack: (() -> Void)? { get set }
     var onDidDismiss: (() -> Void)? { get set }
 }
 
-open class ViewController: UIViewController, BaseViewController {
+open class BaseViewController: UIViewController, BaseViewControllerProtocol {
     public var onRemoveFromNavigationStack: (() -> Void)?
     public var onDidDismiss: (() -> Void)?
     

@@ -10,7 +10,7 @@ import UIKit
 struct CreateAccountNavigation {
     let finish: Callback
 }
-class CreateAccountViewController: ViewController {
+class CreateAccountViewController: BaseViewController {
     let navigation: CreateAccountNavigation
     
     init(navigation: CreateAccountNavigation) {

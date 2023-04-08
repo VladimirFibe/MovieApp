@@ -17,12 +17,12 @@ final class TabBarCoordinator: BaseCoordinator {
 }
 
 extension TabBarCoordinator {
-    private func makeTabBar() -> BaseViewController & UITabBarController {
+    private func makeTabBar() -> BaseViewControllerProtocol & UITabBarController {
         return TabBarController()
     }
     
     private func tabItem(for type: TabItem) -> UITabBarItem {
-        var item = UITabBarItem(
+        let item = UITabBarItem(
             title: nil,
             image: UIImage(named: type.icon)?.withRenderingMode(.alwaysOriginal),
             selectedImage: UIImage(named: type.activeIcon)?.withRenderingMode(.alwaysOriginal)

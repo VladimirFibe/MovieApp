@@ -2,15 +2,15 @@ import UIKit
 
 public protocol Router {
     var rootController: UINavigationController? { get }
-    func present(_ module: BaseViewController?)
-    func present(_ module: BaseViewController?, animated: Bool)
-    func present(_ module: BaseViewController?, animated: Bool, completion: (() -> Void)?)
+    func present(_ module: BaseViewControllerProtocol?)
+    func present(_ module: BaseViewControllerProtocol?, animated: Bool)
+    func present(_ module: BaseViewControllerProtocol?, animated: Bool, completion: (() -> Void)?)
 
-    func push(_ module: BaseViewController?)
-    func push(_ module: BaseViewController?, hideBottomBar: Bool)
-    func push(_ module: BaseViewController?, animated: Bool)
-    func push(_ module: BaseViewController?, animated: Bool, completion: (() -> Void)?)
-    func push(_ module: BaseViewController?, animated: Bool, hideBottomBar: Bool, completion: (() -> Void)?)
+    func push(_ module: BaseViewControllerProtocol?)
+    func push(_ module: BaseViewControllerProtocol?, hideBottomBar: Bool)
+    func push(_ module: BaseViewControllerProtocol?, animated: Bool)
+    func push(_ module: BaseViewControllerProtocol?, animated: Bool, completion: (() -> Void)?)
+    func push(_ module: BaseViewControllerProtocol?, animated: Bool, hideBottomBar: Bool, completion: (() -> Void)?)
 
     func popModule()
     func popModule(animated: Bool)
@@ -19,9 +19,9 @@ public protocol Router {
     func dismissModule(animated: Bool)
     func dismissModule(animated: Bool, completion: (() -> Void)?)
 
-    func setRootModule(_ module: BaseViewController?)
-    func setRootModule(_ module: BaseViewController?, hideBar: Bool)
-    func setRootModules(_ modules: [BaseViewController], hideBar: Bool)
+    func setRootModule(_ module: BaseViewControllerProtocol?)
+    func setRootModule(_ module: BaseViewControllerProtocol?, hideBar: Bool)
+    func setRootModules(_ modules: [BaseViewControllerProtocol], hideBar: Bool)
     func popToRootModule(animated: Bool)
 }
 
@@ -34,11 +34,11 @@ public final class RouterImpl: Router {
         completions = [:]
     }
 
-    public func present(_ module: BaseViewController?) {
+    public func present(_ module: BaseViewControllerProtocol?) {
         present(module, animated: true)
     }
 
-    public func present(_ module: BaseViewController?, animated: Bool) {
+    public func present(_ module: BaseViewControllerProtocol?, animated: Bool) {
         guard let module = module else {
             return
         }
@@ -46,7 +46,7 @@ public final class RouterImpl: Router {
         rootController?.present(module, animated: animated, completion: nil)
     }
     
-    public func present(_ module: BaseViewController?, animated: Bool, completion: (() -> Void)?) {
+    public func present(_ module: BaseViewControllerProtocol?, animated: Bool, completion: (() -> Void)?) {
         guard let module = module else {
             return
         }
@@ -66,23 +66,23 @@ public final class RouterImpl: Router {
         rootController?.dismiss(animated: animated, completion: completion)
     }
 
-    public func push(_ module: BaseViewController?) {
+    public func push(_ module: BaseViewControllerProtocol?) {
         push(module, animated: true)
     }
 
-    public func push(_ module: BaseViewController?, hideBottomBar: Bool) {
+    public func push(_ module: BaseViewControllerProtocol?, hideBottomBar: Bool) {
         push(module, animated: true, hideBottomBar: hideBottomBar, completion: nil)
     }
 
-    public func push(_ module: BaseViewController?, animated: Bool) {
+    public func push(_ module: BaseViewControllerProtocol?, animated: Bool) {
         push(module, animated: animated, completion: nil)
     }
 
-    public func push(_ module: BaseViewController?, animated: Bool, completion: (() -> Void)?) {
+    public func push(_ module: BaseViewControllerProtocol?, animated: Bool, completion: (() -> Void)?) {
         push(module, animated: animated, hideBottomBar: true, completion: completion)
     }
 
-    public func push(_ module: BaseViewController?, animated: Bool, hideBottomBar: Bool, completion: (() -> Void)?) {
+    public func push(_ module: BaseViewControllerProtocol?, animated: Bool, hideBottomBar: Bool, completion: (() -> Void)?) {
         guard let module = module, module is UINavigationController == false
         else { assertionFailure("Deprecated push UINavigationController."); return }
 
@@ -98,16 +98,16 @@ public final class RouterImpl: Router {
     }
 
     public func popModule(animated: Bool) {
-        if let module = rootController?.popViewController(animated: animated) as? BaseViewController {
+        if let module = rootController?.popViewController(animated: animated) as? BaseViewControllerProtocol {
             runCompletion(for: module)
         }
     }
 
-    public func setRootModule(_ module: BaseViewController?) {
+    public func setRootModule(_ module: BaseViewControllerProtocol?) {
         setRootModule(module, hideBar: false)
     }
 
-    public func setRootModule(_ module: BaseViewController?, hideBar: Bool) {
+    public func setRootModule(_ module: BaseViewControllerProtocol?, hideBar: Bool) {
         guard let module = module else {
             return
         }
@@ -116,7 +116,7 @@ public final class RouterImpl: Router {
         rootController?.navigationBar.isHidden = hideBar
     }
     
-    public func setRootModules(_ modules: [BaseViewController], hideBar: Bool) {
+    public func setRootModules(_ modules: [BaseViewControllerProtocol], hideBar: Bool) {
         guard !modules.isEmpty else {
             return
         }
@@ -128,15 +128,15 @@ public final class RouterImpl: Router {
     public func popToRootModule(animated: Bool) {
         if let modules = rootController?.popToRootViewController(animated: animated) {
             modules.forEach { module in
-                if let module = module as? BaseViewController {
+                if let module = module as? BaseViewControllerProtocol {
                     runCompletion(for: module)
                 }
             }
         }
     }
 
-    private func runCompletion(for controller: BaseViewController) {
-        guard let module = controller as? ViewController,
+    private func runCompletion(for controller: BaseViewControllerProtocol) {
+        guard let module = controller as? BaseViewController,
               let completion = completions[module]
         else { return }
         completion()

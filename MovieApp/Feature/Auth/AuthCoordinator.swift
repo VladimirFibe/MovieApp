@@ -14,7 +14,7 @@ final class AuthCoordinator: BaseCoordinator {
 }
 
 extension AuthCoordinator {
-    private func makeAuth() -> BaseViewController {
+    private func makeAuth() -> BaseViewControllerProtocol {
         let navigation = CreateAccountNavigation(finish: {
             self.onFlowDidFinish?()
             print("auth finish")

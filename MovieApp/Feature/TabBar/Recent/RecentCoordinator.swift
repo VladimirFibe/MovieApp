@@ -12,7 +12,7 @@ final class RecentCoordinator: BaseCoordinator {
 }
 
 extension RecentCoordinator {
-    private func makeRecent() -> ViewController {
-        return ViewController()
+    private func makeRecent() -> BaseViewController {
+        return BaseViewController()
     }
 }

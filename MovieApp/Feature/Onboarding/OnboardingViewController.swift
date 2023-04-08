@@ -4,7 +4,7 @@ struct OnboardingNavigation {
     let finish: Callback
 }
 
-final class OnboardingViewController: ViewController {
+final class OnboardingViewController: BaseViewController {
     let navigation: OnboardingNavigation
     
     init(navigation: OnboardingNavigation) {

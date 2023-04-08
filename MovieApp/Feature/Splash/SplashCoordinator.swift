@@ -13,7 +13,7 @@ final class SplashCoordinator: BaseCoordinator {
 }
 
 extension SplashCoordinator {
-    private func makeSplash() -> BaseViewController {
+    private func makeSplash() -> BaseViewControllerProtocol {
         let navigation = SplashScreenNavigation(finish: {
             self.onFlowDidFinish?()
         })

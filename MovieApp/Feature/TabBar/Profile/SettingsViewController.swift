@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: ViewController {
+class SettingsViewController: BaseViewController {
     
     let verStack: UIStackView = {
         let subStack = UIStackView()

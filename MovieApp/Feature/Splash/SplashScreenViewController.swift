@@ -11,7 +11,7 @@ struct SplashScreenNavigation {
     let finish: Callback
 }
 
-class SplashScreenViewController: ViewController {
+class SplashScreenViewController: BaseViewController {
     let navigation: SplashScreenNavigation
     init(navigation: SplashScreenNavigation) {
         self.navigation = navigation

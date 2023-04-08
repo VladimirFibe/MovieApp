@@ -1,6 +1,6 @@
 import UIKit
 
-class BottomSheetController: ViewController {
+class BottomSheetController: BaseViewController {
 
     enum PreferredSheetSizing: CGFloat {
         case fit = 0.3

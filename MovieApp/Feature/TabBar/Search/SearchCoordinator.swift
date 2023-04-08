@@ -6,14 +6,14 @@ final class SearchCoordinator: BaseCoordinator {
     }
     
     private func runSearch() {
-        let controller = ViewController()
+        let controller = makeSearch()
         router.setRootModule(controller)
     }
 
 }
 
 extension SearchCoordinator {
-    private func makeSearch() -> BaseViewController {
+    private func makeSearch() -> BaseViewControllerProtocol {
         return SettingsViewController()
     }
 }

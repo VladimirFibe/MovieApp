@@ -12,7 +12,7 @@ final class HomeCoordinator: BaseCoordinator {
 }
 
 extension HomeCoordinator {
-    private func makeRecent() -> ViewController {
-        return ViewController()
+    private func makeRecent() -> BaseViewController {
+        return BaseViewController()
     }
 }
