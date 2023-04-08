@@ -30,6 +30,8 @@ class SaveChangesCell: UITableViewCell {
     }
     
     private func configureUI() {
+        contentView.backgroundColor = Theme.whiteToBlack
+        
         saveChangesButton.setButton(style: .fill, title: "Save Changes")
         saveChangesButton.addTarget(self, action: #selector(saveBottonPressed), for: .touchUpInside)
     }

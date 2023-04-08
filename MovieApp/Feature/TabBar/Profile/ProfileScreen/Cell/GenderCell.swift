@@ -20,7 +20,7 @@ class GenderCell: UITableViewCell {
     let title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .gray
+        label.textColor = Theme.darkGreyToWhite
         return label
     }()
     
@@ -65,6 +65,8 @@ class GenderCell: UITableViewCell {
     
     private func configureUI() {
         stackView.spacing = offset
+        
+        contentView.backgroundColor = Theme.whiteToBlack
         
         stackView.addArrangedSubview(maleButtonView)
         stackView.addArrangedSubview(femaleButtonView)

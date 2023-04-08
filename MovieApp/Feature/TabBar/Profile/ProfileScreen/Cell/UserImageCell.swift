@@ -30,6 +30,8 @@ class UserImageCell: UITableViewCell {
         contViewForImage.addSubview(userImageView)
         contViewForImage.layer.cornerRadius = imageSize / 2
         contViewForImage.clipsToBounds = true
+        
+        contentView.backgroundColor = Theme.whiteToBlack
     }
     
     func configureCell(image imageName: String) {
