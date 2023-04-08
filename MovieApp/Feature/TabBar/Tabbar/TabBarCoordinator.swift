@@ -2,6 +2,7 @@ import UIKit
 
 final class TabBarCoordinator: BaseCoordinator {
     override func start() {
+        print("start tabbar")
         let tabBar = makeTabBar()
         router.setRootModule(tabBar, hideBar: true)
         
@@ -21,11 +22,13 @@ extension TabBarCoordinator {
     }
     
     private func tabItem(for type: TabItem) -> UITabBarItem {
-        UITabBarItem(
+        var item = UITabBarItem(
             title: nil,
             image: UIImage(named: type.icon)?.withRenderingMode(.alwaysOriginal),
             selectedImage: UIImage(named: type.activeIcon)?.withRenderingMode(.alwaysOriginal)
         )
+        item.imageInsets = UIEdgeInsets(top: 13, left: 0, bottom: -13, right: 0)
+        return item
     }
     
     private func makeSearch() -> (BaseCoordinator, UINavigationController) {

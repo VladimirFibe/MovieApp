@@ -2,6 +2,17 @@ import Foundation
 
 final class HomeCoordinator: BaseCoordinator {
     override func start() {
-        print("Home")
+        runRecent()
+    }
+    
+    private func runRecent() {
+        let controller = makeRecent()
+        router.setRootModule(controller)
+    }
+}
+
+extension HomeCoordinator {
+    private func makeRecent() -> ViewController {
+        return ViewController()
     }
 }
