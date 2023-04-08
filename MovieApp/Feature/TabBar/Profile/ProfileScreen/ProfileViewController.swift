@@ -26,7 +26,7 @@ class ProfileViewController: BaseViewController {
     
     // MARK: - UI methods
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.whiteToBlack
         
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -88,7 +88,7 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
         case 5:
             let cell = GenderCell()
-            cell.configure(title: "Gender", textFildPlaceholder: "")
+            cell.configure(title: "Gender", textFildPlaceholder: "", gender: .notSelected)
             return cell
         case 6:
             let cell = SaveChangesCell()

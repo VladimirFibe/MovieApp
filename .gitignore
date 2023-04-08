@@ -133,6 +133,6 @@ iOSInjectionProject/
 
 ## Файл который наверное уже всех за...л
 *.xcuserstate
+MovieApp.xcodeproj/project.xcworkspace/xcuserdata/pavelgrickov.xcuserdatad/UserInterfaceState.xcuserstate
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,macos
-MovieApp.xcodeproj/project.xcworkspace/xcuserdata/pavelgrickov.xcuserdatad/UserInterfaceState.xcuserstate

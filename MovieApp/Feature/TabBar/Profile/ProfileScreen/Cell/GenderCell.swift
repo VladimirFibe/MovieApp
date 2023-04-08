@@ -8,13 +8,19 @@
 import UIKit
 
 class GenderCell: UITableViewCell {
+    
+    enum Gender {
+        case male
+        case female
+        case notSelected
+    }
 
     private let offset: CGFloat = 20
 
     let title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .gray
+        label.textColor = Theme.darkGreyToWhite
         return label
     }()
     
@@ -39,22 +45,31 @@ class GenderCell: UITableViewCell {
         configureUI()
     }
     
-    func configure(title text: String, textFildPlaceholder placeholder: String) {
+    func configure(title text: String, textFildPlaceholder placeholder: String, gender: Gender) {
         setConstraints()
         title.text = text
+        
+        switch gender {
+        case .male:
+            maleButtonView.setButton(style: .borderAndImage, title: "Male", isActive: true)
+        case .female:
+            femaleButtonView.setButton(style: .borderAndImage, title: "Female", isActive: true)
+        case .notSelected:
+            maleButtonView.setButton(style: .borderAndImage, title: "Male", isActive: false)
+            femaleButtonView.setButton(style: .borderAndImage, title: "Female", isActive: false)
+        }
+        
+        maleButtonView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        femaleButtonView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
     private func configureUI() {
         stackView.spacing = offset
         
+        contentView.backgroundColor = Theme.whiteToBlack
+        
         stackView.addArrangedSubview(maleButtonView)
         stackView.addArrangedSubview(femaleButtonView)
-        
-        maleButtonView.setButton(style: .borderAndImage, title: "Male")
-        femaleButtonView.setButton(style: .borderAndImage, title: "Female")
-        
-        maleButtonView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        femaleButtonView.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
     func setConstraints() {
