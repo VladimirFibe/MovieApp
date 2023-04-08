@@ -9,6 +9,7 @@ import UIKit
 
 protocol FormCellDelegate: AnyObject {
     func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String)
+    func cellTextFieldShouldBeginEditing(cell: FormCell, textField: UITextField)
 }
 
 class FormCell: UITableViewCell {
@@ -98,6 +99,7 @@ extension FormCell {
 // MARK: - TextField Delegate
 extension FormCell :UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        delegate?.cellTextFieldShouldBeginEditing(cell: self, textField: textField)
 //        print(#function)
         textField.text = ""
         return true
