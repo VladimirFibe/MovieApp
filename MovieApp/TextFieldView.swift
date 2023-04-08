@@ -19,6 +19,7 @@ class TextFieldView: UIView {
     
     let textField: UITextField = {
         let textField = UITextField()
+        textField.font = UIFont.systemFont(ofSize: 18)
         return textField
     }()
     
