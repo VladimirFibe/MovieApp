@@ -26,7 +26,7 @@ class ProfileViewController: BaseViewController {
     
     // MARK: - UI methods
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.whiteToBlack
         
         view.addSubview(tableView)
         tableView.dataSource = self

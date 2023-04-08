@@ -20,7 +20,7 @@ class FormCell: UITableViewCell {
     let title: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = .gray
+        label.textColor = Theme.darkGreyToWhite
         return label
     }()
     
@@ -35,7 +35,7 @@ class FormCell: UITableViewCell {
 
         contentView.addSubview(title)
         contentView.addSubview(textFieldView)
-        
+        contentView.backgroundColor = Theme.whiteToBlack
         textFieldView.textField.delegate = self
     }
     
