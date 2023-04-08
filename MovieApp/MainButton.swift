@@ -35,6 +35,8 @@ class MainButton: UIButton {
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
     
+    private let buttonTextColor = Theme.darkGreyToWhite
+    
     func setButton(style: ConfigureStyle,title text: String, andImage image: UIImage? = nil) {
         
         setTitle(text, for: .normal)
@@ -43,18 +45,18 @@ class MainButton: UIButton {
         
         switch style {
         case .fill:
-            backgroundColor = .orange
+            backgroundColor = Theme.purple
             setTitleColor(.white, for: .normal)
         case .border:
             backgroundColor = .none
-            setTitleColor(.black, for: .normal)
+            setTitleColor(buttonTextColor, for: .normal)
             layer.borderColor = UIColor.gray.cgColor
             layer.borderWidth = 2
         case .borderAndImage:
             isStaticImage = false
             setTitle("  \(text)", for: .normal)
             backgroundColor = .none
-            setTitleColor(.black, for: .normal)
+            setTitleColor(buttonTextColor, for: .normal)
             layer.borderColor = UIColor.gray.cgColor
             layer.borderWidth = 2
             setImage(image, for: .normal)
@@ -63,7 +65,7 @@ class MainButton: UIButton {
         case .borderAndStaticImage:
             setTitle("  \(text)", for: .normal)
             backgroundColor = .none
-            setTitleColor(.black, for: .normal)
+            setTitleColor(buttonTextColor, for: .normal)
             layer.borderColor = UIColor.gray.cgColor
             layer.borderWidth = 2
             setImage(image, for: .normal)

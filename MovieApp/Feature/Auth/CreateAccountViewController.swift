@@ -32,7 +32,7 @@ class CreateAccountViewController: BaseViewController {
         let label = UILabel()
          label.text = "⎯⎯⎯⎯  Or continue with  ⎯⎯⎯⎯"
          label.font = UIFont.boldSystemFont(ofSize: 16)
-         label.textColor = .gray
+         label.textColor = Theme.darkGreyToWhite
          label.textAlignment = .center
          return label
     }()
@@ -75,7 +75,7 @@ class CreateAccountViewController: BaseViewController {
         view.frame.size.height = self.view.frame.height * 0.8
         view.frame.origin.y = self.view.frame.height * 0.25
         view.layer.cornerRadius = 30
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.whiteToBlack
         return view
     }()
     
@@ -89,7 +89,7 @@ class CreateAccountViewController: BaseViewController {
         
 // MARK: - Start setup
     func configureUI() {
-        view.backgroundColor = UIColor(named: "mainBlue")
+        view.backgroundColor = Theme.purple
         view.addSubview(backView)
         
         [screenNameLabel, screenDescriptionLabel, stackView, loginButton].forEach {
@@ -118,10 +118,10 @@ class CreateAccountViewController: BaseViewController {
     
     func setAttributeForButton() {
         let attributedString = NSMutableAttributedString(string: "Already have an account? Login")
-        attributedString.addAttributes([.foregroundColor : UIColor.gray,
+        attributedString.addAttributes([.foregroundColor : Theme.darkGreyToWhite,
                                         .font : UIFont.boldSystemFont(ofSize: 16)],
                                        range: NSRange(location: 0, length: 24))
-        attributedString.addAttributes([.foregroundColor : UIColor.blue,
+        attributedString.addAttributes([.foregroundColor : Theme.purple,
                                         .font : UIFont.boldSystemFont(ofSize: 16)],
                                        range: NSRange(location: 25, length: 5))
         loginButton.setAttributedTitle(attributedString, for: .normal)
