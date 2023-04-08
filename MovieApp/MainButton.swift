@@ -21,12 +21,12 @@ class MainButton: UIButton {
         case borderAndStaticImage
     }
 
-    private var imageForButtonCondition: UIImage? {
-        if isOn {
-            return UIImage(systemName: "checkmark.circle.fill")
-        } else {
-            return UIImage(systemName: "checkmark.circle")
-        }
+    private var turnOnImage: UIImage? {
+        return UIImage(systemName: "checkmark.circle.fill")
+    }
+    
+    private var turnOffImage: UIImage? {
+        return UIImage(systemName: "circle")
     }
     
     private var isOn = false
@@ -37,11 +37,12 @@ class MainButton: UIButton {
     
     private let buttonTextColor = Theme.darkGreyToWhite
     
-    func setButton(style: ConfigureStyle,title text: String, andImage image: UIImage? = nil) {
+    func setButton(
+        style: ConfigureStyle, title text: String,
+        image: UIImage? = nil, isActive: Bool? = nil) {
         
         setTitle(text, for: .normal)
-        
-        let image = image ?? imageForButtonCondition
+        isOn = isActive ?? false
         
         switch style {
         case .fill:
@@ -59,7 +60,7 @@ class MainButton: UIButton {
             setTitleColor(buttonTextColor, for: .normal)
             layer.borderColor = UIColor.gray.cgColor
             layer.borderWidth = 2
-            setImage(image, for: .normal)
+            switchButton()
             contentHorizontalAlignment = .left
             contentEdgeInsets = .init(top: 0, left: 18, bottom: 0, right: 0)
         case .borderAndStaticImage:
@@ -79,9 +80,20 @@ class MainButton: UIButton {
     
     @objc func buttonPressed(_ sender: UIButton) {
         delegate?.buttonPressed(button: sender)
+        switchButton()
+    }
+    
+    private func switchButton() {
         if !isStaticImage {
-            isOn = !isOn
-            setImage(imageForButtonCondition, for: .normal)
+            if isOn {
+                setImage(turnOnImage, for: .normal)
+                tintColor = Theme.purple
+                isOn = !isOn
+            } else {
+                setImage(turnOffImage, for: .normal)
+                tintColor = Theme.darkGreyToWhite
+                isOn = !isOn
+            }
         }
     }
     
