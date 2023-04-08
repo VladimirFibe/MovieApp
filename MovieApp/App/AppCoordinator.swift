@@ -5,9 +5,8 @@ typealias Callback = () -> Void
 final class AppCoordinator: BaseCoordinator {
     var login = true
     override func start() {
-        // TODO: Change or delete before merge
-        runTabBar()
-//        runSplash()
+//        runTabBar()
+        runSplash()
     }
     
     private func run() {
