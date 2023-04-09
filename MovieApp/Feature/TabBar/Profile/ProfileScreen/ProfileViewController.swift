@@ -88,7 +88,7 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
         case 5:
             let cell = GenderCell()
-            cell.configure(title: "Gender", textFildPlaceholder: "")
+            cell.configure(title: "Gender", textFildPlaceholder: "", gender: .notSelected)
             return cell
         case 6:
             let cell = SaveChangesCell()
