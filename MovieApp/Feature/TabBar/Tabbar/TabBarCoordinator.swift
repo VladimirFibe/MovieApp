@@ -14,6 +14,7 @@ final class TabBarCoordinator: BaseCoordinator {
         }
         let viewControllers = modules.map { $0.1 }
         tabBar.setViewControllers(viewControllers, animated: false)
+        tabBar.selectedIndex = 2
     }
 }
 

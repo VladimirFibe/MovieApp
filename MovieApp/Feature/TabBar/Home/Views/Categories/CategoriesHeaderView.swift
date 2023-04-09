@@ -14,7 +14,7 @@ final class CategoriesHeaderView: UITableViewHeaderFooterView {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<MainSection, String>
     static let identifier = "CategoriesHeaderView"
     
-    private var categories: [String]
+    private var categories: [String] 
     private var dataSource: DataSource!
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
