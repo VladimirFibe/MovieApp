@@ -1,6 +1,4 @@
-{
-   "page":1,
-   "results":[
+[
       {
          "adult":false,
          "backdrop_path":"/ovM06PdF3M8wvKb06i4sjW3xoww.jpg",
@@ -402,7 +400,4 @@
          "vote_average":7.3,
          "vote_count":85
       }
-   ],
-   "total_pages":37770,
-   "total_results":755397
-}
+   ]
