@@ -1,5 +1,5 @@
 import UIKit
-
+import Kingfisher
 class MovieTableViewCell: UITableViewCell {
     let infoImagesArray: [String] = ["stopwatch","calendar","popcorn"]
     var movieLenght = ""

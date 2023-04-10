@@ -33,7 +33,7 @@ final class FavouritesViewController: BaseViewController {
         ])
         view.addSubview(horizontalMenuCollectionView)
         NSLayoutConstraint.activate([
-            horizontalMenuCollectionView.bottomAnchor.constraint(equalTo: movieTable.topAnchor,constant: -40),
+            horizontalMenuCollectionView.bottomAnchor.constraint(equalTo: movieTable.topAnchor,constant:-10),
             horizontalMenuCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             horizontalMenuCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             horizontalMenuCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
