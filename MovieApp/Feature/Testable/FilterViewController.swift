@@ -65,10 +65,10 @@ extension FilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         switch indexPath.row {
-        case 0: cell.contentView.backgroundColor = .blue
-        case 1: cell.contentView.backgroundColor = .red
-        case 2: cell.contentView.backgroundColor = .green
-        case 3: cell.contentView.backgroundColor = .orange
+        case 0: cell.contentView.backgroundColor = .blue.withAlphaComponent(1.0)
+        case 1: cell.contentView.backgroundColor = .blue.withAlphaComponent(0.8)
+        case 2: cell.contentView.backgroundColor = .blue.withAlphaComponent(0.6)
+        case 3: cell.contentView.backgroundColor = .blue.withAlphaComponent(0.4)
         default: break
         }
         return cell
