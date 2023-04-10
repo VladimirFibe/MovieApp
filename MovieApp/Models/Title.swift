@@ -4,7 +4,7 @@ struct TrendingTitleResponse: Codable {
     let results: [Title]
 }
 
-struct Title: Codable {
+struct Title: Codable, Hashable {
     let adult: Bool
     let genreIDS: [Int]
     let id: Int
