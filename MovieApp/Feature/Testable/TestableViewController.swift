@@ -37,7 +37,6 @@ class TestableViewController: BaseViewController {
     }
 
     @objc func buttonPressed() {
-        
         let vc = FilterViewController()
         
         // задаем направлени презентации VC

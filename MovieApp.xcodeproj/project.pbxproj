@@ -133,12 +133,20 @@
 		103599D529E2B5D00030ADB8 /* Testable */ = {
 			isa = PBXGroup;
 			children = (
+				10359A0D29E464330030ADB8 /* Cell */,
 				103599D629E2B6420030ADB8 /* TestableViewController.swift */,
 				103599D829E2B6EC0030ADB8 /* FilterViewController.swift */,
 				10359A0929E446F50030ADB8 /* PresentationManager.swift */,
 				10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */,
 			);
 			path = Testable;
+			sourceTree = "<group>";
+		};
+		10359A0D29E464330030ADB8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		1035BD1629E0D621004C2AC3 /* ProfileScreen */ = {
