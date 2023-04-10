@@ -13,6 +13,6 @@ final class RecentCoordinator: BaseCoordinator {
 
 extension RecentCoordinator {
     private func makeRecent() -> BaseViewController {
-        return BaseViewController()
+        return RecentsViewController()
     }
 }

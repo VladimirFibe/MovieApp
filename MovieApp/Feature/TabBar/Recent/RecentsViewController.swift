@@ -1,5 +1,5 @@
 import UIKit
-final class FavouritesViewController: BaseViewController {
+final class RecentsViewController: BaseViewController {
     let movieTable = MovieTableView()
     let horizontalMenuCollectionView = HorizontalTagCollectionView()
     var movieArray: [Title] = []
@@ -40,7 +40,7 @@ final class FavouritesViewController: BaseViewController {
         ])
     }
 }
-extension FavouritesViewController: SelectCollectionViewItemProtocol{
+extension RecentsViewController: SelectCollectionViewItemProtocol{
     func selectItem(_ index: IndexPath) {
         fetchRequest(page: index.item + 1)
     }
