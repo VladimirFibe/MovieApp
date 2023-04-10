@@ -7,7 +7,7 @@ struct HomeCellView: View {
         HStack {
             KFImage(URL(string: "https://image.tmdb.org/t/p/w500/\(title.posterPath)"))
                 .resizable()
-                .scaledToFill()
+//                .scaledToFill()
                 .frame(width: 80, height: 80)
                 .cornerRadius(8)
             
