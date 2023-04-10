@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		103599D729E2B6420030ADB8 /* TestableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103599D629E2B6420030ADB8 /* TestableViewController.swift */; };
+		103599D929E2B6EC0030ADB8 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103599D829E2B6EC0030ADB8 /* FilterViewController.swift */; };
+		10359A0A29E446F50030ADB8 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0929E446F50030ADB8 /* PresentationManager.swift */; };
+		10359A0C29E448EE0030ADB8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */; };
 		1035BD1829E0D676004C2AC3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1729E0D676004C2AC3 /* ProfileViewController.swift */; };
 		1035BD1B29E0D6DD004C2AC3 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1A29E0D6DD004C2AC3 /* FormCell.swift */; };
 		1035BD1D29E0D780004C2AC3 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1C29E0D780004C2AC3 /* GenderCell.swift */; };
@@ -58,6 +62,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		103599D629E2B6420030ADB8 /* TestableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableViewController.swift; sourceTree = "<group>"; };
+		103599D829E2B6EC0030ADB8 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		10359A0929E446F50030ADB8 /* PresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
+		10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		1035BD1729E0D676004C2AC3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1035BD1A29E0D6DD004C2AC3 /* FormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
 		1035BD1C29E0D780004C2AC3 /* GenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
@@ -122,6 +130,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		103599D529E2B5D00030ADB8 /* Testable */ = {
+			isa = PBXGroup;
+			children = (
+				103599D629E2B6420030ADB8 /* TestableViewController.swift */,
+				103599D829E2B6EC0030ADB8 /* FilterViewController.swift */,
+				10359A0929E446F50030ADB8 /* PresentationManager.swift */,
+				10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */,
+			);
+			path = Testable;
+			sourceTree = "<group>";
+		};
 		1035BD1629E0D621004C2AC3 /* ProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +212,7 @@
 		275A1FC229DF9C1A00426D94 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				103599D529E2B5D00030ADB8 /* Testable */,
 				275A1FD929DFAFD300426D94 /* TabBar */,
 				275A1FC129DF9C0D00426D94 /* Splash */,
 				275A1FC929DF9CD500426D94 /* Onboarding */,
@@ -451,10 +471,12 @@
 				270A656929E08DF300C36C27 /* BottomSheetTransitioningDelegate.swift in Sources */,
 				275A1FEB29DFC40300426D94 /* ProfileCoordinator.swift in Sources */,
 				106FFB9629DF1A74002D7A94 /* SplashScreenViewController.swift in Sources */,
+				10359A0C29E448EE0030ADB8 /* SlideInPresentationController.swift in Sources */,
 				275A1FDB29DFAFFF00426D94 /* TabBarCoordinator.swift in Sources */,
 				27CC34A329E1B5B800FB6667 /* UIColor+Extension.swift in Sources */,
 				270A656729E08DB100C36C27 /* BottomSheetController.swift in Sources */,
 				275A1FC029DF9BD200426D94 /* BaseViewController.swift in Sources */,
+				103599D929E2B6EC0030ADB8 /* FilterViewController.swift in Sources */,
 				275F4F3129DA404900FCBF0E /* AppDelegate.swift in Sources */,
 				18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */,
 				1035BD1B29E0D6DD004C2AC3 /* FormCell.swift in Sources */,
@@ -468,6 +490,7 @@
 				18BD55E729DCB84E0000DB83 /* OnboardingSlide.swift in Sources */,
 				275A1FC429DF9C4100426D94 /* AppCoordinator.swift in Sources */,
 				27CC349B29E1B36F00FB6667 /* APICaller.swift in Sources */,
+				103599D729E2B6420030ADB8 /* TestableViewController.swift in Sources */,
 				275A1FE729DFC3CC00426D94 /* HomeCoordinator.swift in Sources */,
 				27CC349D29E1B4ED00FB6667 /* MovieTableViewCell.swift in Sources */,
 				27CC349729E1B2F700FB6667 /* HorizontalTagCollectionView.swift in Sources */,
@@ -475,6 +498,7 @@
 				275A1FD829DFADB600426D94 /* Title.swift in Sources */,
 				270A656529E08AC100C36C27 /* SettingsViewController.swift in Sources */,
 				18EEBF5A29DB5A62002B5C20 /* OnboardingViewController.swift in Sources */,
+				10359A0A29E446F50030ADB8 /* PresentationManager.swift in Sources */,
 				275A1FE329DFC39600426D94 /* SearchCoordinator.swift in Sources */,
 				275A1FBE29DF9B6F00426D94 /* Router.swift in Sources */,
 				275A1FCB29DF9CE900426D94 /* AuthCoordinator.swift in Sources */,

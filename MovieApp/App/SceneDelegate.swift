@@ -11,12 +11,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func startAppCoordinator() {
-        let navigationController = UINavigationController()
-        let router = RouterImpl(rootController: navigationController)
-        let appCoordinator = AppCoordinator(router: router)
-        window?.rootViewController = navigationController
+//        let navigationController = UINavigationController()
+//        let router = RouterImpl(rootController: navigationController)
+//        let appCoordinator = AppCoordinator(router: router)
+//        window?.rootViewController = navigationController
+        window?.rootViewController = UINavigationController(rootViewController: TestableViewController())
         window?.makeKeyAndVisible()
-        appCoordinator.start()
+//        appCoordinator.start()
     }
 }
 
