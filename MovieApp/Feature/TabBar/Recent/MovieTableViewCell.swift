@@ -7,6 +7,8 @@ class MovieTableViewCell: UITableViewCell {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFill
         $0.image = UIImage(systemName: "square")
+        $0.layer.cornerRadius = 20
+        $0.clipsToBounds = true
         return $0
     }(UIImageView())
     let movieTitle: UILabel = {
