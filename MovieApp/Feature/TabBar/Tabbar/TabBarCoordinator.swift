@@ -55,7 +55,7 @@ extension TabBarCoordinator {
     
     private func makeFavorite() -> (BaseCoordinator, UINavigationController) {
         let navigationController = UINavigationController()
-        let coordinator = FavoriteCoordinator(router: RouterImpl(rootController: navigationController))
+        let coordinator = FavouriteCoordinator(router: RouterImpl(rootController: navigationController))
         navigationController.tabBarItem = tabItem(for: .favorite)
         return (coordinator, navigationController)
     }
