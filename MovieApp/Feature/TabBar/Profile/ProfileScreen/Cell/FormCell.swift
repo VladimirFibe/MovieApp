@@ -121,7 +121,7 @@ extension UIToolbar {
     func toolBarPicker(_ select: Selector) -> UIToolbar {
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
-        toolBar.barTintColor = .orange
+        toolBar.barTintColor = Theme.purple
         toolBar.tintColor = .white
         toolBar.sizeToFit()
         
