@@ -1,6 +1,6 @@
 import Foundation
 
-final class FavoriteCoordinator: BaseCoordinator {
+final class FavouriteCoordinator: BaseCoordinator {
     override func start() {
         runRecent()
     }
@@ -11,8 +11,8 @@ final class FavoriteCoordinator: BaseCoordinator {
     }
 }
 
-extension FavoriteCoordinator {
+extension FavouriteCoordinator {
     private func makeRecent() -> BaseViewController {
-        return FavouritesViewController()
+        return BaseViewController()
     }
 }

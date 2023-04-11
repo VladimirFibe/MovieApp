@@ -206,7 +206,7 @@ extension ProfileViewController {
                 // меняем constant на выссоту клавиатуры
                 self.tableViewBottomConstraint.constant = -convertedKeyboardFrameEnd.height + bottomOffset
                 
-                guard let indexPath = indexPathSelectedCell else { return }
+                guard let indexPath = self.indexPathSelectedCell else { return }
                 
                 DispatchQueue.main.async {
                     self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
