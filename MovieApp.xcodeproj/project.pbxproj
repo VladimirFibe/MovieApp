@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		103599D729E2B6420030ADB8 /* TestableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103599D629E2B6420030ADB8 /* TestableViewController.swift */; };
 		103599D929E2B6EC0030ADB8 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103599D829E2B6EC0030ADB8 /* FilterViewController.swift */; };
 		10359A0A29E446F50030ADB8 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0929E446F50030ADB8 /* PresentationManager.swift */; };
 		10359A0C29E448EE0030ADB8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */; };
@@ -76,7 +75,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		103599D629E2B6420030ADB8 /* TestableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableViewController.swift; sourceTree = "<group>"; };
 		103599D829E2B6EC0030ADB8 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		10359A0929E446F50030ADB8 /* PresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
 		10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
@@ -158,23 +156,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		103599D529E2B5D00030ADB8 /* Testable */ = {
+		10359A0F29E5B8D60030ADB8 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				10359A0D29E464330030ADB8 /* Cell */,
-				103599D629E2B6420030ADB8 /* TestableViewController.swift */,
 				103599D829E2B6EC0030ADB8 /* FilterViewController.swift */,
 				10359A0929E446F50030ADB8 /* PresentationManager.swift */,
 				10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */,
 			);
-			path = Testable;
-			sourceTree = "<group>";
-		};
-		10359A0D29E464330030ADB8 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cell;
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		1035BD1629E0D621004C2AC3 /* ProfileScreen */ = {
@@ -195,13 +184,6 @@
 				1035BD2029E0D7EB004C2AC3 /* UserImageCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		1811A5E529E30B7B0094B612 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Search;
 			sourceTree = "<group>";
 		};
 		275A1FB729DF9AD300426D94 /* App */ = {
@@ -257,8 +239,6 @@
 		275A1FC229DF9C1A00426D94 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				103599D529E2B5D00030ADB8 /* Testable */,
-				1811A5E529E30B7B0094B612 /* Search */,
 				275A1FD929DFAFD300426D94 /* TabBar */,
 				275A1FC129DF9C0D00426D94 /* Splash */,
 				275A1FC929DF9CD500426D94 /* Onboarding */,
@@ -345,6 +325,7 @@
 		275A1FEC29DFD1B600426D94 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				10359A0F29E5B8D60030ADB8 /* Filter */,
 				275A1FE229DFC39600426D94 /* SearchCoordinator.swift */,
 				1811A5E629E30CAC0094B612 /* SearchViewController.swift */,
 				1811A5EA29E31D580094B612 /* SearchTableViewCell.swift */,
@@ -569,7 +550,6 @@
 				275A1FC429DF9C4100426D94 /* AppCoordinator.swift in Sources */,
 				27C4498C29E38F1600D87E39 /* BridgingCollectionViewCell.swift in Sources */,
 				27CC349B29E1B36F00FB6667 /* APICaller.swift in Sources */,
-				103599D729E2B6420030ADB8 /* TestableViewController.swift in Sources */,
 				275A1FE729DFC3CC00426D94 /* HomeCoordinator.swift in Sources */,
 				27CC349D29E1B4ED00FB6667 /* MovieTableViewCell.swift in Sources */,
 				1811A5E729E30CAC0094B612 /* SearchViewController.swift in Sources */,

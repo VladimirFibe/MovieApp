@@ -11,6 +11,8 @@ class SearchViewController: BaseViewController {
 
     let searchController = UISearchController()
     let tableView = UITableView()
+    
+    let presentationManager = PresentationManager()
 
     var results = [Result]()
 
@@ -34,6 +36,11 @@ class SearchViewController: BaseViewController {
     }
 
     func configureSearchController() {
+        let image = UIImage(systemName: "slider.horizontal.3")
+        searchController.searchBar.setImage(image, for: .bookmark, state: .normal)
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.delegate = self
+        
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Enter the movie name"
         definesPresentationContext = true
@@ -103,5 +110,18 @@ extension SearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Tapped!")
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        let vc = FilterViewController()
+        
+        // задаем направлени презентации VC
+        presentationManager.direction = .bottom
+        vc.transitioningDelegate = presentationManager
+        vc.modalPresentationStyle = .custom
+        
+        present(vc, animated: true)
     }
 }
