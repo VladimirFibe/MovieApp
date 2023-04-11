@@ -11,6 +11,7 @@
 		103599D929E2B6EC0030ADB8 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103599D829E2B6EC0030ADB8 /* FilterViewController.swift */; };
 		10359A0A29E446F50030ADB8 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0929E446F50030ADB8 /* PresentationManager.swift */; };
 		10359A0C29E448EE0030ADB8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */; };
+		10359A1129E5B9F10030ADB8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10359A1029E5B9F10030ADB8 /* Storyboard.storyboard */; };
 		1035BD1829E0D676004C2AC3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1729E0D676004C2AC3 /* ProfileViewController.swift */; };
 		1035BD1B29E0D6DD004C2AC3 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1A29E0D6DD004C2AC3 /* FormCell.swift */; };
 		1035BD1D29E0D780004C2AC3 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1C29E0D780004C2AC3 /* GenderCell.swift */; };
@@ -80,6 +81,7 @@
 		103599D829E2B6EC0030ADB8 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		10359A0929E446F50030ADB8 /* PresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
 		10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
+		10359A1029E5B9F10030ADB8 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		1035BD1729E0D676004C2AC3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1035BD1A29E0D6DD004C2AC3 /* FormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
 		1035BD1C29E0D780004C2AC3 /* GenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
@@ -158,23 +160,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		103599D529E2B5D00030ADB8 /* Testable */ = {
+		10359A0F29E5B8D60030ADB8 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				10359A0D29E464330030ADB8 /* Cell */,
 				103599D629E2B6420030ADB8 /* TestableViewController.swift */,
 				103599D829E2B6EC0030ADB8 /* FilterViewController.swift */,
 				10359A0929E446F50030ADB8 /* PresentationManager.swift */,
 				10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */,
+				10359A1029E5B9F10030ADB8 /* Storyboard.storyboard */,
 			);
-			path = Testable;
-			sourceTree = "<group>";
-		};
-		10359A0D29E464330030ADB8 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cell;
+			path = Filter;
 			sourceTree = "<group>";
 		};
 		1035BD1629E0D621004C2AC3 /* ProfileScreen */ = {
@@ -195,13 +190,6 @@
 				1035BD2029E0D7EB004C2AC3 /* UserImageCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		1811A5E529E30B7B0094B612 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Search;
 			sourceTree = "<group>";
 		};
 		275A1FB729DF9AD300426D94 /* App */ = {
@@ -257,8 +245,6 @@
 		275A1FC229DF9C1A00426D94 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				103599D529E2B5D00030ADB8 /* Testable */,
-				1811A5E529E30B7B0094B612 /* Search */,
 				275A1FD929DFAFD300426D94 /* TabBar */,
 				275A1FC129DF9C0D00426D94 /* Splash */,
 				275A1FC929DF9CD500426D94 /* Onboarding */,
@@ -345,6 +331,7 @@
 		275A1FEC29DFD1B600426D94 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				10359A0F29E5B8D60030ADB8 /* Filter */,
 				275A1FE229DFC39600426D94 /* SearchCoordinator.swift */,
 				1811A5E629E30CAC0094B612 /* SearchViewController.swift */,
 				1811A5EA29E31D580094B612 /* SearchTableViewCell.swift */,
@@ -514,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				275F4F3D29DA404A00FCBF0E /* LaunchScreen.storyboard in Resources */,
+				10359A1129E5B9F10030ADB8 /* Storyboard.storyboard in Resources */,
 				275F4F3A29DA404A00FCBF0E /* Assets.xcassets in Resources */,
 				275A1FD229DFAC9D00426D94 /* Movies.json in Resources */,
 			);

@@ -10,7 +10,6 @@ import UIKit
 class FilterViewController: UIViewController {
     
     private let radiusParentView: CGFloat = 24
-    // frame (0.0, 0.0, 393.0, 852.0) h = 426
     let tableView = UITableView(frame: .zero, style: .plain)
     
     private let cellCount = 4

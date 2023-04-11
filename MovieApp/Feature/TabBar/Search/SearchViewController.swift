@@ -34,6 +34,9 @@ class SearchViewController: BaseViewController {
     }
 
     func configureSearchController() {
+        let image = UIImage(systemName: "slider.horizontal.3")
+        searchController.searchBar.setImage(image, for: .bookmark, state: .normal)
+        searchController.searchBar.showsBookmarkButton = true
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Enter the movie name"
         definesPresentationContext = true
