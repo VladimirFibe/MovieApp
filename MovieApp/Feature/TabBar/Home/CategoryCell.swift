@@ -4,7 +4,7 @@ final class CategoryCell: UICollectionViewCell {
     static let identifier = "CategoryCell"
     
     private let titleLabel = UILabel().apply {
-        $0.textColor = UIColor.menuRedColor?.withAlphaComponent(0.4)
+        $0.textColor = Theme.darkGreyToWhite
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 13, weight: .regular)
         $0.adjustsFontSizeToFitWidth = true
@@ -13,14 +13,14 @@ final class CategoryCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                contentView.backgroundColor = UIColor.menuRedColor?.withAlphaComponent(0.2)
-                titleLabel.textColor = .menuRedColor
+                contentView.backgroundColor = Theme.purple
+                titleLabel.textColor = .white
                 titleLabel.font = .systemFont(ofSize: 13, weight: .bold)
-                contentView.layer.borderColor = UIColor.clear.cgColor
+//                contentView.layer.borderColor = UIColor.clear.cgColor
             } else {
                 contentView.backgroundColor = .clear
-                contentView.layer.borderColor = UIColor.menuRedColor?.withAlphaComponent(0.4).cgColor
-                titleLabel.textColor = UIColor.menuRedColor?.withAlphaComponent(0.4)
+                contentView.layer.borderColor = UIColor.lightGray.cgColor
+                titleLabel.textColor = Theme.darkGreyToWhite
                 
                 titleLabel.font = .systemFont(ofSize: 13, weight: .regular)
             }
@@ -38,12 +38,12 @@ final class CategoryCell: UICollectionViewCell {
     
     func configure(with category: String) {
         titleLabel.text = category
-        print(category)
+//        print(category)
     }
     
     private func setupView() {
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.menuRedColor?.withAlphaComponent(0.4).cgColor
+        contentView.layer.borderColor = UIColor.lightGray.cgColor
         contentView.addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
