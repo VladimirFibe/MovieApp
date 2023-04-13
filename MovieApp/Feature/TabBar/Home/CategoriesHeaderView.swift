@@ -5,13 +5,16 @@ protocol CategoriesHeaderViewDelegate: AnyObject {
 }
 
 final class CategoriesHeaderView: UITableViewHeaderFooterView {
+    
     weak var delegate: CategoriesHeaderViewDelegate?
+    
     private enum MainSection: Int {
         case main
     }
 
     private typealias DataSource = UICollectionViewDiffableDataSource<MainSection, String>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<MainSection, String>
+    
     static let identifier = "CategoriesHeaderView"
     
     private var categories: [String]

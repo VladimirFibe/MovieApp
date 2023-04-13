@@ -1,9 +1,13 @@
 import UIKit
 import Kingfisher
+
 class MovieTableView: UITableView {
+    
     var movieInfos: [Title] = []
+    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.dataSource = self
         self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -15,6 +19,7 @@ class MovieTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 //MARK: delegets data Source methods
 extension MovieTableView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,6 +47,7 @@ extension MovieTableView: UITableViewDataSource, UITableViewDelegate{
     }
 
 }
+
 extension UIImageView {
     func setImage(with urlString: String){
         guard let url = URL.init(string: urlString) else {

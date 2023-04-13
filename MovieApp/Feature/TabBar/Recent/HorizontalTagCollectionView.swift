@@ -1,20 +1,23 @@
 import UIKit
+
 protocol SelectCollectionViewItemProtocol: AnyObject{
     func selectItem(_ indexPath: IndexPath)
 }
+
 class HorizontalTagCollectionView: UICollectionView {
 
     private let categoryLayout = UICollectionViewFlowLayout()
     private let nameCategoryArray = ["all","Action","Adventure","Mystery","Horror","Comedian"]
+    
     var cellDelegate: SelectCollectionViewItemProtocol?
+    
+    // MARK: - Init
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: categoryLayout)
         configure()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Methods
     private func configure(){
         categoryLayout.minimumInteritemSpacing = 5
         categoryLayout.scrollDirection = .horizontal
@@ -25,7 +28,12 @@ class HorizontalTagCollectionView: UICollectionView {
         register(HorizontalTagCollectionViewCell.self, forCellWithReuseIdentifier: Constants.cellHorizontalCollection)
         selectItem(at: [0,0], animated: false, scrollPosition: [])
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
+
 //MARK: CollectionView data source
 extension HorizontalTagCollectionView: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -38,6 +46,7 @@ extension HorizontalTagCollectionView: UICollectionViewDataSource{
         return cell
     }
 }
+
 //MARK: CollectionView delegate
 extension HorizontalTagCollectionView: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -45,8 +54,8 @@ extension HorizontalTagCollectionView: UICollectionViewDelegate{
         cellDelegate?.selectItem(indexPath)
     }
 }
-//MARK: UICollectionViewDelegateFlowLayout setting size to cells
 
+//MARK: UICollectionViewDelegateFlowLayout setting size to cells
 extension HorizontalTagCollectionView: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let categoryFont = UIFont.systemFont(ofSize: 15)

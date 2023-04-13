@@ -3,9 +3,12 @@ import UIKit
 enum MovieSection: Hashable {
     case main
 }
+
 final class HomeViewController: BaseViewController {
+    
     private var categories: [String] = ["all","Action","Adventure","Mystery","Horror","Comedian"]
     private var titles: [Title] = Bundle.main.decode([Title].self, from: "Movies.json")
+    
     #warning("[weak self] in")
     private lazy var tableView = UITableView().apply {
         $0.rowHeight = UITableView.automaticDimension
@@ -14,6 +17,7 @@ final class HomeViewController: BaseViewController {
         $0.delegate = self
         $0.tableHeaderView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 400))
     }
+    
     private lazy var dataSource: UITableViewDiffableDataSource<MovieSection, Title> = {
         let dataSource = UITableViewDiffableDataSource<MovieSection, Title>(tableView: tableView) { tableView, indexPath, title in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as? HomeCell else { return UITableViewCell()}
@@ -22,11 +26,13 @@ final class HomeViewController: BaseViewController {
         }
         return dataSource
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         configureInitialDiffableSnapshot()
     }
+    
     func configureInitialDiffableSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<MovieSection, Title>()
         snapshot.appendSections([.main])
