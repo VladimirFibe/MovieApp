@@ -19,17 +19,21 @@ final class CategoriesHeaderView: UITableViewHeaderFooterView {
     
     private var categories: [String]
     private var dataSource: DataSource!
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     
     init(categories: [String]) {
         self.categories = categories
         super.init(reuseIdentifier: Self.identifier)
+        
+        
         
         addSubview(collectionView)
         NSLayoutConstraint.activate([

@@ -4,9 +4,7 @@ final class RecentsViewController: BaseViewController {
     private let heightRow: CGFloat = 184.0
     private var categories: [String] = ["all","Action","Adventure","Mystery","Horror","Comedian"]
     
-    //    let tableView = MovieTableView()
     let tableView = UITableView(frame: .zero, style: .plain)
-    //    let horizontalMenuCollectionView = HorizontalTagCollectionView()
     
     var movieArray: [Title] = []
     
@@ -24,7 +22,6 @@ final class RecentsViewController: BaseViewController {
         
         configureUI()
         setConstraints()
-        //        horizontalMenuCollectionView.cellDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,12 +54,7 @@ final class RecentsViewController: BaseViewController {
         tableView.register(ContentCell.self, forCellReuseIdentifier: String(describing: ContentCell.self))
         tableView.rowHeight = heightRow
         
-        
-        
-        
         tableView.separatorStyle = .none
-        
-        //        view.addSubview(horizontalMenuCollectionView)
     }
     
     func setConstraints(){
@@ -75,8 +67,6 @@ final class RecentsViewController: BaseViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
-        
     }
 }
 
@@ -109,7 +99,7 @@ extension RecentsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 55
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
