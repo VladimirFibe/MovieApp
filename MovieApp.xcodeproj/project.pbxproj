@@ -15,6 +15,9 @@
 		1035BD1D29E0D780004C2AC3 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1C29E0D780004C2AC3 /* GenderCell.swift */; };
 		1035BD1F29E0D7C3004C2AC3 /* SaveChangesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD1E29E0D7C3004C2AC3 /* SaveChangesCell.swift */; };
 		1035BD2129E0D7EB004C2AC3 /* UserImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035BD2029E0D7EB004C2AC3 /* UserImageCell.swift */; };
+		10573D1B29E6EAEA007DD29D /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10573D1A29E6EAEA007DD29D /* FavouriteViewController.swift */; };
+		10573D2029E6F712007DD29D /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10573D1F29E6F712007DD29D /* ContentCell.swift */; };
+		10573D2229E7100C007DD29D /* DescriptionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10573D2129E7100C007DD29D /* DescriptionContainer.swift */; };
 		106FFB9629DF1A74002D7A94 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106FFB9529DF1A74002D7A94 /* SplashScreenViewController.swift */; };
 		10F9E3C429DB7EA000C7BC6A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */; };
 		10F9E3C629DB833300C7BC6A /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9E3C529DB833300C7BC6A /* MainButton.swift */; };
@@ -83,6 +86,9 @@
 		1035BD1C29E0D780004C2AC3 /* GenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
 		1035BD1E29E0D7C3004C2AC3 /* SaveChangesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveChangesCell.swift; sourceTree = "<group>"; };
 		1035BD2029E0D7EB004C2AC3 /* UserImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageCell.swift; sourceTree = "<group>"; };
+		10573D1A29E6EAEA007DD29D /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		10573D1F29E6F712007DD29D /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		10573D2129E7100C007DD29D /* DescriptionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionContainer.swift; sourceTree = "<group>"; };
 		106FFB9529DF1A74002D7A94 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		10F9E3C329DB7EA000C7BC6A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		10F9E3C529DB833300C7BC6A /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
@@ -270,6 +276,7 @@
 		275A1FD029DF9F4B00426D94 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				10573D2129E7100C007DD29D /* DescriptionContainer.swift */,
 				10F9E3C929DC186500C7BC6A /* TextFieldView.swift */,
 				10F9E3C529DB833300C7BC6A /* MainButton.swift */,
 				A2EBFF7929DC162400715794 /* Theme.swift */,
@@ -336,7 +343,9 @@
 		275A1FED29DFD1C000426D94 /* Favourites */ = {
 			isa = PBXGroup;
 			children = (
+				10573D1F29E6F712007DD29D /* ContentCell.swift */,
 				275A1FE429DFC3B100426D94 /* FavouriteCoordinator.swift */,
+				10573D1A29E6EAEA007DD29D /* FavouriteViewController.swift */,
 			);
 			path = Favourites;
 			sourceTree = "<group>";
@@ -534,10 +543,12 @@
 				275F4F3129DA404900FCBF0E /* AppDelegate.swift in Sources */,
 				18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */,
 				1035BD1B29E0D6DD004C2AC3 /* FormCell.swift in Sources */,
+				10573D2229E7100C007DD29D /* DescriptionContainer.swift in Sources */,
 				18691E4429E449F600819CFC /* SearchResultResponseModel.swift in Sources */,
 				18691E4829E44A7000819CFC /* APIService.swift in Sources */,
 				1035BD1829E0D676004C2AC3 /* ProfileViewController.swift in Sources */,
 				275A1FB929DF9B1600426D94 /* BaseCoordinator.swift in Sources */,
+				10573D2029E6F712007DD29D /* ContentCell.swift in Sources */,
 				275F4F3329DA404900FCBF0E /* SceneDelegate.swift in Sources */,
 				1035BD2129E0D7EB004C2AC3 /* UserImageCell.swift in Sources */,
 				1811A5EB29E31D580094B612 /* SearchTableViewCell.swift in Sources */,
@@ -553,6 +564,7 @@
 				275A1FE729DFC3CC00426D94 /* HomeCoordinator.swift in Sources */,
 				27CC349D29E1B4ED00FB6667 /* MovieTableViewCell.swift in Sources */,
 				1811A5E729E30CAC0094B612 /* SearchViewController.swift in Sources */,
+				10573D1B29E6EAEA007DD29D /* FavouriteViewController.swift in Sources */,
 				27C4498A29E38EB500D87E39 /* HomeCellView.swift in Sources */,
 				27CC349729E1B2F700FB6667 /* HorizontalTagCollectionView.swift in Sources */,
 				1035BD1F29E0D7C3004C2AC3 /* SaveChangesCell.swift in Sources */,
