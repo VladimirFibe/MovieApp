@@ -163,16 +163,16 @@ extension ProfileViewController {
                 let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
      
                 guard let indexPath = self.indexPathSelectedCell else { return }
-                guard let cell = tableView.cellForRow(at: indexPath) else { return }
+                guard let cell = self.tableView.cellForRow(at: indexPath) else { return }
                 
                 // вычисления отступа на который нужно поднять контент
                 let cellMaxY = cell.frame.maxY
-                let viewH = view.frame.height
+                let viewH = self.view.frame.height
                 let keyH = convertedKeyboardFrameEnd.height
                 let cellOffset = (cellMaxY + topOffset) - (viewH - keyH)
                 
                 if cellOffset > 0 {
-                    tableView.contentOffset = CGPoint(x: 0, y: cellOffset)
+                    self.tableView.contentOffset = CGPoint(x: 0, y: cellOffset)
                 }
             }
 
@@ -180,7 +180,7 @@ extension ProfileViewController {
             forName: UIResponder.keyboardWillHideNotification,
             object: nil, queue: nil) { [weak self] _ in
                 guard let self = self else { return }
-                tableView.contentOffset = CGPoint(x: 0, y: 0)
+                self.tableView.contentOffset = CGPoint(x: 0, y: 0)
             }
     }
 }
