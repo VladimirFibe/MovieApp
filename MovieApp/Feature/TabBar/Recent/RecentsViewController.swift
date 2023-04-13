@@ -8,6 +8,7 @@ final class RecentsViewController: BaseViewController {
     
     var movieArray: [Title] = []
     
+    // массив для тестов, при подключении запросов удалить
     var testArray: [Testeble] = [
         .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
         .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
@@ -44,7 +45,9 @@ final class RecentsViewController: BaseViewController {
     //    }
     
     func configureUI() {
+        view.backgroundColor = .systemBackground
         navigationItem.title = "Recent Watch"
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -85,7 +88,7 @@ extension RecentsViewController: UITableViewDataSource {
         let isFavourite = testArray[indexPath.row].isFavourite
         
         cell.configure(title: title, date: date, duration: duration, isFavourite: isFavourite)
-        //        cell.delegate = self
+        cell.delegate = self
         return cell
     }
 }
@@ -94,7 +97,7 @@ extension RecentsViewController: UITableViewDataSource {
 extension RecentsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let categoriesView = CategoriesHeaderView(categories: categories)
-//        categoriesView.delegate = self
+        categoriesView.delegate = self
         return categoriesView
     }
     
@@ -108,17 +111,19 @@ extension RecentsViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - Content Cell Delegate
-//extension RecentsViewController: ContentCellDelegate {
-//    func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton) {
-//        // TODO: Тут обрабатывать нажатие кнопки издранное
-//    }
-//}
+extension RecentsViewController: CategoriesHeaderViewDelegate {
+    func scrollToRow(with category: String) {
+        // do something
+    }
+    
+    func collectionViewDidSelectItem(_ collectionView: UICollectionView, indexPath: IndexPath) {
+        print("caterogy item \(indexPath.row) selected")
+    }
+}
 
-
-
-//extension RecentsViewController: SelectCollectionViewItemProtocol{
-//    func selectItem(_ index: IndexPath) {
-//        fetchRequest(page: index.item + 1)
-//    }
-//}
+ // MARK: - Content Cell Delegate
+extension RecentsViewController: ContentCellDelegate {
+    func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton) {
+        // TODO: Тут обрабатывать нажатие кнопки избранное
+    }
+}

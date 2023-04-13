@@ -2,6 +2,7 @@ import UIKit
 
 protocol CategoriesHeaderViewDelegate: AnyObject {
     func scrollToRow(with category: String)
+    func collectionViewDidSelectItem(_ collectionView: UICollectionView, indexPath: IndexPath)
 }
 
 final class CategoriesHeaderView: UITableViewHeaderFooterView {
@@ -54,7 +55,7 @@ final class CategoriesHeaderView: UITableViewHeaderFooterView {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(categories, toSection: .main)
-        print(categories)
+//        print(categories)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
@@ -96,5 +97,6 @@ extension CategoriesHeaderView: UICollectionViewDelegate {
 //        cell.isSelected = true
 //        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         delegate?.scrollToRow(with: categories[indexPath.row])
+        delegate?.collectionViewDidSelectItem(collectionView, indexPath: indexPath)
     }
 }

@@ -31,7 +31,7 @@ class SearchViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        tableView.register(ContentCell.self, forCellReuseIdentifier: String(describing: ContentCell.self))
         tableView.separatorStyle = .none
     }
 
@@ -89,14 +89,11 @@ extension SearchViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: SearchTableViewCell.identifier,
-            for: indexPath) as? SearchTableViewCell else {
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ContentCell.self)) as! ContentCell
 
         let data = results[indexPath.row]
-        cell.configure(image: "DriftingHome", title: data.title, duration: "148 Minutes", date: data.releaseDate, genre: "Action")
+        
+        cell.configure(title: "DriftingHome", date: data.releaseDate, duration: "148 Minutes", isFavourite: false)
         
         return cell
     }
@@ -105,7 +102,7 @@ extension SearchViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        180
+        184
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

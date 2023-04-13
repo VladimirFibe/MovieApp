@@ -36,6 +36,7 @@ class FavouriteViewController: BaseViewController {
     }
     
     func configureUI() {
+        view.backgroundColor = .systemBackground
         navigationItem.title = "Favourite"
         
         view.addSubview(tableView)

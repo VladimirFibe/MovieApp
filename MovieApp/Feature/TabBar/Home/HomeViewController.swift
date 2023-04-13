@@ -49,7 +49,7 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let categoriesView = CategoriesHeaderView(categories: categories)
 //        categoriesView.delegate = self
-        print(categories)
+//        print(categories)
         return categoriesView
     }
     
