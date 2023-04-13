@@ -7,11 +7,19 @@
 
 import UIKit
 
+protocol ContentCellDelegate: AnyObject  {
+    func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton)
+}
+
 class ContentCell: UITableViewCell {
+    
+    weak var delegate: ContentCellDelegate?
     
     // MARK: - Constants
     private let offsetHor: CGFloat = 24.0
     private let offSetVer: CGFloat = 12.0
+    
+    var isActiveFavouriteButton = false
     
     // MARK: - Content Views
     let movieImageView: UIImageView = {
@@ -33,7 +41,7 @@ class ContentCell: UITableViewCell {
     let favouriteButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 22, weight: .regular)
-        let image = UIImage(systemName: "heart", withConfiguration: config)
+        let image = UIImage(systemName: "heart", withConfiguration: config) // heart.fill
         button.setImage(image, for: .normal)
         button.tintColor = .lightGray
         return button
@@ -55,17 +63,40 @@ class ContentCell: UITableViewCell {
     }()
     
     // MARK: - Configure Cell
-    func configure(title: String, date: String, duration: String) {
+    func configure(title: String, date: String, duration: String, isFavourite: Bool) {
         // TODO: убрать захардкоженые значения
+        
+        isActiveFavouriteButton = isFavourite
+        
+        movieNameLabel.text = title
         
         let clockImage = UIImage(systemName: "clock.circle.fill")
         let calendarImage = UIImage(systemName: "calendar.circle.fill")
         let filmImage = UIImage(systemName: "film.circle.fill")
-        durationMovieView.configure(text: "148 Minutes", image: clockImage, style: .lable)
-        dateView.configure(text: "2022-09-31", image: calendarImage, style: .lable)
+        
+        durationMovieView.configure(text: duration, image: clockImage, style: .lable)
+        dateView.configure(text: date, image: calendarImage, style: .lable)
         actionView.configure(text: "", image: filmImage, style: .button)
         
+        switchButtonFavourite()
+        
         setConstraints()
+    }
+    
+    private func switchButtonFavourite() {
+        let config = UIImage.SymbolConfiguration(pointSize: 22, weight: .regular)
+        
+        if isActiveFavouriteButton {
+            let image = UIImage(systemName: "heart.fill", withConfiguration: config)
+            favouriteButton.setImage(image, for: .normal)
+            favouriteButton.tintColor = Theme.purple
+        } else {
+            let image = UIImage(systemName: "heart", withConfiguration: config)
+            favouriteButton.setImage(image, for: .normal)
+            favouriteButton.tintColor = .lightGray
+        }
+        
+        isActiveFavouriteButton = !isActiveFavouriteButton
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -86,6 +117,12 @@ class ContentCell: UITableViewCell {
         
         favouriteContainer.addSubview(favouriteButton)
         favouriteButton.translatesAutoresizingMaskIntoConstraints = false
+        favouriteButton.addTarget(self, action: #selector(favouriteButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func favouriteButtonPressed(_ sender: UIButton) {
+        switchButtonFavourite()
+        delegate?.cellFavouriteButtonDidPress(cell: self, button: sender)
     }
     
     // MARK: - Set Constraints
