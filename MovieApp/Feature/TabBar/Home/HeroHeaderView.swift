@@ -2,6 +2,7 @@ import UIKit
 import Kingfisher
 
 final class HeroHeaderView: UIView {
+    
     private let heroImageView = UIImageView().apply {
         $0.contentMode = .scaleToFill
         $0.clipsToBounds = true

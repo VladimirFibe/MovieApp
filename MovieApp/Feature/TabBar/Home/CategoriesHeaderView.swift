@@ -2,31 +2,39 @@ import UIKit
 
 protocol CategoriesHeaderViewDelegate: AnyObject {
     func scrollToRow(with category: String)
+    func collectionViewDidSelectItem(_ collectionView: UICollectionView, indexPath: IndexPath)
 }
 
 final class CategoriesHeaderView: UITableViewHeaderFooterView {
+    
     weak var delegate: CategoriesHeaderViewDelegate?
+    
     private enum MainSection: Int {
         case main
     }
 
     private typealias DataSource = UICollectionViewDiffableDataSource<MainSection, String>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<MainSection, String>
+    
     static let identifier = "CategoriesHeaderView"
     
     private var categories: [String]
     private var dataSource: DataSource!
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     
     init(categories: [String]) {
         self.categories = categories
         super.init(reuseIdentifier: Self.identifier)
+        
+        
         
         addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -47,7 +55,7 @@ final class CategoriesHeaderView: UITableViewHeaderFooterView {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(categories, toSection: .main)
-        print(categories)
+//        print(categories)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
@@ -89,5 +97,6 @@ extension CategoriesHeaderView: UICollectionViewDelegate {
 //        cell.isSelected = true
 //        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         delegate?.scrollToRow(with: categories[indexPath.row])
+        delegate?.collectionViewDidSelectItem(collectionView, indexPath: indexPath)
     }
 }

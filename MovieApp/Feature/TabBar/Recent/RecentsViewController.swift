@@ -1,47 +1,129 @@
 import UIKit
 final class RecentsViewController: BaseViewController {
-    let movieTable = MovieTableView()
-    let horizontalMenuCollectionView = HorizontalTagCollectionView()
+    
+    private let heightRow: CGFloat = 184.0
+    private var categories: [String] = ["all","Action","Adventure","Mystery","Horror","Comedian"]
+    
+    let tableView = UITableView(frame: .zero, style: .plain)
+    
     var movieArray: [Title] = []
-
+    
+    // массив для тестов, при подключении запросов удалить
+    var testArray: [Testeble] = [
+        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
+        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
+        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
+        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
+        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
+    ]
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        horizontalMenuCollectionView.cellDelegate = self
-        }
+        
+        configureUI()
+        setConstraints()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchRequest()
+        //        fetchRequest()
     }
-    func fetchRequest(page: Int = 1){
-        var apiCall = "https://api.themoviedb.org/3/discover/movie?api_key=6b8a95b1b6c4eeede348d430f4a88303&page=\(page)"
-        APICaller.shared.fetchRequest(urlString: apiCall, expecting: TrendingTitleResponse.self) { (movieDetails) in
-            
-                self.movieTable.movieInfos = movieDetails.results
-                DispatchQueue.main.async {
-                    self.movieTable.reloadData()
-                }
-            }
+    
+    // MARK: -
+    // TODO: Перенесли логику в networkManager
+    //    func fetchRequest(page: Int = 1){
+    //        var apiCall = "https://api.themoviedb.org/3/discover/movie?api_key=6b8a95b1b6c4eeede348d430f4a88303&page=\(page)"
+    //        APICaller.shared.fetchRequest(urlString: apiCall, expecting: TrendingTitleResponse.self) { (movieDetails) in
+    //
+    //                self.tableView.movieInfos = movieDetails.results
+    //
+    //                DispatchQueue.main.async {
+    //                    self.tableView.reloadData()
+    //                }
+    //            }
+    //    }
+    
+    func configureUI() {
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "Recent Watch"
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(ContentCell.self, forCellReuseIdentifier: String(describing: ContentCell.self))
+        tableView.rowHeight = heightRow
+        
+        tableView.separatorStyle = .none
     }
-    func setupUI(){
-        view.addSubview(movieTable)
+    
+    func setConstraints(){
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            movieTable.topAnchor.constraint(equalTo: view.topAnchor, constant: 165),
-            movieTable.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            movieTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            view.trailingAnchor.constraint(equalTo: movieTable.trailingAnchor, constant: 25),
-        ])
-        view.addSubview(horizontalMenuCollectionView)
-        NSLayoutConstraint.activate([
-            horizontalMenuCollectionView.bottomAnchor.constraint(equalTo: movieTable.topAnchor,constant:-10),
-            horizontalMenuCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            horizontalMenuCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            horizontalMenuCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
-extension RecentsViewController: SelectCollectionViewItemProtocol{
-    func selectItem(_ index: IndexPath) {
-        fetchRequest(page: index.item + 1)
+
+// MARK: - TableView Data Source
+extension RecentsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return testArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ContentCell.self)) as! ContentCell
+        
+        let title = testArray[indexPath.row].title
+        let duration = testArray[indexPath.row].duration
+        let date = testArray[indexPath.row].date
+        let isFavourite = testArray[indexPath.row].isFavourite
+        
+        cell.configure(title: title, date: date, duration: duration, isFavourite: isFavourite)
+        cell.delegate = self
+        return cell
+    }
+}
+
+// MARK: - TableView Delegate
+extension RecentsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let categoriesView = CategoriesHeaderView(categories: categories)
+        categoriesView.delegate = self
+        return categoriesView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //  TODO: Тут осуществить переход на экран детальной информации
+        print("the cell with the index path \(indexPath) is selected")
+    }
+}
+
+extension RecentsViewController: CategoriesHeaderViewDelegate {
+    func scrollToRow(with category: String) {
+        // do something
+    }
+    
+    func collectionViewDidSelectItem(_ collectionView: UICollectionView, indexPath: IndexPath) {
+        print("caterogy item \(indexPath.row) selected")
+    }
+}
+
+ // MARK: - Content Cell Delegate
+extension RecentsViewController: ContentCellDelegate {
+    func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton) {
+        // TODO: Тут обрабатывать нажатие кнопки избранное
     }
 }

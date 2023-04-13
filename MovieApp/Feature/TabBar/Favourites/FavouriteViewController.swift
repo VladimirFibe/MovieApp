@@ -20,7 +20,6 @@ class FavouriteViewController: BaseViewController {
     
     let tableView = UITableView(frame: .zero, style: .plain)
     
-    // это плохо нельза хранить значения в тюплах (Это тест)
     var testArray: [Testeble] = [
         .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
         .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
@@ -37,6 +36,7 @@ class FavouriteViewController: BaseViewController {
     }
     
     func configureUI() {
+        view.backgroundColor = .systemBackground
         navigationItem.title = "Favourite"
         
         view.addSubview(tableView)
