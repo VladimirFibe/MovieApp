@@ -37,7 +37,7 @@ class LoginCell: UITableViewCell {
     
     func setAttributeForButton() {
         let attributedString = NSMutableAttributedString(string: "Already have an account? Login")
-        attributedString.addAttributes([.foregroundColor : Theme.darkGreyToWhite,
+        attributedString.addAttributes([.foregroundColor : Theme.blackToWhite,
                                         .font : UIFont.boldSystemFont(ofSize: 16)],
                                        range: NSRange(location: 0, length: 24))
         attributedString.addAttributes([.foregroundColor : Theme.purple,

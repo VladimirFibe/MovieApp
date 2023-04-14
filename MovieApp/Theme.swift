@@ -24,8 +24,6 @@ enum Theme {
     static let darkGreyToWhite: UIColor = UIColor(named: "DarkGreyToWhite")!///для иконок в мини-описании (метаданных) к фильму
     /// светлая тема поле TextField
     static let textFieldBack = UIColor(named: "TextFieldBack")
-    /// черный и белый
-    static let blackToWhite = UIColor(named: "BlackToWhite")
     /// рамка для вью textField в темной теме
     static let textFieldBorder = UIColor(named: "TextFieldBorder")!
     
