@@ -7,17 +7,34 @@
 
 import UIKit
 
+protocol UserImageCellDelegate: AnyObject {
+    /// cell - ячека в которой сработал делегат.
+    /// imageView - аватар пользователя
+    func cellEditImageViewDidPress(cell: UserImageCell, imageView: UIImageView)
+}
+
 class UserImageCell: UITableViewCell {
     
+    weak var delegate: UserImageCellDelegate?
+    
     private let imageSize: CGFloat = 100.0
+    private let whiteCircleSize: CGFloat = 32.0
     
     private let contViewForImage = UIView()
 
-    let userImageView: UIImageView = {
+    lazy var userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
-        imageView.backgroundColor = .lightGray
-        imageView.tintColor = .orange
+        imageView.tintColor = .lightGray
+        imageView.layer.cornerRadius = imageSize / 2
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    let editImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "Edit")
+        imageView.isUserInteractionEnabled = false
         return imageView
     }()
     
@@ -28,21 +45,29 @@ class UserImageCell: UITableViewCell {
         
         contentView.addSubview(contViewForImage)
         contViewForImage.addSubview(userImageView)
-        contViewForImage.layer.cornerRadius = imageSize / 2
-        contViewForImage.clipsToBounds = true
+        contViewForImage.addSubview(editImageView)
         
         contentView.backgroundColor = Theme.whiteToBlack
+        
+        editImageView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(editImagePressed))
+        editImageView.addGestureRecognizer(tapGesture)
     }
     
     func configureCell(image imageName: String) {
-        // userImage
         userImageView.image = UIImage(named: imageName)
         setConstraints()
     }
     
-    func setConstraints() {
-        contViewForImage.translatesAutoresizingMaskIntoConstraints = false
-        userImageView.translatesAutoresizingMaskIntoConstraints = false
+    @objc func editImagePressed(_ sender: UIImageView) {
+        delegate?.cellEditImageViewDidPress(cell: self, imageView: userImageView)
+    }
+    
+    private func setConstraints() {
+        
+        [contViewForImage, userImageView ,editImageView].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         NSLayoutConstraint.activate([
             contViewForImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -55,6 +80,10 @@ class UserImageCell: UITableViewCell {
             userImageView.widthAnchor.constraint(equalTo: contViewForImage.widthAnchor),
             userImageView.heightAnchor.constraint(equalTo: contViewForImage.heightAnchor),
             
+            editImageView.heightAnchor.constraint(equalToConstant: whiteCircleSize),
+            editImageView.widthAnchor.constraint(equalToConstant: whiteCircleSize),
+            editImageView.trailingAnchor.constraint(equalTo: contViewForImage.trailingAnchor),
+            editImageView.bottomAnchor.constraint(equalTo: contViewForImage.bottomAnchor)
         ])
     }
     

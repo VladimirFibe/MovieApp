@@ -74,7 +74,8 @@ extension ProfileViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let cell = UserImageCell()
-            cell.configureCell(image: "avatarImage")
+            cell.delegate = self
+            cell.configureCell(image: "ava")
             return cell
         case 1: return createCellWith(title: "First Name", placeholder: "enter your name")
         case 2: return createCellWith(title: "Last Name", placeholder: "enter your name")
@@ -134,6 +135,16 @@ extension ProfileViewController: FormCellDelegate {
 extension ProfileViewController: ButtonActionCellDelegate {
     func cellButtonPressed(cell: ButtonActionCell, button: UIButton) {
         print("save button pressed")
+    }
+}
+
+// MARK: - UserImage Cell Delegate
+extension ProfileViewController: UserImageCellDelegate {
+    func cellEditImageViewDidPress(cell: UserImageCell, imageView: UIImageView) {
+        print(#function)
+        let vc = PopUpViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }
 
