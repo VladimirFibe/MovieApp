@@ -40,10 +40,10 @@ class FormCell: UITableViewCell {
         textFieldView.textField.delegate = self
     }
     
-    func configure(title text: String, textFildPlaceholder placeholder: String) {
+    func configure(title text: String, textFildPlaceholder placeholder: String, style: ConfigureStyle) {
         setConstraints()
         title.text = text
-        textFieldView.configure(style: .border, textFildPlaceholder: placeholder)
+        textFieldView.configure(style: style, textFildPlaceholder: placeholder)
     }
     
     func setConstraints() {

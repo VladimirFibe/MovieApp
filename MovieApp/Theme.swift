@@ -19,6 +19,12 @@ enum Theme {
     static let lightGreyToPurple: UIColor = UIColor(named: "LightGreyToPurple")!///для свича на SettingVC
     static let starsColor: UIColor = UIColor(named: "StarsColor")!///для рейтинговых звёзд
     static let darkGreyToWhite: UIColor = UIColor(named: "DarkGreyToWhite")!///для иконок в мини-описании (метаданных) к фильму
+    /// светлая тема поле TextField
+    static let textFieldBack = UIColor(named: "TextFieldBack")
+    /// черный и белый
+    static let blackToWhite = UIColor(named: "BlackToWhite")
+    /// рамка для вью textField в темной теме
+    static let textFieldBorder = UIColor(named: "TextFieldBorder")!
     
     //MARK: - Views' style
 #warning("здесь поправьте как нужно")

@@ -98,7 +98,7 @@ extension ProfileViewController: UITableViewDataSource {
     
     private func createCellWith(title: String, placeholder: String) -> FormCell {
         let cell = FormCell()
-        cell.configure(title: title, textFildPlaceholder: placeholder)
+        cell.configure(title: title, textFildPlaceholder: placeholder, style: .border)
         cell.delegate = self
         return cell
     }

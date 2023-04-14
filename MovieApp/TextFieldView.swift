@@ -7,12 +7,13 @@
 
 import UIKit
 
+enum ConfigureStyle {
+    case fill
+    case border
+}
+
 class TextFieldView: UIView {
     
-    enum ConfigureStyle {
-        case fill
-        case border
-    }
     
     private let height: CGFloat = 56.0
     private var width: CGFloat = 300
@@ -41,7 +42,10 @@ class TextFieldView: UIView {
         // Тут можно задать параметры своего стиля
         switch style {
         case .fill:
-            backgroundColor = .lightGray
+            backgroundColor = Theme.textFieldBack
+            // TODO: cgColor - похоже не подерживает смеры всетлой и темной темы
+//            layer.borderColor = Theme.textFieldBorder.cgColor
+//            layer.borderWidth = 2
         case .border:
             layer.borderColor = UIColor.gray.cgColor
             layer.borderWidth = 2
