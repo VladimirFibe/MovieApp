@@ -157,5 +157,4 @@ class PopUpViewController: UIViewController {
         print("Delete photo button tapped")
         hidePopupView()
     }
-    
 }
