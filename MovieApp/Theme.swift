@@ -13,6 +13,9 @@ enum Theme {
     //MARK: - Main colors
     static let purple: UIColor = UIColor(named: "Purple")!
     static let white: UIColor = UIColor(named: "White")!
+    static let lightGreyToWhite: UIColor = UIColor(named: "LightGreyToWhite")!///для разделителя в всплывающем окне
+    static let blackToWhite: UIColor = UIColor(named: "BlackToWhite")!///для текста в кнопках в всплывающем окне
+    static let lightGreyToBlack: UIColor = UIColor(named: "LightGreyToBlack")!///для бэка кнопок в всплывающем окне
     static let whiteToBlack: UIColor = UIColor(named: "WhiteToBlack")!///для вьюшек и бэкграунда
     static let purpleToBlack: UIColor = UIColor(named: "PurpleToBlack")!///для бэка SplashVC
     static let lightPurpleToGrey: UIColor = UIColor(named: "LightPurpleToGrey")!///для бэка иконки на SplashVC
@@ -21,12 +24,10 @@ enum Theme {
     static let darkGreyToWhite: UIColor = UIColor(named: "DarkGreyToWhite")!///для иконок в мини-описании (метаданных) к фильму
     
     //MARK: - Views' style
-#warning("здесь поправьте как нужно")
     static let buttonCornerRadius: CGFloat = 15
     static let imageCornerRadius: CGFloat = 20
     
     //MARK: - Layout
-#warning("здесь поправьте как нужно")
     static let spacing: CGFloat = 20
     static let leftOffset: CGFloat = 20
     static let topOffset: CGFloat = 10

@@ -80,6 +80,7 @@
 		27CC34A329E1B5B800FB6667 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC34A229E1B5B800FB6667 /* UIColor+Extension.swift */; };
 		27CC34A529E1B5FA00FB6667 /* HorizontalTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC34A429E1B5FA00FB6667 /* HorizontalTagCollectionViewCell.swift */; };
 		27CC34A829E1BCF600FB6667 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC34A729E1BCF600FB6667 /* HomeViewController.swift */; };
+		A262EE1129E9685C0073AF39 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A262EE1029E9685C0073AF39 /* PopUpViewController.swift */; };
 		A2EBFF7A29DC162400715794 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EBFF7929DC162400715794 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +156,7 @@
 		27CC34A429E1B5FA00FB6667 /* HorizontalTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		27CC34A629E1B68600FB6667 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27CC34A729E1BCF600FB6667 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A262EE1029E9685C0073AF39 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		A2EBFF7929DC162400715794 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +191,7 @@
 			children = (
 				1035BD1929E0D6A2004C2AC3 /* Cell */,
 				1035BD1729E0D676004C2AC3 /* ProfileViewController.swift */,
+				A262EE1029E9685C0073AF39 /* PopUpViewController.swift */,
 			);
 			path = ProfileScreen;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				27C4499529E393EF00D87E39 /* BridgingRestrictedTableViewCell.swift in Sources */,
 				275A1FD529DFACE400426D94 /* Bundle+Extensions.swift in Sources */,
 				27C4498629E30A7200D87E39 /* CategoryCell.swift in Sources */,
+				A262EE1129E9685C0073AF39 /* PopUpViewController.swift in Sources */,
 				275A1FE129DFC01600426D94 /* TabItem.swift in Sources */,
 				10F9E3C629DB833300C7BC6A /* MainButton.swift in Sources */,
 				18BD55E729DCB84E0000DB83 /* OnboardingSlide.swift in Sources */,
