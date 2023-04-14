@@ -28,11 +28,15 @@ class SignUpViewController: BaseViewController {
     }
     
     let tableView = UITableView(frame: .zero, style: .plain)
+    
+    private var indexPathSelectedCell: IndexPath?
+    let notification = NotificationCenter.default
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         setConstraints()
+        changeInterfaceWhenShowKeyboard()
     }
     
     // MARK: - UI methods
@@ -118,7 +122,9 @@ extension SignUpViewController: FormCellDelegate {
     }
     
     func cellTextFieldShouldBeginEditing(cell: FormCell, textField: UITextField) {
-        // реализовать смещения UI когда поднимается клавиатура
+        // устанавливает indexPath текущей редактируемой ячейки
+        let indexPath = self.tableView.indexPath(for: cell)
+        indexPathSelectedCell = indexPath
     }
 }
 
@@ -148,3 +154,54 @@ extension SignUpViewController: ButtonActionCellDelegate {
         // TODO: Sign Up
     }
 }
+
+// MARK: - NotificationCenter show or hide keyboard
+extension SignUpViewController {
+    func changeInterfaceWhenShowKeyboard() {
+        
+        notification.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil, queue: nil) { [weak self] notification in
+                
+                guard let self = self else { return }
+                
+                guard let userInfo = notification.userInfo else { return }
+                
+                guard let screen = notification.object as? UIScreen,
+                    let keyboardFrameEnd =
+                        userInfo[UIResponder.keyboardFrameEndUserInfoKey]
+                        as? CGRect else { return }
+                
+                // отступы safeArea
+//                let bottomOffset = self.view.safeAreaInsets.bottom
+                let topOffset = self.view.safeAreaInsets.top
+                
+                // вычисление корректного фрайка клавиатуры (по гайду от apple)
+                let fromCoordinateSpace = screen.coordinateSpace
+                let toCoordinateSpace: UICoordinateSpace = self.view
+
+                let convertedKeyboardFrameEnd = fromCoordinateSpace.convert(keyboardFrameEnd, to: toCoordinateSpace)
+     
+                guard let indexPath = self.indexPathSelectedCell else { return }
+                guard let cell = self.tableView.cellForRow(at: indexPath) else { return }
+                
+                // вычисления отступа на который нужно поднять контент
+                let cellMaxY = cell.frame.maxY
+                let viewH = self.view.frame.height
+                let keyH = convertedKeyboardFrameEnd.height
+                let cellOffset = (cellMaxY + topOffset) - (viewH - keyH)
+                
+                if cellOffset > 0 {
+                    self.tableView.contentOffset = CGPoint(x: 0, y: cellOffset)
+                }
+            }
+
+        notification.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil, queue: nil) { [weak self] _ in
+                guard let self = self else { return }
+                self.tableView.contentOffset = CGPoint(x: 0, y: 0)
+            }
+    }
+}
+

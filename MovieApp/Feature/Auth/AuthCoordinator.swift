@@ -29,6 +29,6 @@ extension AuthCoordinator {
     }
     
     private func makeSignUp() -> BaseViewControllerProtocol {
-        return BaseViewController()
+        return SignUpViewController()
     }
 }

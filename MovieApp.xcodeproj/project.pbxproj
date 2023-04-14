@@ -288,6 +288,7 @@
 				275A1FD929DFAFD300426D94 /* TabBar */,
 				275A1FC129DF9C0D00426D94 /* Splash */,
 				275A1FC929DF9CD500426D94 /* Onboarding */,
+				10740FC729E9407B0099194F /* SignUp */,
 				275A1FCE29DF9D1700426D94 /* Auth */,
 			);
 			path = Feature;
@@ -300,7 +301,6 @@
 				18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */,
 				18EEBF5929DB5A62002B5C20 /* OnboardingViewController.swift */,
 				18BD55E429DC8E430000DB83 /* OnboardingCollectionViewCell.swift */,
-				10740FC729E9407B0099194F /* SignUp */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
