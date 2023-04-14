@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol SaveChangesCellDelegate: AnyObject {
-    func cellButtonPressed(cell: SaveChangesCell, button: UIButton)
+protocol ButtonActionCellDelegate: AnyObject {
+    func cellButtonPressed(cell: ButtonActionCell, button: UIButton)
 }
 
-class SaveChangesCell: UITableViewCell {
+class ButtonActionCell: UITableViewCell {
 
     private let offset: CGFloat = 20
     
-    weak var delegate: SaveChangesCellDelegate?
+    weak var delegate: ButtonActionCellDelegate?
     
     let saveChangesButton = MainButton()
     
@@ -31,9 +31,11 @@ class SaveChangesCell: UITableViewCell {
     
     private func configureUI() {
         contentView.backgroundColor = Theme.whiteToBlack
-        
-        saveChangesButton.setButton(style: .fill, title: "Save Changes")
         saveChangesButton.addTarget(self, action: #selector(saveBottonPressed), for: .touchUpInside)
+    }
+    
+    func configure(buttonTitle text: String) {
+        saveChangesButton.setButton(style: .fill, title: text)
     }
     
     @objc func saveBottonPressed(_ sender: UIButton) {

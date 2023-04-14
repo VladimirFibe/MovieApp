@@ -66,7 +66,7 @@ class SignUpViewController: BaseViewController {
 // MARK: - Table Data Source
 extension SignUpViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8 // 7 + 1 (0)
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,13 +82,20 @@ extension SignUpViewController: UITableViewDataSource {
         case 3:
             return createCellWith(title: SignUpK.Title.email, placeholder: SignUpK.Placeholder.email)
         case 4:
-            return createCellWith(title: SignUpK.Title.password, placeholder: SignUpK.Placeholder.password)
+            let cell = createCellWith(title: SignUpK.Title.password, placeholder: SignUpK.Placeholder.password)
+            cell.secureModeOn()
+            return cell
         case 5:
-            return createCellWith(title: SignUpK.Title.ConfirmPassword, placeholder: SignUpK.Placeholder.confirmPassword)
+            let cell = createCellWith(title: SignUpK.Title.ConfirmPassword, placeholder: SignUpK.Placeholder.confirmPassword)
+            cell.secureModeOn()
+            return cell
         case 6:
-            let cell = SaveChangesCell()
+            let cell = ButtonActionCell()
+            cell.configure(buttonTitle: SignUpK.Title.signUp)
+            cell.delegate = self
             return cell
         case 7: let cell = LoginCell()
+            cell.delegate = self
             return cell
             
         default:
@@ -99,8 +106,19 @@ extension SignUpViewController: UITableViewDataSource {
     private func createCellWith(title: String, placeholder: String) -> FormCell {
         let cell = FormCell()
         cell.configure(title: title, textFildPlaceholder: placeholder, style: .fill)
-//        cell.delegate = self
+        cell.delegate = self
         return cell
+    }
+}
+
+extension SignUpViewController: FormCellDelegate {
+    func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String) {
+        // TODO: данные ввыедунные пользователем
+        print(text)
+    }
+    
+    func cellTextFieldShouldBeginEditing(cell: FormCell, textField: UITextField) {
+        // реализовать смещения UI когда поднимается клавиатура
     }
 }
 
@@ -112,5 +130,21 @@ extension SignUpViewController: UITableViewDelegate {
         case 7: return 35
         default: return 97
         }
+    }
+}
+
+// MARK: - Login Cell Delegate
+extension SignUpViewController: LoginCellDelegate {
+    func cellLoginButtonDidPress(cell: LoginCell, button: UIButton) {
+        print(#function)
+        // TODO: Уже есть аккаунт
+    }
+}
+
+// MARK: - Button Action Cell Delegate
+extension SignUpViewController: ButtonActionCellDelegate {
+    func cellButtonPressed(cell: ButtonActionCell, button: UIButton) {
+        print(#function)
+        // TODO: Sign Up
     }
 }

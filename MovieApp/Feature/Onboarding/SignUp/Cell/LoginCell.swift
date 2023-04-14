@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol LoginCellDelegate: AnyObject {
+    func cellLoginButtonDidPress(cell: LoginCell, button: UIButton)
+}
+
 class LoginCell: UITableViewCell {
+    
+    weak var delegate: LoginCellDelegate?
     
     let loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -25,8 +31,8 @@ class LoginCell: UITableViewCell {
         loginButton.addTarget(self, action: #selector(logitButtonPressed), for: .touchUpInside)
     }
     
-    @objc func logitButtonPressed() {
-        print(#function)
+    @objc func logitButtonPressed(_ sender: UIButton) {
+        delegate?.cellLoginButtonDidPress(cell: self, button: sender)
     }
     
     func setAttributeForButton() {
