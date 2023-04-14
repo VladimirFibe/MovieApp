@@ -59,6 +59,7 @@
 		279AD65229E8F251005D04B8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 279AD65129E8F251005D04B8 /* FirebaseFirestoreSwift */; };
 		279AD65429E8F27C005D04B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 279AD65329E8F27C005D04B8 /* GoogleService-Info.plist */; };
 		279AD65729E8F568005D04B8 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279AD65629E8F568005D04B8 /* FirebaseUserListener.swift */; };
+		279AD66329E929B3005D04B8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279AD66229E929B3005D04B8 /* Settings.swift */; };
 		27C4497F29E3097D00D87E39 /* InlineConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C4497E29E3097D00D87E39 /* InlineConfigurable.swift */; };
 		27C4498229E309C400D87E39 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 27C4498129E309C400D87E39 /* Kingfisher */; };
 		27C4498429E30A5800D87E39 /* CategoriesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C4498329E30A5800D87E39 /* CategoriesHeaderView.swift */; };
@@ -134,6 +135,7 @@
 		275F4F3E29DA404A00FCBF0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279AD65329E8F27C005D04B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		279AD65629E8F568005D04B8 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
+		279AD66229E929B3005D04B8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		27C4497E29E3097D00D87E39 /* InlineConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineConfigurable.swift; sourceTree = "<group>"; };
 		27C4498329E30A5800D87E39 /* CategoriesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesHeaderView.swift; sourceTree = "<group>"; };
 		27C4498529E30A7200D87E39 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				275F4F3029DA404900FCBF0E /* AppDelegate.swift */,
 				275F4F3229DA404900FCBF0E /* SceneDelegate.swift */,
 				275A1FC329DF9C4100426D94 /* AppCoordinator.swift */,
+				279AD66229E929B3005D04B8 /* Settings.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				1035BD1F29E0D7C3004C2AC3 /* SaveChangesCell.swift in Sources */,
 				275A1FD829DFADB600426D94 /* Title.swift in Sources */,
 				270A656529E08AC100C36C27 /* SettingsViewController.swift in Sources */,
+				279AD66329E929B3005D04B8 /* Settings.swift in Sources */,
 				18EEBF5A29DB5A62002B5C20 /* OnboardingViewController.swift in Sources */,
 				10359A0A29E446F50030ADB8 /* PresentationManager.swift in Sources */,
 				275A1FE329DFC39600426D94 /* SearchCoordinator.swift in Sources */,

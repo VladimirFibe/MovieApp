@@ -5,12 +5,16 @@ typealias Callback = () -> Void
 final class AppCoordinator: BaseCoordinator {
     var login = true
     override func start() {
-//        runSplash()
-        runTabBar()
+        runSplash()
     }
     
     private func run() {
-        runAuth()
+        if Settings.shared.onboarded {
+            runAuth()
+        } else {
+            Settings.shared.onboarded = true
+            runOnboarding()
+        }
     }
     
     private func runTabBar() {
@@ -41,7 +45,7 @@ final class AppCoordinator: BaseCoordinator {
     private func runSplash() {
         let coordinator = SplashCoordinator(router: router)
         coordinator.onFlowDidFinish = {
-            self.runOnboarding()
+            self.run()
         }
         addDependency(coordinator)
         coordinator.start()

@@ -1,28 +1,69 @@
-import Foundation
+import SwiftUI
 import Firebase
 
-final class FirebaseUserListener {
+enum AuthenticationState {
+  case unauthenticated
+  case authenticating
+  case authenticated
+}
+
+enum AuthenticationFlow {
+  case login
+  case signUp
+}
+
+@MainActor
+final class FirebaseUserListener: ObservableObject {
     static let shared = FirebaseUserListener()
     private init() {}
     
-    // MARK: - Register
-    func registerUser(withEmail email: String, password: String, completion: @escaping (_ error: Error?) -> Void) {
-      Auth.auth().createUser(withEmail: email, password: password) { result, error in
-        completion(error)
-        if error == nil {
-          // send verificaton email
-          result?.user.sendEmailVerification { error in
-            print("auth email sent with error: \(error?.localizedDescription ?? "nil")")
-          }
-          
-          // create user and save it
-          
-//          if let user = result?.user {
-//            let person = Person(id: user.uid, username: email, email: email, status: "Hey there, I'm using Messager")
-//            Person.save(person)
-//            self.savePersonToFireStore(person)
-//          }
+    @Published var user: User?
+    @Published var authenticationState: AuthenticationState = .unauthenticated
+
+}
+
+extension FirebaseUserListener {
+    func signInWithEmailPassword(withEmail email: String, password: String) async -> Bool {
+        authenticationState = .authenticating
+        do {
+            let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            user = authResult.user
+            print("User: \(authResult.user.uid) signed in")
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
         }
-      }
+    }
+    
+    func signUpWithEmailPassword(withEmail email: String, password: String) async -> Bool {
+        authenticationState = .authenticating
+        do {
+            let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+            user = authResult.user
+            print("User: \(authResult.user.uid) signed in")
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deleteAccount() async -> Bool {
+        do {
+            try await user?.delete()
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
     }
 }

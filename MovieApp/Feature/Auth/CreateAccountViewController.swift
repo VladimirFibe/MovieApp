@@ -9,6 +9,7 @@ import UIKit
 
 struct CreateAccountNavigation {
     let finish: Callback
+    let signup: Callback
 }
 class CreateAccountViewController: BaseViewController {
     let navigation: CreateAccountNavigation
@@ -159,7 +160,7 @@ class CreateAccountViewController: BaseViewController {
 // MARK: - Navigation
 extension CreateAccountViewController: MainButtonDelegate {
     func buttonPressed(button: UIButton) {
-        self.navigation.finish()
+        self.navigation.signup()
         if let title = button.currentTitle {
             print(title)
         }
