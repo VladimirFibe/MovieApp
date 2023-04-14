@@ -18,23 +18,25 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Создаем кнопку
-        let button = UIButton(type: .system)
-        button.setTitle("Show Popup", for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
+//        // Создаем кнопку
+//        let button = UIButton(type: .system)
+//        button.setTitle("Show Popup", for: .normal)
+//        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(button)
+//
+//        // Добавляем констрейнты к кнопке
+//        NSLayoutConstraint.activate([
+//            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
         
-        // Добавляем констрейнты к кнопке
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        buttonAction()
     }
     
     //MARK: - Methods
     // Метод, выполняющийся при нажатии на кнопку
-    @objc func buttonAction(sender: UIButton!) {
+    func buttonAction() {
         
         // Создаем объект эффекта размытия
         let blurEffect = UIBlurEffect(style: .regular)
@@ -146,15 +148,18 @@ class PopUpViewController: UIViewController {
     @objc func takePhotoButtonTapped(_ sender: UIButton) {
         print("Take a photo button tapped")
         hidePopupView()
+        dismiss(animated: true)
     }
     
     @objc func chooseFileButtonTapped(_ sender: UIButton) {
         print("Choose from your files button tapped")
         hidePopupView()
+        dismiss(animated: true)
     }
     
     @objc func deletePhotoButtonTapped(_ sender: UIButton) {
         print("Delete photo button tapped")
         hidePopupView()
+        dismiss(animated: true)
     }
 }
