@@ -89,7 +89,8 @@ extension ProfileViewController: UITableViewDataSource {
             cell.configure(title: "Gender", textFildPlaceholder: "", gender: .notSelected)
             return cell
         case 6:
-            let cell = SaveChangesCell()
+            let cell = ButtonActionCell()
+            cell.configure(buttonTitle: "Save Changes")
             cell.delegate = self
             return cell
         default: return UITableViewCell()
@@ -124,13 +125,14 @@ extension ProfileViewController: FormCellDelegate {
     }
     
     func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String) {
-        // TODO: данные вводы textField
+        // TODO: данные ввыедунные пользователем
+        print(text)
     }
 }
 
 // MARK: - SaveChangesCellDelegate
-extension ProfileViewController: SaveChangesCellDelegate {
-    func cellButtonPressed(cell: SaveChangesCell, button: UIButton) {
+extension ProfileViewController: ButtonActionCellDelegate {
+    func cellButtonPressed(cell: ButtonActionCell, button: UIButton) {
         print("save button pressed")
     }
 }

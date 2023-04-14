@@ -131,3 +131,9 @@ extension UIToolbar {
         return toolBar
     }
 }
+
+extension FormCell {
+    func secureModeOn() {
+        textFieldView.textField.isSecureTextEntry = true
+    }
+}
