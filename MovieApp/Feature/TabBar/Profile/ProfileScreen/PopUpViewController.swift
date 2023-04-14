@@ -9,7 +9,11 @@ import Foundation
 import UIKit
 
 class PopUpViewController: UIViewController {
-
+    
+    //MARK: - Properties
+    //Свойство для хранения объекта-представления всплывающего окна
+    var popup: UIView?
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +38,17 @@ class PopUpViewController: UIViewController {
         
         // Создаем объект эффекта размытия
         let blurEffect = UIBlurEffect(style: .regular)
-
+        
         // Создаем объект видимого представления с использованием эффекта размытия
         let blurView = UIVisualEffectView(effect: blurEffect)
-
+        
         // Устанавливаем размеры и позицию видимого представления
         blurView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-
+        
         // Добавляем видимое представление на главное представление и делаем его невидимым
         view.addSubview(blurView)
         blurView.alpha = 0
-
+        
         // Анимируем появление всплывающего окна с размытием в заднем фоне
         UIView.animate(withDuration: 0.3) { [self] in
             // Делаем видимое представление полностью прозрачным
@@ -56,7 +60,7 @@ class PopUpViewController: UIViewController {
             popupView.backgroundColor = Theme.whiteToBlack
             popupView.layer.cornerRadius = 10
             blurView.contentView.addSubview(popupView)
-
+            
             // Добавляем заголовок
             let titleLabel = UILabel(frame: CGRect(x: 0, y: 10, width: popupView.bounds.width, height: 20))
             titleLabel.textAlignment = .center
@@ -68,7 +72,7 @@ class PopUpViewController: UIViewController {
             let separator = UIView(frame: CGRect(x: 20, y: titleLabel.frame.maxY + 10, width: popupView.bounds.width - 40, height: 1))
             separator.backgroundColor = Theme.lightGreyToWhite
             popupView.addSubview(separator)
-
+            
             // Добавляем кнопку "Take a photo"
             let takePhotoButton = UIButton(type: .system)
             takePhotoButton.frame = CGRect(x: 10, y: 50, width: 280, height: 40)
@@ -83,7 +87,7 @@ class PopUpViewController: UIViewController {
             takePhotoButton.contentHorizontalAlignment = .left
             takePhotoButton.addTarget(self, action: #selector(takePhotoButtonTapped(_:)), for: .touchUpInside)
             popupView.addSubview(takePhotoButton)
-
+            
             // Добавляем кнопку "Choose from your files"
             let chooseFileButton = UIButton(type: .system)
             chooseFileButton.frame = CGRect(x: 10, y: 100, width: 280, height: 40)
@@ -98,7 +102,7 @@ class PopUpViewController: UIViewController {
             chooseFileButton.contentHorizontalAlignment = .left
             chooseFileButton.addTarget(self, action: #selector(chooseFileButtonTapped(_:)), for: .touchUpInside)
             popupView.addSubview(chooseFileButton)
-
+            
             // Добавляем кнопку "Delete photo"
             let deletePhotoButton = UIButton(type: .system)
             deletePhotoButton.frame = CGRect(x: 10, y: 150, width: 280, height: 40)
@@ -112,20 +116,46 @@ class PopUpViewController: UIViewController {
             deletePhotoButton.layer.cornerRadius = 5
             deletePhotoButton.contentHorizontalAlignment = .left
             deletePhotoButton.addTarget(self, action: #selector(deletePhotoButtonTapped(_:)), for: .touchUpInside)
-                        popupView.addSubview(deletePhotoButton)
             popupView.addSubview(deletePhotoButton)
+            
+            // Сохраняем ссылку на объект-представление в переменной popupView
+            self.popup = popupView
         }
     }
+    
+    //Метод для скрытия всплывающего окна
+    private func hidePopupView() {
+        UIView.animate(withDuration: 0.2, animations: { [self] in
+            popup?.alpha = 0
+        }) { [self] (completed) in
+            if completed {
+                popup?.removeFromSuperview()
+                popup = nil
+                
+                // Удаляем видимое представление с эффектом размытия
+                for subview in view.subviews {
+                    if subview is UIVisualEffectView {
+                        subview.removeFromSuperview()
+                    }
+                }
+            }
+        }
+    }
+    
     // Методы для действий при нажатии на кнопки
-        @objc func takePhotoButtonTapped(_ sender: UIButton) {
-            print("Take a photo button tapped")
-        }
-        
-        @objc func chooseFileButtonTapped(_ sender: UIButton) {
-            print("Choose from your files button tapped")
-        }
-        
-        @objc func deletePhotoButtonTapped(_ sender: UIButton) {
-            print("Delete photo button tapped")
-        }
+    @objc func takePhotoButtonTapped(_ sender: UIButton) {
+        print("Take a photo button tapped")
+        hidePopupView()
+    }
+    
+    @objc func chooseFileButtonTapped(_ sender: UIButton) {
+        print("Choose from your files button tapped")
+        hidePopupView()
+    }
+    
+    @objc func deletePhotoButtonTapped(_ sender: UIButton) {
+        print("Delete photo button tapped")
+        hidePopupView()
+    }
+    
 }
