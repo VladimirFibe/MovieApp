@@ -148,15 +148,18 @@ class PopUpViewController: UIViewController {
     @objc func takePhotoButtonTapped(_ sender: UIButton) {
         print("Take a photo button tapped")
         hidePopupView()
+        dismiss(animated: true)
     }
     
     @objc func chooseFileButtonTapped(_ sender: UIButton) {
         print("Choose from your files button tapped")
         hidePopupView()
+        dismiss(animated: true)
     }
     
     @objc func deletePhotoButtonTapped(_ sender: UIButton) {
         print("Delete photo button tapped")
         hidePopupView()
+        dismiss(animated: true)
     }
 }

@@ -143,7 +143,7 @@ extension ProfileViewController: UserImageCellDelegate {
     func cellEditImageViewDidPress(cell: UserImageCell, imageView: UIImageView) {
         print(#function)
         let vc = PopUpViewController()
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .custom
         present(vc, animated: true)
     }
 }
