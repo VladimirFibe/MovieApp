@@ -134,5 +134,6 @@ iOSInjectionProject/
 ## Файл который наверное уже всех за...л
 *.xcuserstate
 MovieApp.xcodeproj/project.xcworkspace/xcuserdata/pavelgrickov.xcuserdatad/UserInterfaceState.xcuserstate
+MovieApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,macos
