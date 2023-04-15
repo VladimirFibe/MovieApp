@@ -6,16 +6,9 @@ final class RecentsViewController: BaseViewController {
     
     let tableView = UITableView(frame: .zero, style: .plain)
     
-    var movieArray: [Title] = []
+    let networkManager = NetworkManager()
     
-    // массив для тестов, при подключении запросов удалить
-    var testArray: [Testeble] = [
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
-    ]
+    var movieArray: [MovieData] = []
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -23,26 +16,13 @@ final class RecentsViewController: BaseViewController {
         
         configureUI()
         setConstraints()
+        networkManager.fetchRequestPopularMovie { movieData in
+            DispatchQueue.main.async {
+                self.movieArray = movieData
+                self.tableView.reloadData()
+            }
+        }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //        fetchRequest()
-    }
-    
-    // MARK: -
-    // TODO: Перенесли логику в networkManager
-    //    func fetchRequest(page: Int = 1){
-    //        var apiCall = "https://api.themoviedb.org/3/discover/movie?api_key=6b8a95b1b6c4eeede348d430f4a88303&page=\(page)"
-    //        APICaller.shared.fetchRequest(urlString: apiCall, expecting: TrendingTitleResponse.self) { (movieDetails) in
-    //
-    //                self.tableView.movieInfos = movieDetails.results
-    //
-    //                DispatchQueue.main.async {
-    //                    self.tableView.reloadData()
-    //                }
-    //            }
-    //    }
     
     func configureUI() {
         view.backgroundColor = .systemBackground
@@ -76,18 +56,19 @@ final class RecentsViewController: BaseViewController {
 // MARK: - TableView Data Source
 extension RecentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testArray.count
+        return movieArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ContentCell.self)) as! ContentCell
         
-        let title = testArray[indexPath.row].title
-        let duration = testArray[indexPath.row].duration
-        let date = testArray[indexPath.row].date
-        let isFavourite = testArray[indexPath.row].isFavourite
+        let title = movieArray[indexPath.row].originalTitle
+        let duration = "145 Minutes"
+        let date = movieArray[indexPath.row].releaseDate
+        let isFavourite = false
+        let path = movieArray[indexPath.row].posterPath
         
-        cell.configure(title: title, date: date, duration: duration, isFavourite: isFavourite)
+        cell.configure(title: title, date: date, duration: duration, posterPath: path, isFavourite: isFavourite)
         cell.delegate = self
         return cell
     }

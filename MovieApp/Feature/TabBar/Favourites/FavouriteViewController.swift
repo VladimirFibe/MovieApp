@@ -20,13 +20,9 @@ class FavouriteViewController: BaseViewController {
     
     let tableView = UITableView(frame: .zero, style: .plain)
     
-    var testArray: [Testeble] = [
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: false),
-        .init(title: "Avatar", date: "12-12-1999", duration: "123 Minutes", isFavourite: true),
-    ]
+    let networkManager = NetworkManager()
+    
+    var movieArray: [MovieData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,18 +59,19 @@ class FavouriteViewController: BaseViewController {
 // MARK: - TableView Data Source
 extension FavouriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testArray.count
+        return movieArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ContentCell.self)) as! ContentCell
         
-        let title = testArray[indexPath.row].title
-        let duration = testArray[indexPath.row].duration
-        let date = testArray[indexPath.row].date
-        let isFavourite = testArray[indexPath.row].isFavourite
+        let title = movieArray[indexPath.row].originalTitle
+        let duration = "145 Minutes"
+        let date = movieArray[indexPath.row].releaseDate
+        let isFavourite = false
+        let path = movieArray[indexPath.row].posterPath
         
-        cell.configure(title: title, date: date, duration: duration, isFavourite: isFavourite)
+        cell.configure(title: title, date: date, duration: duration, posterPath: path, isFavourite: isFavourite)
         cell.delegate = self
         return cell
     }
