@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol ContentCellDelegate: AnyObject  {
     func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton)
@@ -63,12 +64,19 @@ class ContentCell: UITableViewCell {
     }()
     
     // MARK: - Configure Cell
-    func configure(title: String, date: String, duration: String, isFavourite: Bool) {
+    func configure(title: String, date: String, duration: String, posterPath: String?, isFavourite: Bool) {
         // TODO: убрать захардкоженые значения
         
         isActiveFavouriteButton = isFavourite
-        
         movieNameLabel.text = title
+        
+        // загрузка постеров фильмов если они есть если нет устанавливается заглушка
+        if let path = posterPath {
+            let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)")
+            movieImageView.kf.setImage(with: url)
+        } else {
+            movieImageView.image = UIImage(systemName: "photo")
+        }
         
         let clockImage = UIImage(systemName: "clock.circle.fill")
         let calendarImage = UIImage(systemName: "calendar.circle.fill")

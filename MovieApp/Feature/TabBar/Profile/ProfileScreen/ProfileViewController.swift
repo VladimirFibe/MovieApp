@@ -126,7 +126,7 @@ extension ProfileViewController: FormCellDelegate {
     }
     
     func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String) {
-        // TODO: данные ввыедунные пользователем
+        // TODO: данные введенные пользователем
         print(text)
     }
 }

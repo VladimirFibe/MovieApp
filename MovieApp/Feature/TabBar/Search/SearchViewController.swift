@@ -13,8 +13,9 @@ class SearchViewController: BaseViewController {
     let tableView = UITableView()
     
     let presentationManager = PresentationManager()
-
-    var results = [MovieData]()
+    let networkManager = NetworkManager()
+    
+    var results: [MovieData] = []
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -25,6 +26,13 @@ class SearchViewController: BaseViewController {
         configureSearchController()
         addSubViews()
         setConstraints()
+        
+        networkManager.fetchRequestPopularMovie { movieData in
+            DispatchQueue.main.async {
+                self.results = movieData
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func configureTableView() {
@@ -80,6 +88,15 @@ extension SearchViewController: UISearchResultsUpdating {
             }
         }
     }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        print(#function)
+        networkManager.fetchRequestPopularMovie { movieData in
+            DispatchQueue.main.async {
+                self.results = movieData
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -93,7 +110,13 @@ extension SearchViewController: UITableViewDataSource {
 
         let data = results[indexPath.row]
         
-        cell.configure(title: "DriftingHome", date: data.releaseDate, duration: "148 Minutes", isFavourite: false)
+        let title = data.originalTitle
+        let duration = "145 Minutes"
+        let date = data.releaseDate
+        let isFavourite = false
+        let path = data.posterPath
+        
+        cell.configure(title: title, date: date, duration: duration, posterPath: path, isFavourite: isFavourite)
         
         return cell
     }
