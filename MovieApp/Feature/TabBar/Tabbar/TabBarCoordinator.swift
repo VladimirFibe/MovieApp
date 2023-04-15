@@ -3,7 +3,6 @@ import UIKit
 final class TabBarCoordinator: BaseCoordinator {
     var onFlowDidFinish: Callback?
     override func start() {
-        print("start tabbar")
         let tabBar = makeTabBar()
         router.setRootModule(tabBar, hideBar: true)
         

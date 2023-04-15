@@ -11,10 +11,8 @@ final class AppCoordinator: BaseCoordinator {
     private func run() {
         if Settings.shared.onboarded {
             if Auth.auth().currentUser == nil {
-                print("Auth")
                 runAuth()
             } else {
-                print("Tabbar")
                 runTabBar()
             }
         } else {

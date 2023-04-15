@@ -6,7 +6,10 @@ struct CreateAccountNavigation {
 }
 
 class CreateAccountViewController: BaseViewController {
-    let navigation: CreateAccountNavigation
+    private let store = SignInStore()
+    private var bag = Bag()
+    
+    private let navigation: CreateAccountNavigation
     
     init(navigation: CreateAccountNavigation) {
         self.navigation = navigation
@@ -80,8 +83,22 @@ class CreateAccountViewController: BaseViewController {
         
         configureUI()
         setConstraints()
+        setupObservers()
     }
-        
+     
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .didLogin:
+                    self.navigation.finish()
+                }
+            }.store(in: &bag)
+    }
+    
 // MARK: - Start setup
     func configureUI() {
         view.backgroundColor = Theme.purple
@@ -157,17 +174,11 @@ extension CreateAccountViewController: MainButtonDelegate {
         if let title = button.currentTitle {
             print(title)
         }
-        
-        Task {
-            let login = await FirebaseUserListener.shared.signInWithGoogle()
-            if login {
-                self.navigation.signup()
-            }
-        }
+        store.actions.send(.googleSignIn)
     }
     
     @objc func logitButtonPressed() {
-        self.navigation.finish()
+        self.navigation.signup()
     }
 }
 
