@@ -1,18 +1,15 @@
-//
-//  CreateAccountViewController.swift
-//  MovieApp
-//
-//  Created by Павел Грицков on 04.04.23.
-//
-
 import UIKit
 
 struct CreateAccountNavigation {
-    let finish: Callback
+    let login: Callback
     let signup: Callback
 }
+
 class CreateAccountViewController: BaseViewController {
-    let navigation: CreateAccountNavigation
+    private let store = SignInStore()
+    private var bag = Bag()
+    
+    private let navigation: CreateAccountNavigation
     
     init(navigation: CreateAccountNavigation) {
         self.navigation = navigation
@@ -86,8 +83,22 @@ class CreateAccountViewController: BaseViewController {
         
         configureUI()
         setConstraints()
+        setupObservers()
     }
-        
+     
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .didLogin:
+                    self.navigation.login()
+                }
+            }.store(in: &bag)
+    }
+    
 // MARK: - Start setup
     func configureUI() {
         view.backgroundColor = Theme.purple
@@ -160,14 +171,14 @@ class CreateAccountViewController: BaseViewController {
 // MARK: - Navigation
 extension CreateAccountViewController: MainButtonDelegate {
     func buttonPressed(button: UIButton) {
-        self.navigation.signup()
         if let title = button.currentTitle {
             print(title)
         }
+        store.actions.send(.googleSignIn)
     }
     
     @objc func logitButtonPressed() {
-        self.navigation.finish()
+        self.navigation.signup()
     }
 }
 

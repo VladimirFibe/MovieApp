@@ -8,8 +8,9 @@
 import UIKit
 
 protocol FormCellDelegate: AnyObject {
-    func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String)
+//    func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String)
     func cellTextFieldShouldBeginEditing(cell: FormCell, textField: UITextField)
+    func cellTextFieldDidChangeSelection(cell: FormCell, textField: UITextField)
 }
 
 class FormCell: UITableViewCell {
@@ -105,10 +106,14 @@ extension FormCell :UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let text = textField.text!
-        delegate?.cellTextFieldDidEndEditing(cell: self, textField: textField, text: text)
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        delegate?.cellTextFieldDidChangeSelection(cell: self, textField: textField)
     }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        let text = textField.text!
+//        delegate?.cellTextFieldDidEndEditing(cell: self, textField: textField, text: text)
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

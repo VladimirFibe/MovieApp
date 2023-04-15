@@ -20,15 +20,19 @@ final class AuthCoordinator: BaseCoordinator {
 
 extension AuthCoordinator {
     private func makeAuth() -> BaseViewControllerProtocol {
-        let navigation = CreateAccountNavigation(finish: {
-            self.runSignUp()
-        }, signup: {
+        let navigation = CreateAccountNavigation(login: {
             self.onFlowDidFinish?()
+        }, signup: {
+            self.runSignUp()
         })
         return CreateAccountViewController(navigation: navigation)
     }
     
     private func makeSignUp() -> BaseViewControllerProtocol {
-        return SignUpViewController()
+        let navigation = SignUpNavigation(login: {
+            print("мы в координаторе")
+            self.onFlowDidFinish?()
+        })
+        return SignUpViewController(navigation: navigation)
     }
 }

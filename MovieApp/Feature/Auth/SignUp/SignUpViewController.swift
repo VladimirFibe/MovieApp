@@ -7,8 +7,13 @@
 
 import UIKit
 
+struct SignUpNavigation {
+    let login: Callback
+}
+
 class SignUpViewController: BaseViewController {
-    
+    private let store = SignUpStore()
+    private var bag = Bag()
     enum SignUpK {
         enum Title {
             static let signUp = "Sign Up"
@@ -26,6 +31,17 @@ class SignUpViewController: BaseViewController {
             static let confirmPassword = "Enter your password"
         }
     }
+    private let navigation: SignUpNavigation
+    private var userData = UserData()
+    
+    init(navigation: SignUpNavigation) {
+        self.navigation = navigation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let tableView = UITableView(frame: .zero, style: .plain)
     
@@ -37,6 +53,20 @@ class SignUpViewController: BaseViewController {
         configureUI()
         setConstraints()
         changeInterfaceWhenShowKeyboard()
+        setupObservers()
+    }
+    
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .login:
+                    self.navigation.login()
+                }
+            }.store(in: &bag)
     }
     
     // MARK: - UI methods
@@ -116,9 +146,20 @@ extension SignUpViewController: UITableViewDataSource {
 }
 
 extension SignUpViewController: FormCellDelegate {
-    func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String) {
-        // TODO: данные ввыедунные пользователем
-        print(text)
+    
+    func cellTextFieldDidChangeSelection(cell: FormCell, textField: UITextField) {
+        let indexPath = tableView.indexPath(for: cell)!
+        
+        let text = textField.text!
+        
+        switch indexPath.row {
+        case 1: userData.name = text
+        case 2: userData.lastName = text
+        case 3: userData.email = text
+        case 4: userData.password = text
+        case 5: userData.confirmPassword = text
+        default: break
+        }
     }
     
     func cellTextFieldShouldBeginEditing(cell: FormCell, textField: UITextField) {
@@ -142,16 +183,23 @@ extension SignUpViewController: UITableViewDelegate {
 // MARK: - Login Cell Delegate
 extension SignUpViewController: LoginCellDelegate {
     func cellLoginButtonDidPress(cell: LoginCell, button: UIButton) {
-        print(#function)
-        // TODO: Уже есть аккаунт
+        navigationController?.popViewController(animated: true)
     }
 }
 
 // MARK: - Button Action Cell Delegate
 extension SignUpViewController: ButtonActionCellDelegate {
     func cellButtonPressed(cell: ButtonActionCell, button: UIButton) {
-        print(#function)
-        // TODO: Sign Up
+        
+        // если пароль совпадает и строка с именем не пустая
+        if userData.isSamePassword && !userData.name.isEmpty {
+            print(userData)
+        }
+        
+        store.actions.send(.createUser(email: "mail4@mail.ru",
+                                       password: "123456",
+                                       firstname: "Ivan",
+                                       lastname: "Ivanov"))
     }
 }
 

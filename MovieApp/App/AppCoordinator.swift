@@ -1,5 +1,5 @@
 import Foundation
-
+import Firebase
 typealias Callback = () -> Void
 
 final class AppCoordinator: BaseCoordinator {
@@ -10,7 +10,11 @@ final class AppCoordinator: BaseCoordinator {
     
     private func run() {
         if Settings.shared.onboarded {
-            runAuth()
+            if Auth.auth().currentUser == nil {
+                runAuth()
+            } else {
+                runTabBar()
+            }
         } else {
             Settings.shared.onboarded = true
             runOnboarding()
@@ -20,7 +24,7 @@ final class AppCoordinator: BaseCoordinator {
     private func runTabBar() {
         let coordinator = TabBarCoordinator(router: router)
         coordinator.onFlowDidFinish = {
-            self.runAuth()
+            self.run()
         }
         addDependency(coordinator)
         coordinator.start()
@@ -29,7 +33,7 @@ final class AppCoordinator: BaseCoordinator {
     private func runAuth() {
         let coordinator = AuthCoordinator(router: router)
         coordinator.onFlowDidFinish = {
-            self.runTabBar()
+            self.run()
         }
         addDependency(coordinator)
         coordinator.start()
