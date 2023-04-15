@@ -8,9 +8,9 @@
 import Foundation
 
 // MARK: - SearchResultResponseModel
-struct SearchResultResponseModel: Codable {
+struct ThemoviedbData: Codable {
     let page: Int
-    let results: [Result]
+    let results: [MovieData]
     let totalPages, totalResults: Int
 
     enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ struct SearchResultResponseModel: Codable {
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct MovieData: Codable {
     let adult: Bool
     let backdropPath: String?
     let genreIDS: [Int]

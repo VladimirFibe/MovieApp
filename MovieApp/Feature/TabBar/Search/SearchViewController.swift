@@ -14,7 +14,7 @@ class SearchViewController: BaseViewController {
     
     let presentationManager = PresentationManager()
 
-    var results = [Result]()
+    var results = [MovieData]()
 
     // MARK: Lifecycle
     override func viewDidLoad() {
