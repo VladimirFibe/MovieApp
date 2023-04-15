@@ -23,6 +23,9 @@ extension ProfileCoordinator {
             self?.runProfile()
         },
         logoutTapped: { [weak self] in
+            Task {
+                await FirebaseUserListener.shared.signOut()
+            }
             self?.onFlowDidFinish?()
         })
         return SettingsViewController(navigation: navigation)

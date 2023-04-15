@@ -1,5 +1,5 @@
 import Foundation
-
+import Firebase
 typealias Callback = () -> Void
 
 final class AppCoordinator: BaseCoordinator {
@@ -10,10 +10,10 @@ final class AppCoordinator: BaseCoordinator {
     
     private func run() {
         if Settings.shared.onboarded {
-            switch FirebaseUserListener.shared.authenticationState {
-            case .authenticated: runTabBar()
-            case .unauthenticated: runAuth()
-            case .authenticating: print("автризуется")
+            if Auth.auth().currentUser == nil {
+                runAuth()
+            } else {
+                runTabBar()
             }
         } else {
             Settings.shared.onboarded = true

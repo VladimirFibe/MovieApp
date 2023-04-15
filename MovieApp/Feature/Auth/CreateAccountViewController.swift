@@ -154,9 +154,15 @@ class CreateAccountViewController: BaseViewController {
 // MARK: - Navigation
 extension CreateAccountViewController: MainButtonDelegate {
     func buttonPressed(button: UIButton) {
-        self.navigation.signup()
         if let title = button.currentTitle {
             print(title)
+        }
+        
+        Task {
+            let login = await FirebaseUserListener.shared.signInWithGoogle()
+            if login {
+                self.navigation.signup()
+            }
         }
     }
     
