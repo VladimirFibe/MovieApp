@@ -6,7 +6,10 @@ struct SettingsNavigation {
 }
 
 class SettingsViewController: BaseViewController {
-    let navigation: SettingsNavigation
+    private let store = SettingsStore()
+    private var bag = Bag()
+    
+    private let navigation: SettingsNavigation
     init(navigation: SettingsNavigation) {
         self.navigation = navigation
         super.init(nibName: nil, bundle: nil)
@@ -166,7 +169,7 @@ class SettingsViewController: BaseViewController {
         
         setupHierarchy()
         setConstrains()
-        
+        setupObservers()
         view.backgroundColor = .white
         title = ""
         tabBarItem.title = "Settings"
@@ -180,7 +183,20 @@ class SettingsViewController: BaseViewController {
     }
     
     @objc func logoutTapped(_ sender: UIButton) {
-        self.navigation.logoutTapped()
+        store.actions.send(.logout)
+    }
+    
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .didLogout:
+                    self.navigation.logoutTapped()
+                }
+            }.store(in: &bag)
     }
     
     func setupHierarchy() {

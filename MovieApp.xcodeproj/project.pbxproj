@@ -59,6 +59,8 @@
 		275F4F3D29DA404A00FCBF0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275F4F3B29DA404A00FCBF0E /* LaunchScreen.storyboard */; };
 		2798986129EAA6AC0076A8AE /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 2798986029EAA6AC0076A8AE /* GoogleSignIn */; };
 		2798986329EAA6AC0076A8AE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2798986229EAA6AC0076A8AE /* GoogleSignInSwift */; };
+		2798986529EAB8760076A8AE /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798986429EAB8760076A8AE /* SettingsStore.swift */; };
+		2798986729EAB90D0076A8AE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2798986629EAB90D0076A8AE /* Store.swift */; };
 		279AD64E29E8F251005D04B8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 279AD64D29E8F251005D04B8 /* FirebaseAuth */; };
 		279AD65029E8F251005D04B8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 279AD64F29E8F251005D04B8 /* FirebaseFirestore */; };
 		279AD65229E8F251005D04B8 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 279AD65129E8F251005D04B8 /* FirebaseFirestoreSwift */; };
@@ -142,6 +144,8 @@
 		275F4F3929DA404A00FCBF0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		275F4F3C29DA404A00FCBF0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		275F4F3E29DA404A00FCBF0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2798986429EAB8760076A8AE /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		2798986629EAB90D0076A8AE /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		279AD65329E8F27C005D04B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		279AD65629E8F568005D04B8 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		279AD66229E929B3005D04B8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 			children = (
 				275A1FD329DFACB200426D94 /* Extension */,
 				275A1FBB29DF9B4700426D94 /* Base */,
+				2798986629EAB90D0076A8AE /* Store.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				270A656429E08AC100C36C27 /* SettingsViewController.swift */,
+				2798986429EAB8760076A8AE /* SettingsStore.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 				18BD55E529DC8E430000DB83 /* OnboardingCollectionViewCell.swift in Sources */,
 				1035BD1B29E0D6DD004C2AC3 /* FormCell.swift in Sources */,
 				10573D2229E7100C007DD29D /* DescriptionContainer.swift in Sources */,
+				2798986729EAB90D0076A8AE /* Store.swift in Sources */,
 				18691E4429E449F600819CFC /* SearchResultResponseModel.swift in Sources */,
 				18691E4829E44A7000819CFC /* APIService.swift in Sources */,
 				1035BD1829E0D676004C2AC3 /* ProfileViewController.swift in Sources */,
@@ -617,6 +624,7 @@
 				275F4F3329DA404900FCBF0E /* SceneDelegate.swift in Sources */,
 				1035BD2129E0D7EB004C2AC3 /* UserImageCell.swift in Sources */,
 				1811A5EB29E31D580094B612 /* SearchTableViewCell.swift in Sources */,
+				2798986529EAB8760076A8AE /* SettingsStore.swift in Sources */,
 				27C4499529E393EF00D87E39 /* BridgingRestrictedTableViewCell.swift in Sources */,
 				275A1FD529DFACE400426D94 /* Bundle+Extensions.swift in Sources */,
 				27C4498629E30A7200D87E39 /* CategoryCell.swift in Sources */,

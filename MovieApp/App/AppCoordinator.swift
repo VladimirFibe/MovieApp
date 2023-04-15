@@ -11,8 +11,10 @@ final class AppCoordinator: BaseCoordinator {
     private func run() {
         if Settings.shared.onboarded {
             if Auth.auth().currentUser == nil {
+                print("Auth")
                 runAuth()
             } else {
+                print("Tabbar")
                 runTabBar()
             }
         } else {
@@ -24,7 +26,7 @@ final class AppCoordinator: BaseCoordinator {
     private func runTabBar() {
         let coordinator = TabBarCoordinator(router: router)
         coordinator.onFlowDidFinish = {
-            self.runAuth()
+            self.run()
         }
         addDependency(coordinator)
         coordinator.start()
@@ -33,7 +35,7 @@ final class AppCoordinator: BaseCoordinator {
     private func runAuth() {
         let coordinator = AuthCoordinator(router: router)
         coordinator.onFlowDidFinish = {
-            self.runTabBar()
+            self.run()
         }
         addDependency(coordinator)
         coordinator.start()
