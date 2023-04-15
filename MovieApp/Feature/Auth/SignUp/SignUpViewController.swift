@@ -32,6 +32,7 @@ class SignUpViewController: BaseViewController {
         }
     }
     private let navigation: SignUpNavigation
+    private var userData = UserData()
     
     init(navigation: SignUpNavigation) {
         self.navigation = navigation
@@ -145,9 +146,20 @@ extension SignUpViewController: UITableViewDataSource {
 }
 
 extension SignUpViewController: FormCellDelegate {
-    func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String) {
-        // TODO: данные ввыедунные пользователем
-        print(text)
+    
+    func cellTextFieldDidChangeSelection(cell: FormCell, textField: UITextField) {
+        let indexPath = tableView.indexPath(for: cell)!
+        
+        let text = textField.text!
+        
+        switch indexPath.row {
+        case 1: userData.name = text
+        case 2: userData.lastName = text
+        case 3: userData.email = text
+        case 4: userData.password = text
+        case 5: userData.confirmPassword = text
+        default: break
+        }
     }
     
     func cellTextFieldShouldBeginEditing(cell: FormCell, textField: UITextField) {
@@ -178,6 +190,12 @@ extension SignUpViewController: LoginCellDelegate {
 // MARK: - Button Action Cell Delegate
 extension SignUpViewController: ButtonActionCellDelegate {
     func cellButtonPressed(cell: ButtonActionCell, button: UIButton) {
+        
+        // если пароль совпадает и строка с именем не пустая
+        if userData.isSamePassword && !userData.name.isEmpty {
+            print(userData)
+        }
+        
         store.actions.send(.createUser(email: "mail4@mail.ru",
                                        password: "123456",
                                        firstname: "Ivan",

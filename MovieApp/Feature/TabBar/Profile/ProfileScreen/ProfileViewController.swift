@@ -118,6 +118,10 @@ extension ProfileViewController: UITableViewDelegate {
 
 // MARK: - FormViewCellDelegate
 extension ProfileViewController: FormCellDelegate {
+    func cellTextFieldDidChangeSelection(cell: FormCell, textField: UITextField) {
+        // TODO: Текст который наберается в textField
+    }
+    
     func cellTextFieldShouldBeginEditing(cell: FormCell, textField: UITextField) {
         
         // устанавливает indexPath текущей редактируемой ячейки
@@ -125,10 +129,9 @@ extension ProfileViewController: FormCellDelegate {
         indexPathSelectedCell = indexPath
     }
     
-    func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String) {
-        // TODO: данные ввыедунные пользователем
-        print(text)
-    }
+//    func cellTextFieldDidEndEditing(cell: FormCell, textField: UITextField, text: String) {
+//        print(text)
+//    }
 }
 
 // MARK: - SaveChangesCellDelegate

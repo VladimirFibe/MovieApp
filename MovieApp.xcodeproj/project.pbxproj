@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10247AEF29EB127800AE7A47 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10247AEE29EB127800AE7A47 /* UserData.swift */; };
 		103599D929E2B6EC0030ADB8 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103599D829E2B6EC0030ADB8 /* FilterViewController.swift */; };
 		10359A0A29E446F50030ADB8 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0929E446F50030ADB8 /* PresentationManager.swift */; };
 		10359A0C29E448EE0030ADB8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */; };
@@ -95,6 +96,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10247AEE29EB127800AE7A47 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		103599D829E2B6EC0030ADB8 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		10359A0929E446F50030ADB8 /* PresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
 		10359A0B29E448EE0030ADB8 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				275A1FD729DFADB600426D94 /* Title.swift */,
 				18691E4329E449F600819CFC /* SearchResultResponseModel.swift */,
 				279637BC29EAEB3800663B57 /* Person.swift */,
+				10247AEE29EB127800AE7A47 /* UserData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				10740FC629E93D7F0099194F /* SignUpViewController.swift in Sources */,
 				27CC349529E1B2CB00FB6667 /* RecentsViewController.swift in Sources */,
 				27CC34A529E1B5FA00FB6667 /* HorizontalTagCollectionViewCell.swift in Sources */,
+				10247AEF29EB127800AE7A47 /* UserData.swift in Sources */,
 				275A1FE929DFC3E400426D94 /* RecentCoordinator.swift in Sources */,
 				27CC349929E1B34B00FB6667 /* MovieTableView.swift in Sources */,
 				10740FCA29E948900099194F /* HeaderCell.swift in Sources */,
