@@ -182,6 +182,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10247AEB29EAAA0F00AE7A47 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				18691E4729E44A7000819CFC /* APIService.swift */,
+				27CC349A29E1B36F00FB6667 /* APICaller.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
 		10359A0F29E5B8D60030ADB8 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,7 +424,6 @@
 				27CC349829E1B34B00FB6667 /* MovieTableView.swift */,
 				27CC349C29E1B4ED00FB6667 /* MovieTableViewCell.swift */,
 				27CC349E29E1B51600FB6667 /* ButtonView.swift */,
-				27CC349A29E1B36F00FB6667 /* APICaller.swift */,
 				27CC34A029E1B56600FB6667 /* Constants.swift */,
 			);
 			path = Recent;
@@ -451,13 +459,13 @@
 		275F4F2F29DA404900FCBF0E /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				10247AEB29EAAA0F00AE7A47 /* NetworkManager */,
 				279AD65529E8F540005D04B8 /* FirebaseHelpers */,
 				275A1FD629DFADAC00426D94 /* Models */,
 				275A1FB729DF9AD300426D94 /* App */,
 				275A1FBC29DF9B5400426D94 /* Core */,
 				275A1FC229DF9C1A00426D94 /* Feature */,
 				275A1FD029DF9F4B00426D94 /* Supporting Files */,
-				18691E4729E44A7000819CFC /* APIService.swift */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
