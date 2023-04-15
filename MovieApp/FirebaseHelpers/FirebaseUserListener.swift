@@ -1,18 +1,19 @@
 import SwiftUI
 import FirebaseCore
 import FirebaseAuth
+import FirebaseFirestore
 import GoogleSignIn
 import GoogleSignInSwift
 
 enum AuthenticationState {
-  case unauthenticated
-  case authenticating
-  case authenticated
+    case unauthenticated
+    case authenticating
+    case authenticated
 }
 
 enum AuthenticationFlow {
-  case login
-  case signUp
+    case login
+    case signUp
 }
 
 @MainActor
@@ -52,11 +53,17 @@ extension FirebaseUserListener {
         }
     }
     
-    func signUpWithEmailPassword(withEmail email: String, password: String) async -> Bool {
+    func signUpWithEmailPassword(withEmail email: String, password: String, firstname: String, lastname: String) async -> Bool {
         authenticationState = .authenticating
         do {
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             user = authResult.user
+            let uid = authResult.user.uid
+            let data: [String: Any] = [
+                "email": email,
+                "fistname": firstname,
+                "lastname": lastname]
+            try await Firestore.firestore().collection("persons").document(uid).setData(data)
             print("User: \(authResult.user.uid) signed in")
             return true
         } catch {
@@ -87,14 +94,16 @@ extension FirebaseUserListener {
                                                            accessToken: accessToken.tokenString)
             let result = try await Auth.auth().signIn(with: credential)
             let firebaseUser = result.user
-            print("User \(firebaseUser.uid) signed in with email \(firebaseUser.email ?? "unknown")")
+            let uid = firebaseUser.uid
+            let data: [String: Any] = ["email": firebaseUser.email ?? ""]
+            try await Firestore.firestore().collection("persons").document(uid).setData(data)
             return true
         } catch {
             print(error.localizedDescription)
             return false
         }
     }
-    
+
     func signOut() {
         do {
             try Auth.auth().signOut()

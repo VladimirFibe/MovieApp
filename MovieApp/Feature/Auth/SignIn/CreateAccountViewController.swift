@@ -1,7 +1,7 @@
 import UIKit
 
 struct CreateAccountNavigation {
-    let finish: Callback
+    let login: Callback
     let signup: Callback
 }
 
@@ -94,7 +94,7 @@ class CreateAccountViewController: BaseViewController {
                 guard let self = self else { return }
                 switch event {
                 case .didLogin:
-                    self.navigation.finish()
+                    self.navigation.login()
                 }
             }.store(in: &bag)
     }

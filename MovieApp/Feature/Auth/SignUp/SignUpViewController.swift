@@ -7,8 +7,13 @@
 
 import UIKit
 
+struct SignUpNavigation {
+    let login: Callback
+}
+
 class SignUpViewController: BaseViewController {
-    
+    private let store = SignUpStore()
+    private var bag = Bag()
     enum SignUpK {
         enum Title {
             static let signUp = "Sign Up"
@@ -26,6 +31,16 @@ class SignUpViewController: BaseViewController {
             static let confirmPassword = "Enter your password"
         }
     }
+    private let navigation: SignUpNavigation
+    
+    init(navigation: SignUpNavigation) {
+        self.navigation = navigation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     let tableView = UITableView(frame: .zero, style: .plain)
     
@@ -37,6 +52,20 @@ class SignUpViewController: BaseViewController {
         configureUI()
         setConstraints()
         changeInterfaceWhenShowKeyboard()
+        setupObservers()
+    }
+    
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .login:
+                    self.navigation.login()
+                }
+            }.store(in: &bag)
     }
     
     // MARK: - UI methods
@@ -149,8 +178,10 @@ extension SignUpViewController: LoginCellDelegate {
 // MARK: - Button Action Cell Delegate
 extension SignUpViewController: ButtonActionCellDelegate {
     func cellButtonPressed(cell: ButtonActionCell, button: UIButton) {
-        print(#function)
-        // TODO: Sign Up
+        store.actions.send(.createUser(email: "mail4@mail.ru",
+                                       password: "123456",
+                                       firstname: "Ivan",
+                                       lastname: "Ivanov"))
     }
 }
 
