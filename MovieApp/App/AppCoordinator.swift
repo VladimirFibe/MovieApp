@@ -10,7 +10,11 @@ final class AppCoordinator: BaseCoordinator {
     
     private func run() {
         if Settings.shared.onboarded {
-            runAuth()
+            switch FirebaseUserListener.shared.authenticationState {
+            case .authenticated: runTabBar()
+            case .unauthenticated: runAuth()
+            case .authenticating: print("автризуется")
+            }
         } else {
             Settings.shared.onboarded = true
             runOnboarding()

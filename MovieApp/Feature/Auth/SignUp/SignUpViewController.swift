@@ -142,8 +142,7 @@ extension SignUpViewController: UITableViewDelegate {
 // MARK: - Login Cell Delegate
 extension SignUpViewController: LoginCellDelegate {
     func cellLoginButtonDidPress(cell: LoginCell, button: UIButton) {
-        print(#function)
-        // TODO: Уже есть аккаунт
+        navigationController?.popViewController(animated: true)
     }
 }
 

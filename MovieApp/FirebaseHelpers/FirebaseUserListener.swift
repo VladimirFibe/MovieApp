@@ -12,7 +12,6 @@ enum AuthenticationFlow {
   case signUp
 }
 
-@MainActor
 final class FirebaseUserListener: ObservableObject {
     static let shared = FirebaseUserListener()
     private init() {}

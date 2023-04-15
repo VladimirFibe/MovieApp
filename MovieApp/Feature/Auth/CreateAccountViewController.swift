@@ -1,16 +1,10 @@
-//
-//  CreateAccountViewController.swift
-//  MovieApp
-//
-//  Created by Павел Грицков on 04.04.23.
-//
-
 import UIKit
 
 struct CreateAccountNavigation {
     let finish: Callback
     let signup: Callback
 }
+
 class CreateAccountViewController: BaseViewController {
     let navigation: CreateAccountNavigation
     

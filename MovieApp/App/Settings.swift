@@ -1,10 +1,3 @@
-//
-//  Settings.swift
-//  MovieApp
-//
-//  Created by Vladimir on 14.04.2023.
-//
-
 import Foundation
 
 final class Settings {
