@@ -45,6 +45,6 @@ struct HomeCellView: View {
 
 struct HomeCellView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeCellView(title: Title(adult: true, genreIDS: [], id: 1, originalTitle: "ghbdfsafd", posterPath: "/cvsXj3I9Q2iyyIo95AecSd1tad7.jpg"))
+        HomeCellView(title: Title(adult: true, genreIds: [], id: 1, originalTitle: "ghbdfsafd", posterPath: "/cvsXj3I9Q2iyyIo95AecSd1tad7.jpg"))
     }
 }

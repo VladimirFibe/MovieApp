@@ -4,6 +4,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import GoogleSignIn
 import GoogleSignInSwift
+import FirebaseStorage
 
 enum AuthenticationState {
     case unauthenticated
@@ -121,4 +122,14 @@ extension FirebaseUserListener {
             return false
         }
     }
+    
+    func uploadImage(_ image: UIImage) async throws -> String? {
+//        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil}
+//        let filename = UUID().uuidString
+//        let ref = Storage.storage().reference(withPath: "/profile/\(filename)")
+//        let task = ref.putData(imageData)
+//        ref.
+        return ""
+    }
+
 }
