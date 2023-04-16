@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-class TitlePreviewViewController: UIViewController {
+class TitlePreviewViewController: BaseViewController {
 
     private let webView = WKWebView().apply {
         $0.translatesAutoresizingMaskIntoConstraints = false

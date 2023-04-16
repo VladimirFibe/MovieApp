@@ -3,12 +3,23 @@ import UIKit
 enum MovieSection: Hashable {
     case main
 }
-
+struct HomeNavigation {
+    let didLoadPrivew: (TitlePreviewViewModel) -> ()
+}
 final class HomeViewController: BaseViewController {
+    private var navigation: HomeNavigation
     private var store = HomeStore()
     var bag = Bag()
     private var categories: [String] = ["all","Action","Adventure","Mystery","Horror","Comedian"]
     private var titles: [Title] = Bundle.main.decode([Title].self, from: "Movies.json", keyDecodingStrategy: .convertFromSnakeCase)
+    init(navigation: HomeNavigation) {
+        self.navigation = navigation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     #warning("[weak self] in")
     private lazy var tableView = UITableView().apply {
@@ -48,6 +59,8 @@ final class HomeViewController: BaseViewController {
                         self.titles = titles
                         self.configureInitialDiffableSnapshot()
                     }
+                case .didLoadPreview(let preview):
+                    self.navigation.didLoadPrivew(preview)
                 }
             }.store(in: &bag)
     }
@@ -79,7 +92,7 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        #warning("store")
+        store.actions.send(.fetchPreview(titles[indexPath.item]))
     }
 }
 /*
