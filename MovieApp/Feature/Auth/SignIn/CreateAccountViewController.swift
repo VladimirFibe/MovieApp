@@ -171,10 +171,12 @@ class CreateAccountViewController: BaseViewController {
 // MARK: - Navigation
 extension CreateAccountViewController: MainButtonDelegate {
     func buttonPressed(button: UIButton) {
-        if let title = button.currentTitle {
-            print(title)
+        if button.currentTitle == "Continue with email" {
+            let email = textView.textField.text ?? ""
+            store.actions.send(.signIn(email, "123456"))
+        } else {
+            store.actions.send(.googleSignIn)
         }
-        store.actions.send(.googleSignIn)
     }
     
     @objc func logitButtonPressed() {
