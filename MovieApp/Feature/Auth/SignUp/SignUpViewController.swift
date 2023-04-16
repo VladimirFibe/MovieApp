@@ -195,11 +195,13 @@ extension SignUpViewController: ButtonActionCellDelegate {
         if userData.isSamePassword && !userData.name.isEmpty {
             print(userData)
         }
-        
-        store.actions.send(.createUser(email: "mail4@mail.ru",
-                                       password: "123456",
-                                       firstname: "Ivan",
-                                       lastname: "Ivanov"))
+        guard userData.isSamePassword,
+              !userData.email.isEmpty,
+              userData.password.count > 5 else { return }
+        store.actions.send(.createUser(email: userData.email,
+                                       password: userData.password,
+                                       firstname: userData.name,
+                                       lastname: userData.lastName))
     }
 }
 
