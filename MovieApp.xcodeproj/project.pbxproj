@@ -444,10 +444,10 @@
 		275A1FEE29DFD1CA00426D94 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				27A497E729EC2CB400623F92 /* Views */,
 				275A1FE629DFC3CC00426D94 /* HomeCoordinator.swift */,
 				27CC34A729E1BCF600FB6667 /* HomeViewController.swift */,
 				27DAA1AC29EB705100C8F3B8 /* HomeStore.swift */,
-				27C4498929E38EB500D87E39 /* HomeCellView.swift */,
 				27C4498329E30A5800D87E39 /* CategoriesHeaderView.swift */,
 				27C4498529E30A7200D87E39 /* CategoryCell.swift */,
 				27C4498729E30AD400D87E39 /* HeroHeaderView.swift */,
@@ -534,6 +534,14 @@
 				27A497E529EC17AE00623F92 /* CoreDataManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		27A497E729EC2CB400623F92 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27C4498929E38EB500D87E39 /* HomeCellView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		27A5FB5529EB7DD200EF3266 /* TitlePreview */ = {

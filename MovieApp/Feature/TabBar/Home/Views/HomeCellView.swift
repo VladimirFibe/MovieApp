@@ -3,6 +3,7 @@ import Kingfisher
 typealias HomeCell = BridgingRestrictedTableViewCell<HomeCellView>
 struct HomeCellView: View {
     let title: Title
+    @State private var liked = false
     var body: some View {
         HStack {
             KFImage(URL(string: "https://image.tmdb.org/t/p/w500/\(title.posterPath)"))
@@ -35,12 +36,24 @@ struct HomeCellView: View {
             }
             
         }
-        .overlay(Image(systemName: "heart")
-//            .padding()
+        .overlay(
+            Button(action: {
+                if let item = CoreDataMamanager.shared.fetchTitleItem(with: Int64(title.id)) {
+                    CoreDataMamanager.shared.deletaTitleItme(with: item.id)
+                } else {
+                    CoreDataMamanager.shared.createTitle(title)
+                }
+                liked.toggle()
+            }) {
+                Image(systemName: liked ? "heart.fill" : "heart")
+            }
                  , alignment: .topTrailing)
         .padding(8)
-        
+        .onAppear {
+            liked = CoreDataMamanager.shared.fetchTitleItem(with: Int64(title.id)) != nil
+        }
     }
+
 }
 
 struct HomeCellView_Previews: PreviewProvider {

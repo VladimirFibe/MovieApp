@@ -31,67 +31,53 @@ public final class CoreDataMamanager: NSObject {
         appDelegate.saveContext()
     }
 
-//    public func createPhoto(_ id: Int16, title: String, url: String?) {
-//        guard let photoEntityDescription = NSEntityDescription.entity(forEntityName: "TitleItem", in: context) else {
-//            return
-//        }
-//        let photo = TitleItem(entity: photoEntityDescription, insertInto: context)
-//        photo.id = id
-//        photo.title = title
-//        photo.url = url
-//
-//        appDelegate.saveContext()
-//    }
-//
-//    public func fetchPhotos() -> [Photo] {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-//        do {
-//            return (try? context.fetch(fetchRequest) as? [Photo]) ?? []
-//        }
-//    }
-//
-//    public func fetchPhoto(with id: Int16) -> Photo? {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-//        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-//        do {
-//            let photos = try? context.fetch(fetchRequest) as? [Photo]
-//            return photos?.first
-//        }
-//    }
-//
-//    public func updataPhoto(with id: Int16, newUrl: String, title: String? = nil) {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-//        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-//        do {
-//            guard let photos = try? context.fetch(fetchRequest) as? [Photo],
-//                  let photo = photos.first else { return }
-//            photo.url = newUrl
-//            photo.title = title
-//        }
-//
-//        appDelegate.saveContext()
-//    }
-//
-//    public func deletaAllPhoto() {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-//        do {
-//            let photos = try? context.fetch(fetchRequest) as? [Photo]
-//            photos?.forEach { context.delete($0) }
-//        }
-//
-//        appDelegate.saveContext()
-//    }
-//
-//    public func deletaPhoto(with id: Int16) {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-//        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-//        do {
-//            guard let photos = try? context.fetch(fetchRequest) as? [Photo],
-//                  let photo = photos.first else { return}
-//            context.delete(photo)
-//        }
-//
-//        appDelegate.saveContext()
-//    }
+    func fetchTitleItems() -> [TitleItem] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TitleItem")
+        do {
+            return (try? context.fetch(fetchRequest) as? [TitleItem]) ?? []
+        }
+    }
+    
+    func fetchTitleItem(with id: Int64) -> TitleItem? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TitleItem")
+        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+        do {
+            let items = try? context.fetch(fetchRequest) as? [TitleItem]
+            return items?.first
+        }
+    }
+    
+    func updateTitleItem(with title: Title) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TitleItem")
+        fetchRequest.predicate = NSPredicate(format: "id == %i", title.id)
+        do {
+            guard let items = try? context.fetch(fetchRequest) as? [TitleItem],
+            let item = items.first else { return }
+            item.originalTitle = title.originalTitle
+            item.posterPath = title.posterPath
+        }
+        appDelegate.saveContext()
+    }
+
+
+    func deletaAllTitleItems() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TitleItem")
+        do {
+            let items = try? context.fetch(fetchRequest) as? [TitleItem]
+            items?.forEach { context.delete($0) }
+        }
+        appDelegate.saveContext()
+    }
+
+    public func deletaTitleItme(with id: Int64) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TitleItem")
+        fetchRequest.predicate = NSPredicate(format: "id == %i", id)
+        do {
+            guard let items = try? context.fetch(fetchRequest) as? [TitleItem],
+                  let item = items.first else { return}
+            context.delete(item)
+        }
+        appDelegate.saveContext()
+    }
 }
 

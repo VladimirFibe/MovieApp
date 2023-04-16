@@ -93,7 +93,6 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let title = titles[indexPath.item]
-        CoreDataMamanager.shared.createTitle(title)
         store.actions.send(.fetchPreview(title))
     }
 }
