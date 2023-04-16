@@ -3,9 +3,11 @@ import UIKit
 enum MovieSection: Hashable {
     case main
 }
+
 struct HomeNavigation {
     let didLoadPrivew: (TitlePreviewViewModel) -> ()
 }
+
 final class HomeViewController: BaseViewController {
     private var navigation: HomeNavigation
     private var store = HomeStore()
@@ -21,7 +23,6 @@ final class HomeViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    #warning("[weak self] in")
     private lazy var tableView = UITableView().apply {
         $0.rowHeight = UITableView.automaticDimension
         $0.estimatedRowHeight = 100
@@ -66,7 +67,6 @@ final class HomeViewController: BaseViewController {
     }
     
     func configureInitialDiffableSnapshot() {
-        print(#function)
         var snapshot = NSDiffableDataSourceSnapshot<MovieSection, Title>()
         snapshot.appendSections([.main])
         snapshot.appendItems(titles)
@@ -95,24 +95,3 @@ extension HomeViewController: UITableViewDelegate {
         store.actions.send(.fetchPreview(titles[indexPath.item]))
     }
 }
-/*
- {
-     tableView.deselectRow(at: indexPath, animated: true)
-     let title = titles[indexPath.item]
-     guard let name = title.original_name ?? title.original_title else { return }
-     APICaller.shared.getMovie(with: name) {[weak self] result in
-         guard let self = self else { return }
-         DispatchQueue.main.async {
-             switch result {
-             case .success(let video):
-                 let controller = TitlePreviewViewController()
-                 let title = self.titles[indexPath.row]
-                 controller.configure(with: TitlePreviewViewModel(title: title, video: video))
-                 self.navigationController?.pushViewController(controller, animated: true)
-             case .failure(let error): print(error.localizedDescription)
-             }
-         }
-     }
- }
- 
- */
