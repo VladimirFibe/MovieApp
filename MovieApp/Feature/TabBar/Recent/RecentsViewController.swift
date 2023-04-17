@@ -104,7 +104,7 @@ extension RecentsViewController: CategoriesHeaderViewDelegate {
 
  // MARK: - Content Cell Delegate
 extension RecentsViewController: ContentCellDelegate {
-    func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton) {
+    func cellFavouriteButtonDidPress(id: Int) {
         // TODO: Тут обрабатывать нажатие кнопки избранное
     }
 }

@@ -1,27 +1,18 @@
-//
-//  ContentCell.swift
-//  MovieApp
-//
-//  Created by Павел Грицков on 12.04.23.
-//
-
 import UIKit
 import Kingfisher
 
 protocol ContentCellDelegate: AnyObject  {
-    func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton)
+    func cellFavouriteButtonDidPress(id: Int)
 }
 
 class ContentCell: UITableViewCell {
     
     weak var delegate: ContentCellDelegate?
-    
     // MARK: - Constants
     private let offsetHor: CGFloat = 24.0
     private let offSetVer: CGFloat = 12.0
-    
     var isActiveFavouriteButton = false
-    
+    var id: Int?
     // MARK: - Content Views
     let movieImageView: UIImageView = {
         let imageView = UIImageView()
@@ -42,7 +33,7 @@ class ContentCell: UITableViewCell {
     let favouriteButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 22, weight: .regular)
-        let image = UIImage(systemName: "heart", withConfiguration: config) // heart.fill
+        let image = UIImage(systemName: "heart.fill", withConfiguration: config)
         button.setImage(image, for: .normal)
         button.tintColor = .lightGray
         return button
@@ -64,12 +55,17 @@ class ContentCell: UITableViewCell {
     }()
     
     // MARK: - Configure Cell
-    func configure(title: String, date: String, duration: String, posterPath: String?, isFavourite: Bool) {
+    func configure(title: String,
+                   date: String,
+                   duration: String,
+                   posterPath: String?,
+                   isFavourite: Bool,
+                   id: Int? = nil,
+                   delegate: ContentCellDelegate? = nil) {
         // TODO: убрать захардкоженые значения
-        
         isActiveFavouriteButton = isFavourite
         movieNameLabel.text = title
-        
+        self.id = id
         // загрузка постеров фильмов если они есть если нет устанавливается заглушка
         if let path = posterPath {
             let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)")
@@ -129,8 +125,9 @@ class ContentCell: UITableViewCell {
     }
     
     @objc func favouriteButtonPressed(_ sender: UIButton) {
+        guard let id = id else { return }
         switchButtonFavourite()
-        delegate?.cellFavouriteButtonDidPress(cell: self, button: sender)
+        delegate?.cellFavouriteButtonDidPress(id: id)
     }
     
     // MARK: - Set Constraints

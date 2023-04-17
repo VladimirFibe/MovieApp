@@ -1,34 +1,54 @@
-//
-//  FavouriteViewController.swift
-//  MovieApp
-//
-//  Created by Павел Грицков on 12.04.23.
-//
-
 import UIKit
 
-struct Testeble {
-    var title: String
-    var date: String
-    var duration: String
-    var isFavourite: Bool
+struct FavouriteNavigation {
+    let didLoadPrivew: (TitlePreviewViewModel) -> ()
 }
 
 class FavouriteViewController: BaseViewController {
-    
+    private var navigation: FavouriteNavigation
+    private var store = FavoriteStore()
+    var bag = Bag()
     private let heightRow: CGFloat = 184.0
     
     let tableView = UITableView(frame: .zero, style: .plain)
     
     let networkManager = NetworkManager()
     
-    var movieArray: [MovieData] = []
+    var movieArray: [TitleItem] = []
+    init(navigation: FavouriteNavigation) {
+        self.navigation = navigation
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
         setConstraints()
+        setupObservers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        movieArray = CoreDataMamanager.shared.fetchTitleItems()
+        tableView.reloadData()
+    }
+    
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .didLoadPreview(let preview):
+                    self.navigation.didLoadPrivew(preview)
+                }
+            }.store(in: &bag)
     }
     
     func configureUI() {
@@ -65,13 +85,14 @@ extension FavouriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ContentCell.self)) as! ContentCell
         
-        let title = movieArray[indexPath.row].originalTitle
+        let item = movieArray[indexPath.row]
+        let title = item.originalTitle ?? "без названия"
         let duration = "145 Minutes"
-        let date = movieArray[indexPath.row].releaseDate
-        let isFavourite = false
-        let path = movieArray[indexPath.row].posterPath
+        let date = ""
+        let isFavourite = true
+        let path = item.posterPath
         
-        cell.configure(title: title, date: date, duration: duration, posterPath: path, isFavourite: isFavourite)
+        cell.configure(title: title, date: date, duration: duration, posterPath: path, isFavourite: isFavourite, id: Int(item.id), delegate: self)
         cell.delegate = self
         return cell
     }
@@ -80,14 +101,17 @@ extension FavouriteViewController: UITableViewDataSource {
 // MARK: - TableView Delegate
 extension FavouriteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //  TODO: Тут осуществить переход на экран детальной информации
-        print("the cell with the index path \(indexPath) is selected")
+        tableView.deselectRow(at: indexPath, animated: true)
+        let item = movieArray[indexPath.item]
+        store.actions.send(.fetchPreview(item))
     }
 }
 
 // MARK: - Content Cell Delegate
 extension FavouriteViewController: ContentCellDelegate {
-    func cellFavouriteButtonDidPress(cell: ContentCell, button: UIButton) {
-        // TODO: Тут обрабатывать нажатие кнопки издранное
+    func cellFavouriteButtonDidPress(id: Int) {
+        CoreDataMamanager.shared.deletaTitleItme(with: Int64(id))
+        movieArray = CoreDataMamanager.shared.fetchTitleItems()
+        tableView.reloadData()
     }
 }
