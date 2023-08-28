@@ -18,6 +18,6 @@ extension OnboardingCoordinator {
         let navigation = OnboardingNavigation(finish: {
             self.onFlowDidFinish?()
         })
-        return OnboardingViewController(navigation: navigation)
+        return OnboardingContainerController(navigation: navigation)
     }
 }

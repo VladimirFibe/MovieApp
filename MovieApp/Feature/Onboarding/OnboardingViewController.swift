@@ -1,175 +1,91 @@
 import UIKit
 
-struct OnboardingNavigation {
-    let finish: Callback
-}
-
 final class OnboardingViewController: BaseViewController {
-    let navigation: OnboardingNavigation
-    
-    init(navigation: OnboardingNavigation) {
-        self.navigation = navigation
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private var currentPage = 0 {
-        didSet {
-            pageControl.currentPage = currentPage
-            if currentPage == slides.index(before: slides.count) {
-                continueButton.setTitle("Start watching", for: .normal)
-            } else {
-                continueButton.setTitle("Continue", for: .normal)
-            }
-        }
-    }
-    
-    private let slides: [OnboardingSlide] = [
-        OnboardingSlide(title: "Watch your favorite movie easily", description: "Drawings can followed improved out sociable not. Earnestly so do instantly pretended."),
-        OnboardingSlide(title: "Enjoy your movies anytime", description: "Cause dried no solid no an small so still widen. Ten weather evident smiling bed against she examine its."),
-        OnboardingSlide(title: "Watch on different devices", description: "Fancy she stuff after aware merit small his. Charmed esteems luckily age out.")
-    ]
+    let slide: OnboardingSlide
 
-    let popcornImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "woman")
-        image.contentMode = .scaleAspectFit
-        return image
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.layer.cornerRadius = 16
+        return view
     }()
 
-    let slideView: UIView = {
-        let slide = UIView()
-        slide.backgroundColor = .white
-        slide.layer.cornerRadius = 16
-        return slide
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = slide.title
+        label.font = AppFont.bold.s24()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
     }()
 
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.isPagingEnabled = true
-        collection.showsHorizontalScrollIndicator = false
-        collection.showsVerticalScrollIndicator = false
-        return collection
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = slide.description
+        label.font = AppFont.regular.s14()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
     }()
 
-    let pageControl: UIPageControl = {
-        let dots = UIPageControl()
-        dots.numberOfPages = 3
-        dots.currentPageIndicatorTintColor = #colorLiteral(red: 0.3176470588, green: 0.3058823529, blue: 0.7137254902, alpha: 1)
-        dots.pageIndicatorTintColor = .systemGray4
-        return dots
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = slide.image
+        return imageView
     }()
 
-    let continueButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Continue", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.3058823529, blue: 0.7137254902, alpha: 1)
-        button.layer.cornerRadius = 24
+    private lazy var button: PrimaryButton = {
+        let button = PrimaryButton(type: .system)
+        button.setTitle("Continue", for: [])
         return button
     }()
 
-    // MARK: Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.3058823529, blue: 0.7137254902, alpha: 1)
-        addSubviews()
-        setConstraints()
-        configureCollectionView()
-        addTargets()
+    init(slide: OnboardingSlide) {
+        self.slide = slide
+        super.init(nibName: nil, bundle: nil)
     }
 
-    private func configureCollectionView() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingCollectionViewCell.identifier)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension OnboardingViewController {
+    override func setupViews() {
+        view.backgroundColor = AppColor.mainPrimary.uiColor
+        [containerView, imageView].forEach { view.addSubview($0)}
+        [titleLabel, descriptionLabel, button].forEach { containerView.addSubview($0)}
     }
 
-    private func addSubviews() {
-        [popcornImageView, slideView, collectionView, pageControl, continueButton].forEach { view in
-            self.view.addSubview(view)
-            view.translatesAutoresizingMaskIntoConstraints = false
+    func configure(_ target: Any?, action: Selector) {
+        button.addTarget(target, action: action, for: .primaryActionTriggered)
+    }
+
+    override func setupConstraints() {
+        containerView.snp.makeConstraints {
+            $0.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(325)
         }
-    }
 
-    private func setConstraints() {
-        NSLayoutConstraint.activate([
-            slideView.topAnchor.constraint(equalTo: view.centerYAnchor),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: slideView.bottomAnchor, multiplier: 2),
-            slideView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            slideView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(60)
+            $0.leading.trailing.equalToSuperview().inset(24)
+        }
 
-            popcornImageView.bottomAnchor.constraint(equalTo: slideView.topAnchor, constant: 15),
-            popcornImageView.centerXAnchor.constraint(equalTo: slideView.centerXAnchor),
-            view.safeAreaLayoutGuide.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: popcornImageView.topAnchor, multiplier: 4),
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalTo(titleLabel)
+        }
 
-            slideView.bottomAnchor.constraint(equalToSystemSpacingBelow: continueButton.bottomAnchor, multiplier: 3),
-            continueButton.centerXAnchor.constraint(equalTo: slideView.centerXAnchor),
-            continueButton.heightAnchor.constraint(equalToConstant: 56),
-            continueButton.widthAnchor.constraint(equalToConstant: 200),
+        imageView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(containerView)
+            $0.bottom.equalTo(containerView.snp.top)
+        }
 
-            pageControl.topAnchor.constraint(equalToSystemSpacingBelow: slideView.topAnchor, multiplier: 1),
-            pageControl.centerXAnchor.constraint(equalTo: slideView.centerXAnchor),
-
-            collectionView.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 30),
-            collectionView.leadingAnchor.constraint(equalTo: slideView.leadingAnchor, constant: 25),
-            collectionView.trailingAnchor.constraint(equalTo: slideView.trailingAnchor, constant: -20),
-            collectionView.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -30)
-        ])
-    }
-
-    private func addTargets() {
-        continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
-    }
-
-    @objc private func continueButtonTapped() {
-        if currentPage == slides.index(before: slides.count) {
-            navigation.finish()
-        } else {
-            currentPage += 1
-            let indexPath = IndexPath(item: currentPage, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        button.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(28)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(200)
         }
     }
 }
-
-// MARK: - UICollectionViewDataSource
-extension OnboardingViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        slides.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: OnboardingCollectionViewCell.identifier,
-            for: indexPath) as! OnboardingCollectionViewCell
-        cell.configure(title: slides[indexPath.row].title, description: slides[indexPath.row].description)
-        return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension OnboardingViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-extension OnboardingViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let width = scrollView.frame.width
-        currentPage = Int(scrollView.contentOffset.x / width)
-    }
-}
-
-
