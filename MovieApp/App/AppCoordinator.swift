@@ -5,8 +5,7 @@ typealias Callback = () -> Void
 final class AppCoordinator: BaseCoordinator {
     var login = true
     override func start() {
-//        runSplash()
-        runOnboarding()
+        runSplash()
     }
     
     private func run() {

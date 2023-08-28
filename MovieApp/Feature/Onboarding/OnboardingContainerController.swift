@@ -16,19 +16,19 @@ final class OnboardingContainerController: BaseViewController {
             navigationOrientation: .horizontal)
         let page1 = OnboardingViewController(
             slide: OnboardingSlide(
-                title: "Title1",
-                description: "Description",
-                image: UIImage(systemName: "bell")))
+                title: "Watch your favorite movie easily",
+                description: "Semper in cursus magna et eu varius nunc adipiscing. Elementum justo, laoreet id sem.",
+                image: UIImage(named: "woman")))
         let page2 = OnboardingViewController(
             slide: OnboardingSlide(
-                title: "Title2",
-                description: "Description",
-                image: UIImage(systemName: "bell")))
+                title: "Watch your favorite movie easily",
+                description: "Semper in cursus magna et eu varius nunc adipiscing. Elementum justo, laoreet id sem.",
+                image: UIImage(named: "woman")))
         let page3 = OnboardingViewController(
             slide: OnboardingSlide(
-                title: "Title3",
-                description: "Description",
-                image: UIImage(systemName: "bell")))
+                title: "Watch your favorite movie easily",
+                description: "Semper in cursus magna et eu varius nunc adipiscing. Elementum justo, laoreet id sem.",
+                image: UIImage(named: "woman")))
         pages.append(page1)
         pages.append(page2)
         pages.append(page3)
@@ -38,6 +38,10 @@ final class OnboardingContainerController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func didTapContinueButton() {
+        self.navigation.finish()
     }
 }
 
@@ -49,6 +53,11 @@ extension OnboardingContainerController {
         pageViewController.didMove(toParent: self)
         pageViewController.dataSource = self
         pageViewController.setViewControllers([currentPage], direction: .forward, animated: false)
+        pages.forEach {
+            ($0 as? OnboardingViewController)?.configure(
+                self,
+                action: #selector(didTapContinueButton))
+        }
     }
 
     override func setupConstraints() {

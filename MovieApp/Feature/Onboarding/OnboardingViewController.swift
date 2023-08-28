@@ -3,17 +3,28 @@ import UIKit
 final class OnboardingViewController: BaseViewController {
     let slide: OnboardingSlide
 
+    private let containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.layer.cornerRadius = 16
+        return view
+    }()
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = slide.title
-        label.font = AppFont.semibold.s20()
-        label.textColor = .white
+        label.font = AppFont.bold.s24()
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
 
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = slide.description
+        label.font = AppFont.regular.s14()
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
 
@@ -21,6 +32,12 @@ final class OnboardingViewController: BaseViewController {
         let imageView = UIImageView()
         imageView.image = slide.image
         return imageView
+    }()
+
+    private lazy var button: PrimaryButton = {
+        let button = PrimaryButton(type: .system)
+        button.setTitle("Continue", for: [])
+        return button
     }()
 
     init(slide: OnboardingSlide) {
@@ -36,12 +53,39 @@ final class OnboardingViewController: BaseViewController {
 extension OnboardingViewController {
     override func setupViews() {
         view.backgroundColor = AppColor.mainPrimary.uiColor
-        [titleLabel].forEach { view.addSubview($0)}
+        [containerView, imageView].forEach { view.addSubview($0)}
+        [titleLabel, descriptionLabel, button].forEach { containerView.addSubview($0)}
+    }
+
+    func configure(_ target: Any?, action: Selector) {
+        button.addTarget(target, action: action, for: .primaryActionTriggered)
     }
 
     override func setupConstraints() {
+        containerView.snp.makeConstraints {
+            $0.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(325)
+        }
+
         titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalToSuperview().inset(60)
+            $0.leading.trailing.equalToSuperview().inset(24)
+        }
+
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.leading.trailing.equalTo(titleLabel)
+        }
+
+        imageView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(containerView)
+            $0.bottom.equalTo(containerView.snp.top)
+        }
+
+        button.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(28)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(200)
         }
     }
 }

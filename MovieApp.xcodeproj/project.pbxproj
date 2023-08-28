@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02B6F4352A9CEC8C00F28B8D /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6F4342A9CEC8C00F28B8D /* PrimaryButton.swift */; };
 		02C88A4C2A9C7FEA008CC5D5 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C88A4B2A9C7FEA008CC5D5 /* OnboardingViewController.swift */; };
 		02F403FC2A9C592000CEC014 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F403FB2A9C592000CEC014 /* AppColor.swift */; };
 		02F403FE2A9C592B00CEC014 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F403FD2A9C592B00CEC014 /* AppImage.swift */; };
@@ -112,6 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02B6F4342A9CEC8C00F28B8D /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		02C88A4B2A9C7FEA008CC5D5 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		02F403FB2A9C592000CEC014 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		02F403FD2A9C592B00CEC014 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				18BD55E629DCB84E0000DB83 /* OnboardingSlide.swift */,
 				18EEBF5929DB5A62002B5C20 /* OnboardingContainerController.swift */,
 				02C88A4B2A9C7FEA008CC5D5 /* OnboardingViewController.swift */,
+				02B6F4342A9CEC8C00F28B8D /* PrimaryButton.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -818,6 +821,7 @@
 				10359A0A29E446F50030ADB8 /* PresentationManager.swift in Sources */,
 				275A1FE329DFC39600426D94 /* SearchCoordinator.swift in Sources */,
 				27C4498829E30AD400D87E39 /* HeroHeaderView.swift in Sources */,
+				02B6F4352A9CEC8C00F28B8D /* PrimaryButton.swift in Sources */,
 				275A1FBE29DF9B6F00426D94 /* Router.swift in Sources */,
 				275A1FCB29DF9CE900426D94 /* AuthCoordinator.swift in Sources */,
 				275A1FC829DF9CBC00426D94 /* OnboardingCoordinator.swift in Sources */,
