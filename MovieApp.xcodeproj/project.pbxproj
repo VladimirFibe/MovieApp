@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02F403FC2A9C592000CEC014 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F403FB2A9C592000CEC014 /* AppColor.swift */; };
+		02F403FE2A9C592B00CEC014 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F403FD2A9C592B00CEC014 /* AppImage.swift */; };
+		02F404002A9C593100CEC014 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F403FF2A9C593100CEC014 /* AppFont.swift */; };
+		02F404052A9C659B00CEC014 /* PlusJakartaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F404012A9C659B00CEC014 /* PlusJakartaSans-Medium.ttf */; };
+		02F404062A9C659B00CEC014 /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F404022A9C659B00CEC014 /* PlusJakartaSans-SemiBold.ttf */; };
+		02F404072A9C659B00CEC014 /* PlusJakartaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F404032A9C659B00CEC014 /* PlusJakartaSans-Regular.ttf */; };
+		02F404082A9C659B00CEC014 /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F404042A9C659B00CEC014 /* PlusJakartaSans-Bold.ttf */; };
 		10247AED29EAC19400AE7A47 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10247AEC29EAC19400AE7A47 /* NetworkManager.swift */; };
 		10247AEF29EB127800AE7A47 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10247AEE29EB127800AE7A47 /* UserData.swift */; };
 		103599D929E2B6EC0030ADB8 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103599D829E2B6EC0030ADB8 /* FilterViewController.swift */; };
@@ -105,6 +112,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02F403FB2A9C592000CEC014 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		02F403FD2A9C592B00CEC014 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
+		02F403FF2A9C593100CEC014 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		02F404012A9C659B00CEC014 /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
+		02F404022A9C659B00CEC014 /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		02F404032A9C659B00CEC014 /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; };
+		02F404042A9C659B00CEC014 /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
 		10247AEC29EAC19400AE7A47 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		10247AEE29EB127800AE7A47 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		103599D829E2B6EC0030ADB8 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +230,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02F403FA2A9C591500CEC014 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				02F404092A9C65A500CEC014 /* Fonts */,
+				02F403FB2A9C592000CEC014 /* AppColor.swift */,
+				02F403FD2A9C592B00CEC014 /* AppImage.swift */,
+				02F403FF2A9C593100CEC014 /* AppFont.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		02F404092A9C65A500CEC014 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				02F404042A9C659B00CEC014 /* PlusJakartaSans-Bold.ttf */,
+				02F404012A9C659B00CEC014 /* PlusJakartaSans-Medium.ttf */,
+				02F404032A9C659B00CEC014 /* PlusJakartaSans-Regular.ttf */,
+				02F404022A9C659B00CEC014 /* PlusJakartaSans-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		10247AEB29EAAA0F00AE7A47 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +347,9 @@
 		275A1FBC29DF9B5400426D94 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				02F403FA2A9C591500CEC014 /* Resources */,
+				27A497E429EC179300623F92 /* Manager */,
+				10247AEB29EAAA0F00AE7A47 /* NetworkManager */,
 				27DAA1A629EB634000C8F3B8 /* Network */,
 				275A1FD329DFACB200426D94 /* Extension */,
 				275A1FBB29DF9B4700426D94 /* Base */,
@@ -363,6 +402,7 @@
 		275A1FD029DF9F4B00426D94 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27C9112229ECFF0B00A8D0B2 /* Views */,
 				10573D2129E7100C007DD29D /* DescriptionContainer.swift */,
 				10F9E3C929DC186500C7BC6A /* TextFieldView.swift */,
 				10F9E3C529DB833300C7BC6A /* MainButton.swift */,
@@ -503,10 +543,7 @@
 		275F4F2F29DA404900FCBF0E /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
-				27C9112229ECFF0B00A8D0B2 /* Views */,
 				275A1FB729DF9AD300426D94 /* App */,
-				27A497E429EC179300623F92 /* Manager */,
-				10247AEB29EAAA0F00AE7A47 /* NetworkManager */,
 				275A1FD629DFADAC00426D94 /* Models */,
 				275A1FBC29DF9B5400426D94 /* Core */,
 				275A1FC229DF9C1A00426D94 /* Feature */,
@@ -683,7 +720,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				275F4F3D29DA404A00FCBF0E /* LaunchScreen.storyboard in Resources */,
+				02F404082A9C659B00CEC014 /* PlusJakartaSans-Bold.ttf in Resources */,
+				02F404072A9C659B00CEC014 /* PlusJakartaSans-Regular.ttf in Resources */,
+				02F404062A9C659B00CEC014 /* PlusJakartaSans-SemiBold.ttf in Resources */,
 				279AD65429E8F27C005D04B8 /* GoogleService-Info.plist in Resources */,
+				02F404052A9C659B00CEC014 /* PlusJakartaSans-Medium.ttf in Resources */,
 				275F4F3A29DA404A00FCBF0E /* Assets.xcassets in Resources */,
 				275A1FD229DFAC9D00426D94 /* Movies.json in Resources */,
 			);
@@ -704,6 +745,7 @@
 				27CC349929E1B34B00FB6667 /* MovieTableView.swift in Sources */,
 				10740FCA29E948900099194F /* HeaderCell.swift in Sources */,
 				10F9E3C429DB7EA000C7BC6A /* CreateAccountViewController.swift in Sources */,
+				02F404002A9C593100CEC014 /* AppFont.swift in Sources */,
 				27CC34A829E1BCF600FB6667 /* HomeViewController.swift in Sources */,
 				275A1FC629DF9C6600426D94 /* SplashCoordinator.swift in Sources */,
 				10F9E3CA29DC186500C7BC6A /* TextFieldView.swift in Sources */,
@@ -713,6 +755,7 @@
 				27DAA1A929EB64C100C8F3B8 /* APICaller.swift in Sources */,
 				27CC349F29E1B51600FB6667 /* ButtonView.swift in Sources */,
 				275A1FDF29DFBEEE00426D94 /* TabBarController.swift in Sources */,
+				02F403FC2A9C592000CEC014 /* AppColor.swift in Sources */,
 				1035BD1D29E0D780004C2AC3 /* GenderCell.swift in Sources */,
 				27CC34A129E1B56600FB6667 /* Constants.swift in Sources */,
 				270A656929E08DF300C36C27 /* BottomSheetTransitioningDelegate.swift in Sources */,
@@ -744,6 +787,7 @@
 				2798986A29EAC1EC0076A8AE /* SignInStore.swift in Sources */,
 				275A1FD529DFACE400426D94 /* Bundle+Extensions.swift in Sources */,
 				27C4498629E30A7200D87E39 /* CategoryCell.swift in Sources */,
+				02F403FE2A9C592B00CEC014 /* AppImage.swift in Sources */,
 				A262EE1129E9685C0073AF39 /* PopUpViewController.swift in Sources */,
 				275A1FE129DFC01600426D94 /* TabItem.swift in Sources */,
 				279637BD29EAEB3800663B57 /* Person.swift in Sources */,

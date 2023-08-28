@@ -38,6 +38,7 @@ final class AppCoordinator: BaseCoordinator {
         addDependency(coordinator)
         coordinator.start()
     }
+    
     private func runOnboarding() {
         let coordinator = OnboardingCoordinator(router: router)
         coordinator.onFlowDidFinish = {
@@ -46,6 +47,7 @@ final class AppCoordinator: BaseCoordinator {
         addDependency(coordinator)
         coordinator.start()
     }
+
     private func runSplash() {
         let coordinator = SplashCoordinator(router: router)
         coordinator.onFlowDidFinish = {
