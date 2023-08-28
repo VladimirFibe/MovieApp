@@ -7,6 +7,7 @@ final class Settings {
     private enum Keys: String {
         case onboarded
     }
+    
     var onboarded: Bool {
         get {
             UserDefaults.standard.bool(forKey: Keys.onboarded.rawValue)

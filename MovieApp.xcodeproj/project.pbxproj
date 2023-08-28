@@ -311,6 +311,8 @@
 		275A1FBC29DF9B5400426D94 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				27A497E429EC179300623F92 /* Manager */,
+				10247AEB29EAAA0F00AE7A47 /* NetworkManager */,
 				27DAA1A629EB634000C8F3B8 /* Network */,
 				275A1FD329DFACB200426D94 /* Extension */,
 				275A1FBB29DF9B4700426D94 /* Base */,
@@ -363,6 +365,7 @@
 		275A1FD029DF9F4B00426D94 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27C9112229ECFF0B00A8D0B2 /* Views */,
 				10573D2129E7100C007DD29D /* DescriptionContainer.swift */,
 				10F9E3C929DC186500C7BC6A /* TextFieldView.swift */,
 				10F9E3C529DB833300C7BC6A /* MainButton.swift */,
@@ -503,10 +506,7 @@
 		275F4F2F29DA404900FCBF0E /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
-				27C9112229ECFF0B00A8D0B2 /* Views */,
 				275A1FB729DF9AD300426D94 /* App */,
-				27A497E429EC179300623F92 /* Manager */,
-				10247AEB29EAAA0F00AE7A47 /* NetworkManager */,
 				275A1FD629DFADAC00426D94 /* Models */,
 				275A1FBC29DF9B5400426D94 /* Core */,
 				275A1FC229DF9C1A00426D94 /* Feature */,
