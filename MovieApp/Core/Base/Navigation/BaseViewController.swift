@@ -22,4 +22,15 @@ open class BaseViewController: UIViewController, BaseViewControllerProtocol {
             self?.onDidDismiss?()
         }
     }
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        setupViews()
+        setupConstraints()
+    }
+}
+
+@objc extension BaseViewController {
+    func setupViews() {}
+    func setupConstraints() {}
 }

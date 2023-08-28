@@ -21,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.loadPersistentStores { description, error in
             if let error {
                 print(error.localizedDescription)
-            } else {
-//                print("DB url -", description.url?.absoluteString ?? "")
             }
         }
         return container
